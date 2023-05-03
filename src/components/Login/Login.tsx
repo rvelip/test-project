@@ -24,7 +24,7 @@ export default function Login() {
                                         id="username"
                                         type="username"
                                         name="username"
-                                        className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                                        className="text-sm sm:text-base placeholder-gray-500 pl-4 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                                         placeholder="Username"
                                     />
                                 </div>
@@ -42,7 +42,7 @@ export default function Login() {
                                         id="password"
                                         type="password"
                                         name="password"
-                                        className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                                        className="text-sm sm:text-base placeholder-gray-500 pl-4 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                                         placeholder="Password"
                                     />
                                 </div>
