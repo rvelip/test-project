@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import axios from 'axios';
 import { fetchPosts } from '../store/actions/postAction';
 import { divStyle } from './index_tailwind';
+import Login from '@/components/Login/Login';
+import TopBar from '@/components/Layout/TopBar/TopBar';
 
 
 export default function Home({ posts }: any) {
@@ -22,8 +24,10 @@ export default function Home({ posts }: any) {
   }, [dispatch]);
   return (
     <>
+<TopBar/>
+<Login/>
 
-      <div className={divStyle.gridlay}>
+      {/* <div className={divStyle.gridlay}>
         <div className='bg-red-800 text-center text-xl'>01</div>
         <div className='bg-gray-800'>09</div>
         <div className='bg-gray-800'>09</div>
@@ -35,7 +39,7 @@ export default function Home({ posts }: any) {
       </div>
       <div className={`${divStyle.bgColor} ${divStyle.color}`}>
         Ramchandra Velip
-      </div>
+      </div> */}
       {/* <button className='pb-13'>Rammm</button> */}
       {/* <nav className='bg-slate-950 flex justify-between text-white'>
         <img src='https://fastly.picsum.photos/id/518/200/200.jpg?hmac=nY2cAnZ0_ItWhhAsJ_XL3RsNkDo7_zobodK8FWIoCDM' className='h-20 px-3 py-4' />
