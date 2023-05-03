@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
              {/* add external css file using script link code and meta tag and title */}
         </Head>
-      <body className='font-serif' >
+      <body className='font-sans' >
         <Main />
         <NextScript />
       {/* add external script file using script code */}
