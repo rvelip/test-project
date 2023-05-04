@@ -1,7 +1,7 @@
 export const loginStyle = {
     mainwrapper: 'min-h-screen flex flex-col items-center justify-center bg-gray-100',
     innerWrapper: 'flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md',
-    heading: 'text-left text-1xl font-bold',
+    heading: 'text-left text-1xl font-bold font-toyota',
     formMargin:'mt-6',
     column:'flex flex-col mb-6',
     label: 'mb-1 text-xs sm:text-sm tracking-wide text-gray-600',

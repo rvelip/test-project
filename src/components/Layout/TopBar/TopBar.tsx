@@ -5,7 +5,7 @@ export default function TopBar() {
   return (
     <div className='bg-black text-white h-10 flex justify-between items-center p-4'>
       <div>
-        <strong>Logistics orchestration </strong>
+        <strong className='font-toyota'>Logistics orchestration </strong>
         | TLS
       </div>
       <div className='flex justify-between w-20'>

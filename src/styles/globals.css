@@ -1,4 +1,28 @@
+@font-face {
+    font-family: "Toyota Type";
+    src: url('../../public/webfonts/ToyotaType-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Toyota Type";
+    src: url('../../public/webfonts/ToyotaType-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Toyota Type";
+    src: url('../../public/webfonts/ToyotaType-BoldIt.ttf');
+    font-weight: 700;
+    font-style: italic;
+}
+
+.font-toyota {
+    font-family: "Toyota Type";
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
