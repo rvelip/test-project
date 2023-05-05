@@ -1,7 +1,9 @@
 import React from 'react'
 import { loginStyle } from './login_tailwind'
+import { useRouter } from 'next/router';
 
 export default function Login() {
+    const router = useRouter();
     return (
         <div
             className={loginStyle.mainwrapper}
@@ -59,12 +61,20 @@ export default function Login() {
                             <button
                                 type="submit"
                                 className={`${loginStyle.button} ${loginStyle.btnMargin}`}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    router.push('/Dashboard')
+                                }}
                             >
                                 Login
                             </button>
                             <button
                                 type="submit"
                                 className={loginStyle.button}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    router.push('/Dashboard')
+                                }}
                             >
                                 Login with SSO
                             </button>
