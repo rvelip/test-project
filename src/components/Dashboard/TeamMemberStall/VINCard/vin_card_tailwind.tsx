@@ -1,5 +1,5 @@
 export const vinStyle = {
-  mainwrapper: 'grid sm:grid-cols-2 md:grid-cols-2 gap-8 m-5',
+  mainwrapper: 'grid sm:grid-cols-2 md:grid-cols-2 gap-8 mx-10 my-5',
   innerWrapper: 'grid sm:grid-cols-2 md:grid-cols-2 gap-5 p-5 bg-white',
   displayFlex: 'flex',
   vehicle:'mr-5 font-medium md:mr-1 lg:mr-5',

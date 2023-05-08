@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function TeamMemberStallInfo() {
   return (
-    <div className='grid grid-cols-3 gap-8 p-10 bg-grey3 font-toyota'>
+    <div className='grid grid-cols-3 gap-8 pb-1 pt-6 px-6 font-toyota'>
       <div className='grid grid-rows-2 w-full p-4 '>
         <div className='text-grey4'>
           Team Member(s) at Stall
