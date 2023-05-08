@@ -1,5 +1,5 @@
 export const loginStyle = {
-    mainwrapper: 'min-h-screen flex flex-col items-center justify-center bg-gray-100 content_bg',
+    mainwrapper: 'min-h-screen flex flex-col items-center justify-center bg-gray-100 content_bg font-toyota',
     innerWrapper: 'flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-14 rounded-md w-full max-w-xl',
     heading: 'text-left font-semibold font-toyota text-xl',
     formMargin:'mt-6',

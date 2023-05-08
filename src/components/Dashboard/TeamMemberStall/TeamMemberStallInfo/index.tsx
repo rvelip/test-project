@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function TeamMemberStallInfo() {
   return (
-    <div className='grid grid-cols-3 gap-8 m-10 font-toyota'>
+    <div className='grid grid-cols-3 gap-8 my-6 mx-10 font-toyota'>
       <div className='grid grid-rows-2 w-full'>
         <div className='h-8 text-grey4'>
           Team Member(s) at Stall

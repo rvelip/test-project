@@ -24,10 +24,9 @@
 }
 
 .content_bg {
-   //background-image: url('/images/bgImages/login-back.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('/images/bgImages/login-back.png'); 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/bgImages/login-back.png');
 }
 
 @tailwind base;
