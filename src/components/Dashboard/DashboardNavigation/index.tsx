@@ -3,7 +3,7 @@ import React from 'react'
 export default function DashboardNavigation() {
   // const []
   return (
-    <div className='grid grid-cols-4 h-12 border-b-2 border-grey font-toyota'>
+    <div className='grid grid-cols-4 h-12 border-b-2 border-grey font-toyota text-sm'>
       <div className='pl-4 border-b-2 border-black flex items-center'>
         <div>Stall Dashboard</div>
       </div>
