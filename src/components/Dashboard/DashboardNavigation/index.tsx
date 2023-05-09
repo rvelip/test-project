@@ -1,18 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { dashboardNavStyle } from './dashboard_navigation_tailwind';
 
 export default function DashboardNavigation() {
-  // const []
+  const [navItems, setNavItems] = useState([
+    { id: 1, label: 'Stall Dashboard', isActive: false },
+    { id: 2, label: 'Stall Analytics', isActive: true },
+    { id: 3, label: 'Stall Financials', isActive: false }
+  ]);
+
+  const handleNavChange = (e: any, navId: number) => {
+    navItems.forEach(item => {
+      if(item.id === navId) {
+        item.isActive = true;
+      } else {
+        item.isActive = false;
+      }
+    })
+    setNavItems([...navItems]);
+  };
+
+  useEffect(() => {
+    console.log(navItems);
+  }, [navItems]);
+
   return (
-    <div className='grid grid-cols-4 h-12 border-b-2 border-grey font-toyota text-sm'>
-      <div className='pl-4 border-b-2 border-black flex items-center'>
-        <div className='font-semibold'>Stall Dashboard</div>
-      </div>
-      <div className='pl-4 bg-black text-white flex items-center font-semibold'>
-        Stall Lorem
-      </div>
-      <div className='pl-4 bg-black text-white flex items-center font-semibold '>
-        Stall Ipsum
-      </div>
+    <div className={dashboardNavStyle.navWrapper}>
+      {navItems.map((navItem) => {
+        return (
+          <div 
+            key={navItem.id} 
+            className={navItem.isActive ? dashboardNavStyle.isActive : dashboardNavStyle.isInActive}
+            onClick={(e) => handleNavChange(e, navItem.id)}
+          >
+            {navItem.label}
+          </div>
+        )
+      })}
     </div>
   )
 }
