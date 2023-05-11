@@ -1,5 +1,6 @@
 import React from 'react'
 import { vinStyle } from './vin_table_tailwind'
+import MultiSelect from '@/components/Shared/MultiSelect/MultiSelect'
 
 export default function VINTable() {
     return (
@@ -62,8 +63,7 @@ export default function VINTable() {
                                     <td className="whitespace-nowrap px-3.5 py-4">10 min</td>
                                     <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
                                     <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">
-                                    </td>
+                                    <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect /></td>
                                 </tr>
                                 <tr
                                     className="bg-white">
@@ -74,7 +74,7 @@ export default function VINTable() {
                                     <td className="whitespace-nowrap px-3.5 py-4">10 min</td>
                                     <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
                                     <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"></td>
+                                    <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect /></td>
                                 </tr>
                                 <tr
                                     className="bg-grey3">
@@ -85,7 +85,7 @@ export default function VINTable() {
                                     <td className="whitespace-nowrap px-3.5 py-4">10 min</td>
                                     <td className="whitespace-nowrap px-3.5 py-4 text-white"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
                                     <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"></td>
+                                    <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect /></td>
                                 </tr>
                                 <tr
                                     className="bg-white">
@@ -96,7 +96,7 @@ export default function VINTable() {
                                     <td className="whitespace-nowrap px-3.5 py-4">5 min</td>
                                     <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
                                     <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"></td>
+                                    <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect /></td>
                                 </tr>
                                 <tr
                                     className="bg-grey3">
@@ -107,7 +107,7 @@ export default function VINTable() {
                                     <td className="whitespace-nowrap px-3.5 py-4">5 min</td>
                                     <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
                                     <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"></td>
+                                    <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect /></td>
                                 </tr>
                             </tbody>
                         </table>
