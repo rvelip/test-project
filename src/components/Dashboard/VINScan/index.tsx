@@ -7,7 +7,6 @@ export default function VINScan() {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         setShowTable(!showTable)
-        alert('submitted');
 
     }
     return (
