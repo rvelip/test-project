@@ -4,10 +4,14 @@ import VINTable from './VINTable'
 
 export default function VINScan() {
     const [showTable, setShowTable] = useState(false);
+    const [scanNumber, setScanNumber] = useState("");
+
+    const handleVINScanChange = (e: any) => {
+        setScanNumber(e.target.value);
+    }
     const handleSubmit = (e: any) => {
         e.preventDefault();
         setShowTable(!showTable)
-
     }
     return (
         <>
@@ -18,7 +22,7 @@ export default function VINScan() {
                 <div >
                     <form className={vinScanStyle.form}>
                         <label className={vinScanStyle.label}>Scan Next VIN</label>
-                        <input className={vinScanStyle.input} type="text" placeholder="###########" />
+                        <input className={vinScanStyle.input} type="text" placeholder="###########" onChange={(e) => handleVINScanChange(e)}/>
                         <button className={vinScanStyle.button} type='submit' onClick={(e) => handleSubmit(e)}>Submit</button>
                     </form>
                 </div>

@@ -20,6 +20,10 @@ module.exports = {
       'full': '9999px',
       'large': '12px',
     },
+    zIndex: {
+      '999': '999',
+      '1000': '1000',
+    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

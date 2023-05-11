@@ -1,0 +1,42 @@
+[
+    {
+        "vinId": 1111111111,
+        "vin_name": "2023 Lexus ES 350 Silver",
+        "drop_off": "SHOP B STAGING",
+        "status": "completed",
+        "status_label": "COMPLETE",
+        "planned_start_time": null,
+        "estimated_install_time": null,
+        "car_photo_url": ""
+    },
+    {
+        "vin_id": 1111111122,
+        "vin_name": "Toyota RAV4 Silver",
+        "drop_off": "SHOP A STAGING",
+        "status": "pending",
+        "status_label": "PENDING SCAN",
+        "planned_start_time": "7.05 AM",
+        "estimated_install_time": "45 min",
+        "car_photo_url": ""
+    },
+    {
+        "vin_id": 1111111133,
+        "vin_name": "Toyota RAV4 Silver",
+        "drop_off": "SHOP A STAGING",
+        "status": "ongoing",
+        "status_label": "TIME ELAPSED: 00H 05 MIN",
+        "planned_start_time": "7.05 AM",
+        "estimated_install_time": "45 min",
+        "car_photo_url": ""
+    },
+    {
+        "vin_id": 1111111133,
+        "vin_name": "Toyota RAV4 Silver",
+        "drop_off": "SHOP A STAGING",
+        "status": "ongoing",
+        "status_label": "TIME ELAPSED: 00H 05 MIN",
+        "planned_start_time": "7.05 AM",
+        "estimated_install_time": "45 min",
+        "car_photo_url": ""
+    }
+]

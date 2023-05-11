@@ -8,6 +8,7 @@ import axios from 'axios';
 import { fetchPosts } from '../store/actions/postAction';
 import Login from '@/components/Login';
 import DashboardWrapper from '@/components/Dashboard';
+import { LoginAction } from '@/store/actions/loginAction';
 
 // import TopBar from '@/components/Layout/TopBar/TopBar';
 
@@ -20,8 +21,9 @@ export default function Home({ posts }: any) {
   console.log('postListData', postListData)
   // console.log('sampleListData', sampleListData)
   useEffect(() => {
-    dispatch(getSampleData());
-    dispatch(fetchPosts());
+    // dispatch(getSampleData());
+    // dispatch(fetchPosts());
+    dispatch(LoginAction());
   }, [dispatch]);
   return (
     <>

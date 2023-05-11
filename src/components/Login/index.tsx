@@ -1,9 +1,38 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { loginStyle } from './login_tailwind'
 import { useRouter } from 'next/router';
+import { login_data } from '@/mock/login_data';
 
+interface ILogin {
+    username: string,
+    password: string
+}
 export default function Login() {
     const router = useRouter();
+    const [inputs, setInputs] = useState<ILogin>({ username: "", password: ""});
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const handleChange = (event:any) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs((values: any) => ({...values, [name]: value}))
+    }
+    
+    const handleLogin = (e: any) => {
+        e.preventDefault();
+        const login_credentials = login_data.filter(item => item.username === inputs.username)[0];
+        if(login_credentials && (inputs.username === login_credentials.username) && (inputs.password === login_credentials.password)) {
+            setIsLoggedIn(true);
+            if(login_credentials.persona === "team_member") {
+                router.push('/Dashboard')
+            } else if (login_credentials.persona === "manager") {
+                router.push('/DashboardManager')
+            }
+        } else {
+            alert("username or password is wrong");
+        }
+    }
+
     return (
         <div
             className={loginStyle.mainwrapper}
@@ -27,6 +56,7 @@ export default function Login() {
                                 name="username"
                                 className={loginStyle.input}
                                 placeholder="Username"
+                                onChange={(e) => handleChange(e)}
                             />
 
                             <p
@@ -48,6 +78,7 @@ export default function Login() {
                                 name="password"
                                 className={loginStyle.input}
                                 placeholder="Password"
+                                onChange={(e) => handleChange(e)}
                             />
 
                             <p
@@ -61,10 +92,7 @@ export default function Login() {
                             <button
                                 type="submit"
                                 className={`${loginStyle.button} ${loginStyle.btnMargin}`}
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    router.push('/Dashboard')
-                                }}
+                                onClick={(e) => handleLogin(e)}
                             >
                                 Login
                             </button>
