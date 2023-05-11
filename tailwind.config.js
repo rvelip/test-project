@@ -3,7 +3,7 @@ module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     // fontFamily: {
@@ -36,9 +36,11 @@ module.exports = {
         grey: '#DBDCDE',
         grey2: '#909295',
         grey3: '#F8F8F9',
-        grey4: '#58595B'
+        grey4: '#58595B',
+        blue1: '#2469FF',
+        red1:  '#C40818'
       },
     },
   },
-  plugins: [],
+  plugins: []
 }
