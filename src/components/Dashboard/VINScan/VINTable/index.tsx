@@ -1,8 +1,28 @@
-import React from 'react'
-import { vinStyle } from './vin_table_tailwind'
-import MultiSelect from '@/components/Shared/MultiSelect/MultiSelect'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { vinStyle } from './vin_table_tailwind';
+import MultiSelect from '@/components/Shared/MultiSelect/MultiSelect';
+import { VinTableAction } from '@/store/actions/vinTableAction';
 
 export default function VINTable() {
+    const dispatch: any = useDispatch();
+    const vin_table_data = useSelector((state: any) => state.vinTableState.vin_table_data);
+
+    const multiSelect_data = [
+        { id: 1, label: "Missing Parts" },
+        { id: 2, label: "Part Damage/Quality Issue" },
+        { id: 3, label: "Vehicle Damage/Quality Issue" },
+        { id: 4, label: "System Issue" },
+        { id: 5, label: "Team Member Not Trained" },
+        { id: 6, label: "Re-Routed" },
+        { id: 7, label: "Missing Tool" },
+        { id: 8, label: "PPO Conflict" },
+    ];
+
+    useEffect(() => {
+        dispatch(VinTableAction());
+    }, [dispatch]);
+
     return (
         <div className="flex flex-col">
             <div className="overflow-x-auto">
@@ -53,62 +73,23 @@ export default function VINTable() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr
-                                    className="bg-grey3">
-                                    <td className="whitespace-nowrap px-3.5 py-4">A1</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4 text-blue1">A1</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">17” TRD PRO WHEEL BLACK W/TIRE</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">@#####-#####-##, #####-#####-##
-                                    </td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">10 min</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect code="A1" /></td>
-                                </tr>
-                                <tr
-                                    className="bg-white">
-                                    <td className="whitespace-nowrap px-3.5 py-4 font-medium">A1</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4 text-blue1">LJ</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">HIGH PERFORMANCE LED FOG LIGHT</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">#####-#####-##</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">10 min</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect code="LJ" /></td>
-                                </tr>
-                                <tr
-                                    className="bg-grey3">
-                                    <td className="whitespace-nowrap px-3.5 py-4 font-medium">A1</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4 text-blue1">S2</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">TRD PRO SUSPENSION</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">#####-#####-##</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">10 min</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4 text-white"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect code="S2" /></td>
-                                </tr>
-                                <tr
-                                    className="bg-white">
-                                    <td className="whitespace-nowrap px-3.5 py-4 font-medium">A1</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4 text-blue1">WK</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">BLACK PVD WHEEL LOCKS</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">#####-#####-##</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">5 min</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect code="WK" /></td>
-                                </tr>
-                                <tr
-                                    className="bg-grey3">
-                                    <td className="whitespace-nowrap px-3.5 py-4 font-medium">A1</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4 text-blue1">6M</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">TRD PRO ALIGNMENT (NO PARTS)</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">#####-#####-##</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4">5 min</td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                    <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect code="6M" /></td>
-                                </tr>
+                                {vin_table_data && vin_table_data.map((data: any, index: any) => {
+                                    return (
+                                        <tr 
+                                            key={data.code}
+                                            className={index%2 === 0 ? "bg-grey3" : "bg-white"}
+                                        >
+                                            <td className="whitespace-nowrap px-3.5 py-4">A1</td>
+                                            <td className="whitespace-nowrap px-3.5 py-4 text-blue1">{data.shop}</td>
+                                            <td className="whitespace-nowrap px-3.5 py-4">{data.accessory_description}</td>
+                                            <td className="whitespace-nowrap px-3.5 py-4">{data.accessory_part_number}</td>
+                                            <td className="whitespace-nowrap px-3.5 py-4">{data.exp_time}</td>
+                                            <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
+                                            <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
+                                            <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect row_id={data.code} multiselect_data={multiSelect_data} /></td>
+                                        </tr>
+                                    )
+                                })}
                             </tbody>
                         </table>
                         <div className={vinStyle.buttonWidth}>
