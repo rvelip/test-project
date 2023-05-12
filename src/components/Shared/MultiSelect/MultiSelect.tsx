@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function MultiSelect(props) {
+export default function MultiSelect(props:any) {
     const { code } = props;
     const [expanded, setExpanded] = useState(false);
     

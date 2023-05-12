@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import sampleReducer from "./sampleReducer";
 import postReducer from "./postReducer";
-import LoginReducer from "./loginReducer";
+import VinReducer from "./vinReducer";
 
 const rootReducer =  combineReducers({
   sampleData: sampleReducer,
   postState: postReducer,
-  loginState: LoginReducer,
+  vinState: VinReducer,
 });
 
 export default rootReducer

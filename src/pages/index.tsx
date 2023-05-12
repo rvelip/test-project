@@ -8,7 +8,7 @@ import axios from 'axios';
 import { fetchPosts } from '../store/actions/postAction';
 import Login from '@/components/Login';
 import DashboardWrapper from '@/components/Dashboard';
-import { LoginAction } from '@/store/actions/loginAction';
+import { VinAction } from '@/store/actions/vinAction';
 
 // import TopBar from '@/components/Layout/TopBar/TopBar';
 
@@ -18,12 +18,12 @@ export default function Home({ posts }: any) {
   const sampleListData = useSelector((state: any) => state.sampleData);
   const postListData = useSelector((state: any) => state.postState);
   const { sample } = sampleListData
-  console.log('postListData', postListData)
+  // console.log('postListData', postListData)
   // console.log('sampleListData', sampleListData)
   useEffect(() => {
     // dispatch(getSampleData());
     // dispatch(fetchPosts());
-    dispatch(LoginAction());
+    dispatch(VinAction());
   }, [dispatch]);
   return (
     <>
