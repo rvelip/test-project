@@ -4,34 +4,44 @@
         "code": "A1",
         "accessory_description": "17” TRD PRO WHEEL BLACK W/TIRE",
         "accessory_part_number": "@#####-#####-##, #####-#####-##",
-        "exp_time": "10min"
+        "exp_time": "10min",
+        "installed": "i",
+        "reason": ""
     },
     {
         "shop": "A1",
         "code": "LJ",
         "accessory_description": "HIGH PERFORMANCE LED FOG LIGHT",
         "accessory_part_number": "#####-#####-##",
-        "exp_time": "10min"
+        "exp_time": "10min",
+        "installed": "i",
+        "reason": ""
     },
     {
         "shop": "A1",
         "code": "S2",
         "accessory_description": "TRD PRO SUSPENSION",
         "accessory_part_number": "#####-#####-##",
-        "exp_time": "10min"
+        "exp_time": "10min",
+        "installed": "i",
+        "reason": ""
     },
     {
         "shop": "A1",
         "code": "WK",
         "accessory_description": "BLACK PVD WHEEL LOCKS",
         "accessory_part_number": "#####-#####-##",
-        "exp_time": "5min"
+        "exp_time": "5min",
+        "installed": "i",
+        "reason": ""
     },
     {
         "shop": "A1",
         "code": "6M",
         "accessory_description": "TRD PRO ALIGNMENT (NO PARTS)",
         "accessory_part_number": "#####-#####-##",
-        "exp_time": "5min"
+        "exp_time": "5min",
+        "installed": "i",
+        "reason": ""
     }
 ]

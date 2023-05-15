@@ -36,7 +36,7 @@ export default function DashboardHeader() {
             Hours
           </button>
         </div>
-        <button className={dashboardHeaderStyle.backBtn}>Back</button>
+        <button className={dashboardHeaderStyle.cancelBtn}>Cancel</button>
       </div>
     </div>
   )

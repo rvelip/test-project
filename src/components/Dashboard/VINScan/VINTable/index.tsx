@@ -7,6 +7,8 @@ import { VinTableAction } from '@/store/actions/vinTableAction';
 export default function VINTable() {
     const dispatch: any = useDispatch();
     const vin_table_data = useSelector((state: any) => state.vinTableState.vin_table_data);
+    const [formData, setFormData] = useState([]);
+    const [payload, setPayload] = useState([]);
 
     const multiSelect_data = [
         { id: 1, label: "Missing Parts" },
@@ -18,10 +20,46 @@ export default function VINTable() {
         { id: 7, label: "Missing Tool" },
         { id: 8, label: "PPO Conflict" },
     ];
+    const handleInstalledClick = (e: any) => {
+        console.log(e.target.name);
+        if(formData && formData.length && formData.filter((item: any) => item.code === e.target.name)[0]) {
+            formData.filter((item: any) => item.code === e.target.name)[0]["installed"] = "i";
+        }
+        setFormData([...formData]);
+
+    }
+    const handleNotInstalledClick = (e: any) => {
+        console.log(e.target.name);
+        if(formData && formData.length && formData.filter((item: any) => item.code === e.target.name)[0]) {
+            formData.filter((item: any) => item.code === e.target.name)[0]["installed"] = "n";
+        }
+        setFormData([...formData]);
+
+    }
+
+    const handleFormSubmit = (e: any) => {
+        e.preventDefault();
+        //Open the Read only Modal
+        // ------------------------
+
+        //Prepare the payload for POST
+        // -------------------------
+        // payload.push(users);
+        // payload.push(startTime);
+        // payload.push(endTime);
+        // payload.push(installed/notInstalled);
+
+        //API Call here 
+        // -------------------------
+    };
 
     useEffect(() => {
         dispatch(VinTableAction());
     }, [dispatch]);
+
+    useEffect(() => {
+        setFormData([...vin_table_data]);
+    }, [vin_table_data])
 
     return (
         <div className="flex flex-col">
@@ -48,8 +86,8 @@ export default function VINTable() {
                                     <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Accessory Description</th>
                                     <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Accessory Part Number(s)</th>
                                     <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Exp. Time</th>
-                                    <th scope="col" className="px-3.5 py-4 text-black font-bold"><span>&#10003;&nbsp;&nbsp;</span>All Installed</th>
-                                    <th scope="col" className="px-3.5 py-4 text-black font-bold"><span>&#x2716;&nbsp;&nbsp;</span>All Not Installed</th>
+                                    <th scope="col" className="px-3.5 py-4 text-black font-bold"></th>
+                                    <th scope="col" className="px-3.5 py-4 text-black font-bold"></th>
                                     <th scope="col" className="px-3.5 py-4 text-grey4">
                                         <div className="group relative w-max">
                                             <span className='font-normal'>Not Installed Reason</span>
@@ -94,14 +132,45 @@ export default function VINTable() {
                                             key={data.code}
                                             className={index % 2 === 0 ? "bg-grey3" : "bg-white"}
                                         >
-                                            <td className="whitespace-nowrap px-3.5 py-4">A1</td>
-                                            <td className="whitespace-nowrap px-3.5 py-4 text-blue1">{data.shop}</td>
+                                            <td className="whitespace-nowrap px-3.5 py-4">{data.shop}</td>
+                                            <td className="whitespace-nowrap px-3.5 py-4 text-blue1">{data.code}</td>
                                             <td className="whitespace-nowrap px-3.5 py-4">{data.accessory_description}</td>
                                             <td className="whitespace-nowrap px-3.5 py-4">{data.accessory_part_number}</td>
                                             <td className="whitespace-nowrap px-3.5 py-4">{data.exp_time}</td>
-                                            <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#10003;&nbsp;&nbsp;</span>Installed</button></td>
-                                            <td className="whitespace-nowrap px-3.5 py-4"><button className={`${vinStyle.button} ${vinStyle.buttonColorInstalled}`}><span>&#x2716;&nbsp;&nbsp;</span>Not Installed</button></td>
-                                            <td className="whitespace-nowrap px-3.5 py-4"><MultiSelect row_id={data.code} multiselect_data={multiSelect_data} /></td>
+                                            <td className="whitespace-nowrap px-3.5 py-4">
+                                                <button
+                                                    name={data.code}
+                                                    className={`${vinStyle.button} 
+                                                        ${(formData && formData.length && (formData.filter((item: any) => item.code === data.code)[0]["installed"] === 'i'))
+                                                            ? vinStyle.buttonColorAccessoryInstalled
+                                                            : vinStyle.buttonColorInstalled}`}
+                                                    onClick={(e) => handleInstalledClick(e)}
+                                                >
+
+                                                    <span>&#10003;&nbsp;&nbsp;</span>Installed
+                                                </button>
+                                            </td>
+                                            <td className="whitespace-nowrap px-3.5 py-4">
+                                                <button
+                                                    name={data.code}
+                                                    className={`${vinStyle.button} 
+                                                    ${(formData && formData.length && (formData.filter((item: any) => item.code === data.code)[0]["installed"] === 'n'))
+                                                            ? vinStyle.buttonColorNotInstalled
+                                                            : vinStyle.buttonColorInstalled}`}
+                                                    onClick={(e) => handleNotInstalledClick(e)}
+                                                >
+                                                    <span>&#x2716;&nbsp;&nbsp;</span>Not Installed
+                                                </button>
+                                            </td>
+                                            <td className="whitespace-nowrap py-4">
+                                                {
+                                                    (formData && formData.length &&
+                                                        (formData.filter((item: any) => item.code === data.code)[0]["installed"] === 'n')
+                                                    ) 
+                                                    ? <MultiSelect id={data.code} multiselect_data={multiSelect_data} width='w-64' bgColor='bg-grey3' placeholderText="Select options" />
+                                                    : null
+                                                }
+                                            </td>
                                         </tr>
                                     )
                                 })}
@@ -110,13 +179,8 @@ export default function VINTable() {
                         <div className={vinStyle.buttonWidth}>
                             <button
                                 type="submit"
-                                className={`${vinStyle.button} ${vinStyle.btnMargin} ${vinStyle.buttonColorBlack}`}
-                            >
-                                Clear Inputs
-                            </button>
-                            <button
-                                type="submit"
                                 className={`${vinStyle.button} ${vinStyle.btnMargin} ${vinStyle.buttonColorBlue} `}
+                                onSubmit={(e) => handleFormSubmit(e)}
                             >
                                 Submit
                             </button>

@@ -6,5 +6,5 @@ export const dashboardHeaderStyle = {
     toggleBtn: 'col-span-2 grid grid-cols-2 h-10 border border-black rounded overflow-hidden',
     btnActive: 'bg-black text-white m-auto w-full h-full',
     btnInActive: 'bg-white text-black m-auto w-full h-full',
-    backBtn: 'w-full rounded bg-grey'
+    cancelBtn: 'w-full rounded bg-black text-white'
 }
