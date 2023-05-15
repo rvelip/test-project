@@ -52,20 +52,35 @@ export default function VINTable() {
                                     <th scope="col" className="px-3.5 py-4 text-black font-bold"><span>&#x2716;&nbsp;&nbsp;</span>All Not Installed</th>
                                     <th scope="col" className="px-3.5 py-4 text-grey4">
                                         <div className="group relative w-max">
-                                            <span className='font-normal'>Reason</span>
+                                            <span className='font-normal'>Not Installed Reason</span>
                                             <button className="bg-blue1 text-white active:bg-blue1 font-bold  ml-3 px-2 py-px rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
                                             >
                                                 i
                                             </button>
-                                            <div className="z-1000 pointer-events-none absolute -bottom-96 -left-72 w-max rounded bg-white py-4 pl-4 pr-10 opacity-0 shadow transition-opacity group-hover:opacity-100">
+                                            <div className="z-1000 pointer-events-none absolute -bottom-96 -left-72 w-max rounded bg-white py-4 pl-4 pr-10 opacity-0 shadow transition-opacity group-hover:opacity-100 overflow-y-scroll block h-[22.5rem]">
                                                 <span className=' text-black font-semibold'>Not Installed Reason Descriptions </span> <br /> <br />
                                                 <span className=' text-black font-semibold'>Missing Part/Contents</span> <br /><br />
-                                                <span className='font-normal'>Parts kit contents are missing from the<br /> packaging (bracket, hardware, stickers, etc.)</span>
+                                                <span className='font-normal'>Part(s) or part(s) kit contents are missing.</span>
                                                 <br /> <br />
-                                                <span className=' text-black font-semibold'>Re-routed</span>  <br /><br />
+                                                <span className=' text-black font-semibold'>Part Damage/Quality Issue</span> <br /><br />
+                                                <span className='font-normal'>Damage to part(s).</span>
+                                                <br /> <br />
+                                                <span className=' text-black font-semibold'>Vehicle Damage/Quality Issue</span> <br /><br />
+                                                <span className='font-normal'>Damage to vehicle.</span>
+                                                <br /> <br />
+                                                <span className=' text-black font-semibold'>Systems Issue</span> <br /><br />
+                                                <span className='font-normal'>Issue with data or systems, such as<br /> accessory part number not listed on PTAG.</span>
+                                                <br /> <br />
+                                                <span className=' text-black font-semibold'>Team Member Not Trained</span> <br /><br />
+                                                <span className='font-normal'>One or more team member(s) not trained for<br /> required installation.</span>
+                                                <br /> <br />
+                                                <span className=' text-black font-semibold'>Re-routed</span> <br /><br />
                                                 <span className='font-normal'>Team Member is asked to only do a portion<br /> of the available PPOs assigned to the line<br /> because it was taken from another line.</span>
-                                                <br /><br />
-                                                <span className=' text-black font-semibold'>PPO Conflict</span>  <br /><br />
+                                                <br /> <br />
+                                                <span className=' text-black font-semibold'>Missing Tool</span> <br /><br />
+                                                <span className='font-normal'>Tool necessary for installation is missing.</span>
+                                                <br /> <br />
+                                                <span className=' text-black font-semibold'>PPO Conflict</span> <br /><br />
                                                 <span className='font-normal'>Vehicle is routed from a different line but a<br /> PPO cannot be completed at this time.</span>
                                             </div>
                                         </div>
@@ -75,9 +90,9 @@ export default function VINTable() {
                             <tbody>
                                 {vin_table_data && vin_table_data.map((data: any, index: any) => {
                                     return (
-                                        <tr 
+                                        <tr
                                             key={data.code}
-                                            className={index%2 === 0 ? "bg-grey3" : "bg-white"}
+                                            className={index % 2 === 0 ? "bg-grey3" : "bg-white"}
                                         >
                                             <td className="whitespace-nowrap px-3.5 py-4">A1</td>
                                             <td className="whitespace-nowrap px-3.5 py-4 text-blue1">{data.shop}</td>
