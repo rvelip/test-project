@@ -4,7 +4,7 @@ const initialState = {
 };
 
 const postReducer = (state = initialState, action: any) => {
-    console.log('postReduceraction.posts', action)
+   // console.log('postReduceraction.posts', action)
     switch (action.type) {
         case 'Fetch_Posts_Success':
 

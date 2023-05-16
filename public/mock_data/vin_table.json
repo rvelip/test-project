@@ -5,7 +5,7 @@
         "accessory_description": "17” TRD PRO WHEEL BLACK W/TIRE",
         "accessory_part_number": "@#####-#####-##, #####-#####-##",
         "exp_time": "10min",
-        "installed": "i",
+        "installed": "p",
         "reason": ""
     },
     {
@@ -14,7 +14,7 @@
         "accessory_description": "HIGH PERFORMANCE LED FOG LIGHT",
         "accessory_part_number": "#####-#####-##",
         "exp_time": "10min",
-        "installed": "i",
+        "installed": "p",
         "reason": ""
     },
     {
@@ -23,7 +23,7 @@
         "accessory_description": "TRD PRO SUSPENSION",
         "accessory_part_number": "#####-#####-##",
         "exp_time": "10min",
-        "installed": "i",
+        "installed": "p",
         "reason": ""
     },
     {
@@ -32,7 +32,7 @@
         "accessory_description": "BLACK PVD WHEEL LOCKS",
         "accessory_part_number": "#####-#####-##",
         "exp_time": "5min",
-        "installed": "i",
+        "installed": "p",
         "reason": ""
     },
     {
@@ -41,7 +41,7 @@
         "accessory_description": "TRD PRO ALIGNMENT (NO PARTS)",
         "accessory_part_number": "#####-#####-##",
         "exp_time": "5min",
-        "installed": "i",
+        "installed": "p",
         "reason": ""
     }
 ]
