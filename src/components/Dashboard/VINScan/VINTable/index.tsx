@@ -4,6 +4,7 @@ import { vinStyle } from './vin_table_tailwind';
 import MultiSelect from '@/components/Shared/MultiSelect/MultiSelect';
 import { VinTableAction } from '@/store/actions/vinTableAction';
 import Modal from '@/components/Shared/Modal';
+import SingleSelect from '@/components/Shared/SingleSelect/SingleSelect';
 
 export default function VINTable() {
     const dispatch: any = useDispatch();
@@ -13,6 +14,17 @@ export default function VINTable() {
     const [showModal, setShowModal] = useState(false);
 
     const multiSelect_data = [
+        { id: 1, label: "Missing Parts" },
+        { id: 2, label: "Part Damage/Quality Issue" },
+        { id: 3, label: "Vehicle Damage/Quality Issue" },
+        { id: 4, label: "System Issue" },
+        { id: 5, label: "Team Member Not Trained" },
+        { id: 6, label: "Re-Routed" },
+        { id: 7, label: "Missing Tool" },
+        { id: 8, label: "PPO Conflict" },
+    ];
+
+    const singleSelect_data = [
         { id: 1, label: "Missing Parts" },
         { id: 2, label: "Part Damage/Quality Issue" },
         { id: 3, label: "Vehicle Damage/Quality Issue" },
@@ -174,7 +186,7 @@ export default function VINTable() {
                                                         (formData && formData.length &&
                                                             (formData.filter((item: any) => item.code === data.code)[0]["installed"] === 'n')
                                                         )
-                                                            ? <MultiSelect id={data.code} multiselect_data={multiSelect_data} width='w-64' bgColor='bg-grey3' placeholderText="Select options" />
+                                                            ? <SingleSelect singleselect_data={singleSelect_data} width='w-64' bgColor='bg-grey3' placeholderText="Select options" />
                                                             : null
                                                     }
                                                 </td>
