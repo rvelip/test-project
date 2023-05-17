@@ -99,7 +99,7 @@ export default function VINTable() {
                                                 >
                                                     i
                                                 </button>
-                                                <span className="absolute -bottom-20 left-6 w-max rounded text-black bg-white py-4 pl-4 pr-14 opacity-0 shadow transition-opacity group-hover:opacity-100 font-normal"> Click the links below to access<br /> each accessory&apos;s Standard Work Sheet. </span>
+                                                <span className="pointer-events-none absolute -bottom-20 left-6 w-max rounded text-black bg-white py-4 pl-4 pr-14 opacity-0 shadow transition-opacity group-hover:opacity-100 font-normal"> Click the links below to access<br /> each accessory&apos;s Standard Work Sheet. </span>
                                             </div>
                                         </th>
 
@@ -115,7 +115,7 @@ export default function VINTable() {
                                                 >
                                                     i
                                                 </button>
-                                                <div className="z-1000 absolute -bottom-86 -left-40 w-max rounded bg-white py-4 pl-4 pr-10 opacity-0 shadow transition-opacity group-hover:opacity-100 overflow-y-scroll block h-[22.5rem]">
+                                                <div className="pointer-events-none z-1000 absolute -bottom-86 -left-60 w-max rounded bg-white py-4 pl-4 pr-10 opacity-0 shadow transition-opacity group-hover:opacity-100 overflow-y-scroll block h-[22.5rem]">
                                                     <span className=' text-black font-semibold'>Not Installed Reason Descriptions </span> <br /> <br />
                                                     <span className=' text-black font-semibold'>Missing Part/Contents</span> <br /><br />
                                                     <span className='font-normal'>Part(s) or part(s) kit contents are missing.</span>
@@ -178,7 +178,7 @@ export default function VINTable() {
                                                                 : vinStyle.buttonColorInstalled}`}
                                                         onClick={(e) => handleInstalledClick(e, "Not Installed")}
                                                     >
-                                                        <span className='pointer-events-none'>&#x2716;&nbsp;&nbsp;</span>Not Installed
+                                                        <span>&#x2716;&nbsp;&nbsp;</span>Not Installed
                                                     </button>
                                                 </td>
                                                 <td className="whitespace-nowrap py-4">
