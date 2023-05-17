@@ -18,7 +18,10 @@ interface IVinDetails {
 }
 export default function VINCard() {
     const dispatch: any = useDispatch();
-    const vin_data = useSelector((state: any) => state.vinState);
+
+    const vins = useSelector((state: any) => state.vinState.vins);
+    const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
+
     const [nextVehicle, setNextVehicle] = useState<IVinDetails>();
     const [firstCardVehicle, setFirstCardVehicle] = useState<IVinDetails>();
 
@@ -27,22 +30,24 @@ export default function VINCard() {
     }, [dispatch]);
 
     useEffect(() => {
-        setNextVehicle(vin_data?.vins.filter((item: any) => item.status === 'pending')[0]);
-        if(vin_data.scanNextVINId) {
-            setFirstCardVehicle(vin_data?.vins.filter((item: any) => item.status === 'ongoing')[0])
+        let isScanNextVINIdValid = vins.findIndex((item: any) => item.vin_id === scanNextVINId);
+
+        //Set Data of Left Card. Either "completed" or "ongoing"
+        // If sc
+        if(scanNextVINId && (isScanNextVINIdValid > -1)) {
+            setFirstCardVehicle(vins.filter((item: any) => item.status === 'ongoing')[0])
         } else {
-            setFirstCardVehicle(vin_data?.vins.filter((item: any) => item.status === 'completed')[vin_data?.vins.filter((item: any) => item.status === 'completed').length - 1])
+            setFirstCardVehicle(vins.filter((item: any) => item.status === 'completed')[vins.filter((item: any) => item.status === 'completed').length - 1])
 
         }
-    }, [vin_data, vin_data.scanNextVINId])
 
-
-    console.log('vin_dataFromVINCard', vin_data)
-    // console.log('nextVehicle', nextVehicle)
-    console.log('firstCardVehicleAfter', firstCardVehicle)
+        //Set Data of Right Car
+        setNextVehicle(vins.filter((item: any) => item.status === 'pending')[0]);
+    }, [scanNextVINId, vins])
 
     return (
         <div className={vinStyle.mainwrapper}>
+            {/* left car */}
             <div className={vinStyle.innerWrapper} >
                 <div>
                     <div className={vinStyle.displayFlex}>
@@ -50,7 +55,6 @@ export default function VINCard() {
                             {firstCardVehicle?.status === 'completed' ? 'Previous Vehicle' : 'Current Vehicle'}
                         </div>
                         <div className={(firstCardVehicle?.status === 'completed' ? vinStyle.complete : vinStyle.ongoing)}>
-
                             {firstCardVehicle?.status_label}
                         </div>
                     </div>
@@ -92,6 +96,7 @@ export default function VINCard() {
                     </div>
                 </div>
             </div>
+            {/* right car */}
             <div className={vinStyle.innerWrapper}>
                 <div>
                     <div className={vinStyle.displayFlex}>

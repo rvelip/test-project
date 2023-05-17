@@ -7,7 +7,6 @@ export const VinTableAction = () => {
         await axios.get('./mock_data/vin_table.json')
         .then((allVin) => {
             dispatch(fetchVinTableSuccess(allVin.data));
-          //  console.log('VinTable', allVin.data)
         })
         .catch((err) => {
             dispatch(fetchVinTableFailed(err));
@@ -24,7 +23,6 @@ export const fetchVinTableSuccess = (vin_table_data: any) => {
 }
 
 export const fetchVinTableFailed = (error: any) => {
-    // console.log('failedddfetchPostsFailed', error)
     return {
         type: 'Fetch_VIN_Table_Failed',
         error

@@ -7,7 +7,6 @@ export const VinAction = () => {
         await axios.get('./mock_data/vin_data.json')
             .then((allVin) => {
                 dispatch(fetchVinSuccess(allVin.data));
-                console.log('VinData', allVin.data)
             })
             .catch((err) => {
                 dispatch(fetchVinFailed(err));
@@ -32,7 +31,7 @@ export const fetchVinFailed = (error: any) => {
 }
 
 
-export const scanNextVINId = (vinId: any) => {
+export const scanNextVINIdAction = (vinId: any) => {
     return (dispatch: any) => {
         dispatch(scanNextVINIdSuccess(vinId))
     }
@@ -59,7 +58,6 @@ export const changeVINStatus = (vinId: string, status:string, statusLabel:string
 }
 
 export const changeVINStatusSuccess = (vinId: string, status:string, statusLabel:string) => {
-    console.log('changeVINStatusSuccess', typeof vinId)
     return {
         type: 'change_VIN_Status_Success',
         vinId: vinId,
@@ -75,5 +73,24 @@ export const changeVINStatusFailed = (error: any) => {
     }
 }
 
+export const setElementAction = (element: string) => {
+    console.log("element inside action", element);
+    return (dispatch: any) => {
+        dispatch(setElementSuccess(element))
+    }
+}
 
+export const setElementSuccess = (element: string) => {
+    console.log('element action', element);
+    return {
+        type: 'Set_Element_Success',
+        element: element,
+    }
+}
 
+export const setElementFailed = (error: any) => {
+    return {
+        type: 'Set_Element_Failed',
+        error
+    }
+}

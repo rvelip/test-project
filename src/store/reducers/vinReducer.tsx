@@ -1,20 +1,21 @@
 
 const initialState = {
     vins: [],
-    scanNextVINId: ''
+    scanNextVINId: '',
+    element: 'scan_input',
 };
 
 const VinReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case 'Fetch_VIN_Success':
             return {
+                ...state,
                 vins: action.vins,
-                scanNextVINId: ''
             }
         case 'Fetch_VIN_Failed':
             return {
+                ...state,
                 vins: [],
-                scanNextVINId: ''
             }
         case 'scan_Next_VIN_Id_Success':
             return {
@@ -23,11 +24,11 @@ const VinReducer = (state = initialState, action: any) => {
             }
         case 'scan_Next_VIN_Id_Failed':
             return {
+                ...state,
                 scanNextVINId: ''
             }
         case 'change_VIN_Status_Success':
-            // console.log(' state.vins', state.vins, action.vinId, typeof action.vinId)
-            const index = state.vins.findIndex((item: any) => item.vin_id == action.vinId)
+            const index = state.vins.findIndex((item: any) => item.vin_id === action.vinId)
             let arr = [...state.vins]
             arr[index] = Object.assign({}, arr[index], { status: action.status, status_label: action.statusLabel })
             return {
@@ -36,7 +37,13 @@ const VinReducer = (state = initialState, action: any) => {
             }
         case 'change_VIN_Status_Failed':
             return {
+                ...state,
                 scanNextVINId: ''
+            }
+        case 'Set_Element_Success':
+            return {
+                ...state,
+                element: action.element
             }
         default:
             return state;

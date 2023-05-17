@@ -1,7 +1,7 @@
 [
     {
-        "vin_id": 1111111111,
-        "vin_name": "2023 Lexus ES 350 Silver",
+        "vin_id": "1111111111",
+        "vin_name": "2020 Lexus ES 450 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP B STAGING",
         "status": "completed",
@@ -13,8 +13,8 @@
         "expected_install_time": "45 min"
     },
     {
-        "vin_id": 1111111155,
-        "vin_name": "2023 Lexus ES 350 Silver",
+        "vin_id": "1111111122",
+        "vin_name": "2021 Lexus ES 350 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP B STAGING",
         "status": "completed",
@@ -26,7 +26,7 @@
         "expected_install_time": "45 min"
     },
     {
-        "vin_id": 1111111122,
+        "vin_id": "1111111133",
         "vin_name": "Toyota RAV4 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP A STAGING",
@@ -39,7 +39,7 @@
         "expected_install_time": "45 min"
     },
     {
-        "vin_id": 1111111133,
+        "vin_id": "1111111144",
         "vin_name": "Toyota RAV5 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP A STAGING",
@@ -52,7 +52,7 @@
         "expected_install_time": "45 min"
     },
     {
-        "vin_id": 1111111144,
+        "vin_id": "1111111155",
         "vin_name": "Toyota RAV6 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP A STAGING",

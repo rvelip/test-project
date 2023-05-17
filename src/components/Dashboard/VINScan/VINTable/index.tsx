@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { vinStyle } from './vin_table_tailwind';
-import MultiSelect from '@/components/Shared/MultiSelect/MultiSelect';
-import { VinTableAction } from '@/store/actions/vinTableAction';
 import Modal from '@/components/Shared/Modal';
 import SingleSelect from '@/components/Shared/SingleSelect/SingleSelect';
+import { changeVINStatus, scanNextVINIdAction, setElementAction } from '@/store/actions/vinAction';
 
 export default function VINTable() {
     const dispatch: any = useDispatch();
+
     const vin_table_data = useSelector((state: any) => state.vinTableState.vin_table_data);
+    const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
+
     const [formData, setFormData] = useState([]);
     // const [payload, setPayload] = useState([]);
     const [showModal, setShowModal] = useState(false);
-
-    const multiSelect_data = [
-        { id: 1, label: "Missing Parts" },
-        { id: 2, label: "Part Damage/Quality Issue" },
-        { id: 3, label: "Vehicle Damage/Quality Issue" },
-        { id: 4, label: "System Issue" },
-        { id: 5, label: "Team Member Not Trained" },
-        { id: 6, label: "Re-Routed" },
-        { id: 7, label: "Missing Tool" },
-        { id: 8, label: "PPO Conflict" },
-    ];
 
     const singleSelect_data = [
         { id: 1, label: "Missing Parts" },
@@ -56,22 +47,36 @@ export default function VINTable() {
         // payload.push(startTime);
         // payload.push(endTime);
         // payload.push(installed/notInstalled);
+        
+        //
+        // dispatch()
 
-        //API Call here 
+        //POST API Call here 
         // -------------------------
         alert("Calling API ....");
 
         //Close Modal After API Call is done
         setShowModal(false);
+        
+        //Land on Dashboard Default View
+        dispatch(setElementAction('scan_input'));
+
+        // ******* start removed this code *********
+        // ****** POST call will return the status of the prev car as status: "copmleted"
+        //  Below is simply mocking for DEMO
+        // Mark the last vehicle as completed
+        dispatch(changeVINStatus(scanNextVINId, 'completed', 'COMPLETE'));
+        //********  end - remove this code********/
+
+
+        //empty the scanned number 
+        dispatch(scanNextVINIdAction(""));
+
     };
 
     const handleModalClose = () => {
         setShowModal(false);
     }
-
-    useEffect(() => {
-        dispatch(VinTableAction());
-    }, [dispatch]);
 
     //load the redux state into an easily mutable state for processing
     useEffect(() => {
@@ -82,6 +87,7 @@ export default function VINTable() {
         <>
             {/* MODAL FOR CONFIRMATION */}
             {showModal && <Modal handleModalClose={handleModalClose} handleFormSubmit={handleFormSubmit} />}
+            {/* Render Accessories Table */}
             <div className="flex flex-col">
                 <div className="overflow-x-auto">
                     <div className="inline-block min-w-full">
