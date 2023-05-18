@@ -1,7 +1,7 @@
 [
     {
         "vin_id": "JTDACAAU8P3005488",
-        "vin_name": "2020 Lexus ES 450 Silver",
+        "vin_name": "2023 Lexus ES 350 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP B STAGING",
         "status": "completed",
@@ -14,7 +14,7 @@
     },
     {
         "vin_id": "JTDACAAU2P3005518",
-        "vin_name": "2021 Lexus ES 350 Silver",
+        "vin_name": "2023 Lexus ES 350 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP B STAGING",
         "status": "completed",
@@ -27,7 +27,7 @@
     },
     {
         "vin_id": "JTDACAAU2P3005521",
-        "vin_name": "Toyota RAV4 Silver",
+        "vin_name": "2023 Toyota RAV4 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP A STAGING",
         "status": "pending",
@@ -45,21 +45,21 @@
         "drop_off": "SHOP A STAGING",
         "status": "pending",
         "status_label": "PENDING SCAN",
-        "planned_start_time": "7.05 AM",
-        "estimated_install_time": "45 min",
+        "planned_start_time": "7.50 AM",
+        "estimated_install_time": "90 min",
         "car_photo_url": "/images/vin.png",
         "expected_completion": "7:50 AM",
         "expected_install_time": "45 min"
     },
     {
         "vin_id": "JTDACAAU4P3005598",
-        "vin_name": "Toyota RAV6 Silver",
+        "vin_name": "2023 Toyota Camry White",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP A STAGING",
         "status": "pending",
         "status_label": "PENDING SCAN",
-        "planned_start_time": "7.05 AM",
-        "estimated_install_time": "45 min",
+        "planned_start_time": "7.50 AM",
+        "estimated_install_time": "90 min",
         "car_photo_url": "/images/vin.png",
         "expected_completion": "7:50 AM",
         "expected_install_time": "45 min"
