@@ -25,6 +25,8 @@ export default function VINScan() {
     }
 
     useEffect(() => {
+        setScanInput(scanNextVINId);
+        
         //Check if scanInput is valid and exists in redux
         const isScanNextVINIdValid = vins.findIndex((item: any) => item.vin_id === scanNextVINId);
 
