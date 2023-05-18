@@ -6,10 +6,6 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
-    // fontFamily: {
-    //   sans: ['Graphik', 'sans-serif'],
-    //   serif: ['Merriweather', 'serif'],
-    // },
     borderRadius: {
       'none': '0',
       'sm': '4px',
@@ -47,6 +43,10 @@ module.exports = {
         red2: '#D7091A',
         green1:'#22A63E'
       },
+      spacing: {
+        '72': '72px',
+        '200': '200px',
+      }
     },
   },
   plugins: []

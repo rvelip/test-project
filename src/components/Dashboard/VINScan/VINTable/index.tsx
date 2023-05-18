@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { vinStyle } from './vin_table_tailwind';
 import Modal from '@/components/Shared/Modal';
 import SingleSelect from '@/components/Shared/SingleSelect/SingleSelect';
+import Tooltip from '@/components/Shared/Tooltip/Tooltip';
 import { changeVINStatus, scanNextVINIdAction, setElementAction } from '@/store/actions/vinAction';
 
 export default function VINTable() {
@@ -26,6 +27,17 @@ export default function VINTable() {
         { id: 8, label: "PPO Conflict" },
     ];
 
+    const options = [
+        { value: "green", label: "Missing Parts" },
+        { value: "blue", label: "Part Damage/Quality Issue" },
+        { value: "red", label: "Vehicle Damage/Quality Issue" },
+        { value: "yellow", label: "System Issue" },
+        { value: "orange", label: "Team Member Not Trained" },
+        { value: "pink", label: "Re-Routed" },
+        { value: "purple", label: "Missing Tool" },
+        { value: "grey", label: "PPO Conflict" }
+    ];
+
     const handleInstalledClick = (e: any, btnKey: string) => {
         console.log(e.target.name);
         if (formData && formData.length && formData.filter((item: any) => item.code === e.target.name)[0]) {
@@ -47,7 +59,7 @@ export default function VINTable() {
         // payload.push(startTime);
         // payload.push(endTime);
         // payload.push(installed/notInstalled);
-        
+
         //
         // dispatch()
 
@@ -57,7 +69,7 @@ export default function VINTable() {
 
         //Close Modal After API Call is done
         setShowModal(false);
-        
+
         //Land on Dashboard Default View
         dispatch(setElementAction('scan_input'));
 
@@ -105,7 +117,7 @@ export default function VINTable() {
                                                 >
                                                     i
                                                 </button>
-                                                <span className="pointer-events-none absolute -bottom-20 left-6 w-max rounded text-black bg-white py-4 pl-4 pr-14 opacity-0 shadow transition-opacity group-hover:opacity-100 font-normal"> Click the links below to access<br /> each accessory&apos;s Standard Work Sheet. </span>
+                                                <span className="absolute -bottom-72 left-1 w-max rounded text-black bg-white py-4 pl-4 pr-14 invisible shadow transition-opacity group-hover:visible font-normal"> Click the links below to access<br /> each accessory&apos;s Standard Work Sheet. </span>
                                             </div>
                                         </th>
 
@@ -115,43 +127,11 @@ export default function VINTable() {
                                         <th scope="col" className="px-3.5 py-4 text-black font-bold"></th>
                                         <th scope="col" className="px-3.5 py-4 text-black font-bold"></th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4">
-                                            <div className="group relative w-max">
-                                                <span className='font-normal'>Not Installed Reason</span>
-                                                <button className="bg-blue1 text-white active:bg-blue1 font-bold  ml-3 px-2 py-px rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
-                                                >
-                                                    i
-                                                </button>
-                                                <div className="pointer-events-none z-1000 absolute -bottom-86 -left-60 w-max rounded bg-white py-4 pl-4 pr-10 opacity-0 shadow transition-opacity group-hover:opacity-100 overflow-y-scroll block h-[22.5rem]">
-                                                    <span className=' text-black font-semibold'>Not Installed Reason Descriptions </span> <br /> <br />
-                                                    <span className=' text-black font-semibold'>Missing Part/Contents</span> <br /><br />
-                                                    <span className='font-normal'>Part(s) or part(s) kit contents are missing.</span>
-                                                    <br /> <br />
-                                                    <span className=' text-black font-semibold'>Part Damage/Quality Issue</span> <br /><br />
-                                                    <span className='font-normal'>Damage to part(s).</span>
-                                                    <br /> <br />
-                                                    <span className=' text-black font-semibold'>Vehicle Damage/Quality Issue</span> <br /><br />
-                                                    <span className='font-normal'>Damage to vehicle.</span>
-                                                    <br /> <br />
-                                                    <span className=' text-black font-semibold'>Systems Issue</span> <br /><br />
-                                                    <span className='font-normal'>Issue with data or systems, such as<br /> accessory part number not listed on PTAG.</span>
-                                                    <br /> <br />
-                                                    <span className=' text-black font-semibold'>Team Member Not Trained</span> <br /><br />
-                                                    <span className='font-normal'>One or more team member(s) not trained for<br /> required installation.</span>
-                                                    <br /> <br />
-                                                    <span className=' text-black font-semibold'>Re-routed</span> <br /><br />
-                                                    <span className='font-normal'>Team Member is asked to only do a portion<br /> of the available PPOs assigned to the line<br /> because it was taken from another line.</span>
-                                                    <br /> <br />
-                                                    <span className=' text-black font-semibold'>Missing Tool</span> <br /><br />
-                                                    <span className='font-normal'>Tool necessary for installation is missing.</span>
-                                                    <br /> <br />
-                                                    <span className=' text-black font-semibold'>PPO Conflict</span> <br /><br />
-                                                    <span className='font-normal'>Vehicle is routed from a different line but a<br /> PPO cannot be completed at this time.</span>
-                                                </div>
-                                            </div>
+                                        <Tooltip/>
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className='group'>
                                     {vin_table_data && vin_table_data.map((data: any, index: any) => {
                                         return (
                                             <tr
@@ -163,7 +143,7 @@ export default function VINTable() {
                                                 <td className="whitespace-nowrap px-3.5 py-4">{data.accessory_description}</td>
                                                 <td className="whitespace-nowrap px-3.5 py-4">{data.accessory_part_number}</td>
                                                 <td className="whitespace-nowrap px-3.5 py-4">{data.exp_time}</td>
-                                                <td className="whitespace-nowrap px-3.5 py-4">
+                                                <td className="whitespace-nowrap px-3.5 py-4 opacity-100">
                                                     <button
                                                         name={data.code}
                                                         className={`${vinStyle.button} 
@@ -175,7 +155,7 @@ export default function VINTable() {
                                                         <span>&#10003;&nbsp;&nbsp;</span>Installed
                                                     </button>
                                                 </td>
-                                                <td className="whitespace-nowrap px-3.5 py-4">
+                                                <td className="whitespace-nowrap px-3.5 py-4 opacity-100">
                                                     <button
                                                         name={data.code}
                                                         className={`${vinStyle.button} 
@@ -192,7 +172,12 @@ export default function VINTable() {
                                                         (formData && formData.length &&
                                                             (formData.filter((item: any) => item.code === data.code)[0]["installed"] === 'n')
                                                         )
-                                                            ? <SingleSelect singleselect_data={singleSelect_data} width='w-64' bgColor='bg-grey3' placeholderText="Select options" />
+                                                            // ? <SingleSelect singleselect_data={singleSelect_data} width='w-64' bgColor='bg-grey3' placeholderText="Select options" />
+                                                            ? <SingleSelect
+                                                                placeHolder="Select options"
+                                                                options={options}
+                                                                onChange={(value: any) => console.log(value)}
+                                                            />
                                                             : null
                                                     }
                                                 </td>
