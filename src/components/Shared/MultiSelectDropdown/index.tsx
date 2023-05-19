@@ -36,7 +36,7 @@ const { placeHolder, options, isMulti, isSearchable, onChange } = props;
 
   useEffect(() => {
     const handler = (e: any) => {
-      if (inputRef.current && !inputRef.current.includes(e.target)) {
+      if (inputRef.current && !inputRef.current?.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -130,7 +130,7 @@ const { placeHolder, options, isMulti, isSearchable, onChange } = props;
 
   return (
     <div className="multi-dropdown-container">
-      <div ref={inputRef as unknown as React.RefObject<HTMLDivElement>} onClick={handleInputClick} className="multi-dropdown-input">
+      <div ref={inputRef} onClick={handleInputClick} className="multi-dropdown-input">
         <div className="multi-dropdown-selected-value">{getDisplay()}</div>
         <div className="multi-dropdown-tools">
           <div className="multi-dropdown-tool">
@@ -142,7 +142,7 @@ const { placeHolder, options, isMulti, isSearchable, onChange } = props;
         <div className="multi-dropdown-menu">
           {isSearchable && (
             <div className="search-box">
-              <input onChange={onSearch} value={searchValue} ref={searchRef as unknown as React.RefObject<HTMLDivElement>} />
+              <input onChange={onSearch} value={searchValue} ref={searchRef} />
             </div>
           )}
           {getOptions().map((option: any) => (

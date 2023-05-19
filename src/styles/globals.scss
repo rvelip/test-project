@@ -110,13 +110,14 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     overflow: auto;
-    max-height: 150px;
+    max-height: 250px;
     background-color: #fff;
     z-index: 99;
+    padding: 4px;
   }
   
   .multi-dropdown-item {
-    padding: 5px;
+    padding: 16px;
     cursor: pointer;
   }
   
@@ -125,7 +126,7 @@
   }
   
   .multi-dropdown-item.selected {
-    background-color: #0d6efd;
+    background-color: black;
     color: #fff;
   }
   
@@ -149,7 +150,7 @@
   }
   
   .multi-search-box {
-    padding: 5px;
+    padding: 16px;
     background-color: #eee;
   }
   
@@ -157,7 +158,7 @@
     width: 100%;
     box-sizing: border-box;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 5px;
   }
 // ********** end ***********
