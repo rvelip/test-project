@@ -5,17 +5,17 @@ import Modal from '@/components/Shared/Modal';
 import SingleSelect from '@/components/Shared/SingleSelect/SingleSelect';
 import Tooltip from '@/components/Shared/Tooltip/Tooltip';
 import { changeVINStatus, scanNextVINIdAction, setElementAction } from '@/store/actions/vinAction';
+import {  useToasts } from 'react-toast-notifications'
 
 export default function VINTable() {
     const dispatch: any = useDispatch();
-
+    const { addToast } = useToasts()
     const vin_table_data = useSelector((state: any) => state.vinTableState.vin_table_data);
     const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
 
     const [formData, setFormData] = useState([]);
     // const [payload, setPayload] = useState([]);
     const [showModal, setShowModal] = useState(false);
-
     const singleSelect_data = [
         { id: 1, label: "Missing Parts" },
         { id: 2, label: "Part Damage/Quality Issue" },
@@ -65,11 +65,12 @@ export default function VINTable() {
 
         //POST API Call here 
         // -------------------------
-        alert("Calling API ....");
+        // alert("Calling API ....");
 
         //Close Modal After API Call is done
         setShowModal(false);
-
+        //Toast Success Message
+        addToast('Vehicle accessory installations was successfully completed', { appearance: 'success' });
         //Land on Dashboard Default View
         dispatch(setElementAction('scan_input'));
 
@@ -98,7 +99,7 @@ export default function VINTable() {
     return (
         <>
             {/* MODAL FOR CONFIRMATION */}
-            {showModal && <Modal handleModalClose={handleModalClose} handleFormSubmit={handleFormSubmit} />}
+                {showModal && <Modal handleModalClose={handleModalClose} handleFormSubmit={handleFormSubmit} />}
             {/* Render Accessories Table */}
             <div className="flex flex-col">
                 <div className="overflow-x-auto">
@@ -127,7 +128,7 @@ export default function VINTable() {
                                         <th scope="col" className="px-3.5 py-4 text-black font-bold"></th>
                                         <th scope="col" className="px-3.5 py-4 text-black font-bold"></th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4">
-                                        <Tooltip/>
+                                            <Tooltip />
                                         </th>
                                     </tr>
                                 </thead>

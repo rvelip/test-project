@@ -59,7 +59,7 @@ export default function VINCard() {
                         </div>
                     </div>
                     <div className={vinStyle.marginTop}>
-                        <span className={vinStyle.semiBold}> {`VIN ${firstCardVehicle?.vin_id}`}</span><br />
+                        <span className={vinStyle.semiBold}> {firstCardVehicle?.vin_id}</span><br />
 
                         <span className={vinStyle.fontSize}>{firstCardVehicle?.vin_name}</span>
                         {firstCardVehicle?.status !== 'completed' &&
@@ -108,7 +108,7 @@ export default function VINCard() {
                         </div>
                     </div>
                     <div className={vinStyle.marginTop}>
-                        <span className={vinStyle.semiBold}>{`VIN ${nextVehicle?.vin_id}`}</span><br />
+                        <span className={vinStyle.semiBold}>{nextVehicle?.vin_id}</span><br />
                         {/* <span className={vinStyle.fontSize}>2023 Toyota RAV4 Silver</span>  */}
                         {nextVehicle &&
                             (
@@ -118,7 +118,7 @@ export default function VINCard() {
                                         <div> Planned Start Time</div> <div>{nextVehicle.planned_start_time}</div>
                                     </div>
                                     <div className={vinStyle.plannedTime}>
-                                        <div>  Estimated Install Time</div> <div>{nextVehicle.estimated_install_time}</div>
+                                        <div>  Expected Install Time</div> <div>{nextVehicle.estimated_install_time}</div>
                                     </div>
                                 </>
                             )
