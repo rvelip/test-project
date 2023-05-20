@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { loginStyle } from './login_tailwind'
 import { useRouter } from 'next/router';
 import { login_data } from '@/mock/login_data';
@@ -7,30 +7,48 @@ interface ILogin {
     username: string,
     password: string
 }
+
+const validate = (values: any) => {
+    let errors = {};
+    if (values.username.length===0) {
+        errors.username = "Username is required";
+    }
+     if (values.password.length===0) {
+        errors.password = "Password is required";
+    }
+
+
+    return errors;
+}
+
 export default function Login() {
     const router = useRouter();
-    const [inputs, setInputs] = useState<ILogin>({ username: "", password: ""});
+    const [inputs, setInputs] = useState<ILogin>({ username: "", password: "" });
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    const handleChange = (event:any) => {
+    const [errors, setError] = useState({});
+    const handleChange = (event: any) => {
         const name = event.target.name;
         const value = event.target.value;
-        setInputs((values: any) => ({...values, [name]: value}))
+        setInputs((values: any) => ({ ...values, [name]: value }))
     }
-    
+
     const handleLogin = (e: any) => {
         e.preventDefault();
+        setError(validate(inputs));
         const login_credentials = login_data.filter(item => item.username === inputs.username)[0];
-        if(login_credentials && (inputs.username === login_credentials.username) && (inputs.password === login_credentials.password)) {
+        if (login_credentials && (inputs.username === login_credentials.username) && (inputs.password === login_credentials.password)) {
             setIsLoggedIn(true);
-            if(login_credentials.persona === "team_member") {
+            if (login_credentials.persona === "team_member") {
                 router.push('/Dashboard')
             } else if (login_credentials.persona === "manager") {
                 router.push('/DashboardManager')
             }
-        } else {
-            alert("username or password is wrong");
         }
+
+        else {
+        }
+
+
     }
 
     return (
@@ -58,7 +76,9 @@ export default function Login() {
                                 placeholder="Username"
                                 onChange={(e) => handleChange(e)}
                             />
-
+                            {errors && (
+                                <p className="text-sm text-red-600">{errors.username}</p>
+                            )}
                             <p
                                 className={loginStyle.label}
                             >
@@ -80,7 +100,9 @@ export default function Login() {
                                 placeholder="Password"
                                 onChange={(e) => handleChange(e)}
                             />
-
+                            {errors && (
+                                <p className="text-sm text-red-600">{errors.password}</p>
+                            )}
                             <p
                                 className={loginStyle.label}
                             >

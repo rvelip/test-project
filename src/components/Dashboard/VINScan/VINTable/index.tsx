@@ -5,14 +5,12 @@ import Modal from '@/components/Shared/Modal';
 import SingleSelect from '@/components/Shared/SingleSelect/SingleSelect';
 import Tooltip from '@/components/Shared/Tooltip/Tooltip';
 import { changeVINStatus, scanNextVINIdAction, setElementAction } from '@/store/actions/vinAction';
-import {  useToasts } from 'react-toast-notifications'
+import toast from 'react-hot-toast';
 
 export default function VINTable() {
     const dispatch: any = useDispatch();
-    const { addToast } = useToasts()
     const vin_table_data = useSelector((state: any) => state.vinTableState.vin_table_data);
     const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
-
     const [formData, setFormData] = useState([]);
     // const [payload, setPayload] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -69,8 +67,19 @@ export default function VINTable() {
 
         //Close Modal After API Call is done
         setShowModal(false);
+
         //Toast Success Message
-        addToast('Vehicle accessory installations was successfully completed', { appearance: 'success' });
+        toast.success('Vehicle accessory installations was successfully completed', {
+            position: 'top-right',
+            duration:4000,
+            // icon:'',
+            style:{
+                borderRadius:'4px',
+                backgroundColor:'#22A63E',
+                color:'white',
+                fontWeight:'600'
+            }
+        });
         //Land on Dashboard Default View
         dispatch(setElementAction('scan_input'));
 
@@ -99,7 +108,7 @@ export default function VINTable() {
     return (
         <>
             {/* MODAL FOR CONFIRMATION */}
-                {showModal && <Modal handleModalClose={handleModalClose} handleFormSubmit={handleFormSubmit} />}
+            {showModal && <Modal handleModalClose={handleModalClose} handleFormSubmit={handleFormSubmit} />}
             {/* Render Accessories Table */}
             <div className="flex flex-col">
                 <div className="overflow-x-auto">
