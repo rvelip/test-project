@@ -6,6 +6,7 @@ import SingleSelect from '@/components/Shared/SingleSelect/SingleSelect';
 import Tooltip from '@/components/Shared/Tooltip/Tooltip';
 import { changeVINStatus, scanNextVINIdAction, setElementAction } from '@/store/actions/vinAction';
 import toast from 'react-hot-toast';
+import { CONSTANTS } from '@/constants/constants';
 
 export default function VINTable() {
     const dispatch: any = useDispatch();
@@ -71,13 +72,13 @@ export default function VINTable() {
         //Toast Success Message
         toast.success('Vehicle accessory installations was successfully completed', {
             position: 'top-right',
-            duration:4000,
+            duration: 4000,
             // icon:'',
-            style:{
-                borderRadius:'4px',
-                backgroundColor:'#22A63E',
-                color:'white',
-                fontWeight:'600'
+            style: {
+                borderRadius: '4px',
+                backgroundColor: '#22A63E',
+                color: 'white',
+                fontWeight: '600'
             }
         });
         //Land on Dashboard Default View
@@ -108,7 +109,18 @@ export default function VINTable() {
     return (
         <>
             {/* MODAL FOR CONFIRMATION */}
-            {showModal && <Modal handleModalClose={handleModalClose} handleFormSubmit={handleFormSubmit} />}
+            {showModal &&
+                <Modal
+                    handleModalClose={handleModalClose}
+                    handleConfirm={handleFormSubmit}
+                    modal_header={CONSTANTS.TABLE_SUBMIT_MODAL_HEADER}
+                    modal_content={CONSTANTS.TABLE_SUBMIT_MODAL_CONTENT}
+                    isConfirm
+                    confirmBtnName="Confirm"
+                    isCancel
+                    cancelBtnName="Cancel"
+                />
+            }
             {/* Render Accessories Table */}
             <div className="flex flex-col">
                 <div className="overflow-x-auto">

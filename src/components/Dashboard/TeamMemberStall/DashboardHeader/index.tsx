@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { dashboardHeaderStyle } from './dashboard_header_tailwind';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeVINStatus, scanNextVINIdAction, setElementAction } from '@/store/actions/vinAction';
+import Modal from '@/components/Shared/Modal';
+import { CONSTANTS } from '@/constants/constants';
 
 export default function DashboardHeader() {
   const dispatch: any = useDispatch();
@@ -10,15 +12,22 @@ export default function DashboardHeader() {
 
   const [unit, setUnit] = useState('vehicles');
   const [isCancelDisabled, setIsCancelDisabled] = useState(false);
+  const [showCancelModal, setShowCancelModal] = useState(false);
 
   const handleUnitChange = (e: any) => {
     setUnit(e.target.value);
   }
 
-  const handleCancelSubmission = () => {
+  const handleModalClose = () => {
+    setShowCancelModal(false);
+  }
+
+  const handleConfirmCancellation = () => {
     dispatch(scanNextVINIdAction(""));
+    /*************** might need to remove upon api call ****************/
     dispatch(changeVINStatus(scanNextVINId, 'pending', 'PENDING SCAN'));
     dispatch(setElementAction('scan_input'));
+    setShowCancelModal(false);
   }
 
   useEffect(() => {
@@ -26,7 +35,7 @@ export default function DashboardHeader() {
   }, [unit]);
 
   useEffect(() => {
-    if(element === 'vin_table') {
+    if (element === 'vin_table') {
       setIsCancelDisabled(false);
     } else {
       setIsCancelDisabled(true)
@@ -34,38 +43,53 @@ export default function DashboardHeader() {
   }, [element])
 
   return (
-    <div className={dashboardHeaderStyle.dashboardControlsWrapper}>
-      <div className={dashboardHeaderStyle.headerText}>
-        Shop A1 | Stall 4
-      </div>
-      <div className={dashboardHeaderStyle.rightSectionWrapper}>
-        <div className={dashboardHeaderStyle.dateTimeText}>Thu 05/04/2023 7:05 AM</div>
-        <div className={dashboardHeaderStyle.toggleBtn}>
+    <>
+      {/* MODAL FOR CONFIRMATION */}
+      {showCancelModal &&
+        <Modal
+          handleModalClose={handleModalClose}
+          handleConfirm={handleConfirmCancellation}
+          modal_header={CONSTANTS.CANCEL_MODAL_HEADER}
+          modal_content={CONSTANTS.CONFIRM_MODAL_CONTENT}
+          isConfirm
+          confirmBtnName={CONSTANTS.YES_CANCEL_CURRENT_VIN}
+          isCancel
+          cancelBtnName={CONSTANTS.NO_BACK_TO_CUURENT_VIN}
+        />
+      }
+      <div className={dashboardHeaderStyle.dashboardControlsWrapper}>
+        <div className={dashboardHeaderStyle.headerText}>
+          Shop A1 | Stall 4
+        </div>
+        <div className={dashboardHeaderStyle.rightSectionWrapper}>
+          <div className={dashboardHeaderStyle.dateTimeText}>Thu 05/04/2023 7:05 AM</div>
+          <div className={dashboardHeaderStyle.toggleBtn}>
+            <button
+              name='vehicles'
+              value='vehicles'
+              className={unit === 'vehicles' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
+              onClick={(e) => handleUnitChange(e)}
+            >
+              Vehicles
+            </button>
+            <button
+              name='hours'
+              value='hours'
+              className={unit === 'hours' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
+              onClick={(e) => { handleUnitChange(e) }}
+            >
+              Hours
+            </button>
+          </div>
           <button
-            name='vehicles'
-            value='vehicles'
-            className={unit === 'vehicles' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
-            onClick={(e) => handleUnitChange(e)}
+            className={isCancelDisabled ? dashboardHeaderStyle.cancelBtnDisabled : dashboardHeaderStyle.cancelBtn}
+            onClick={() => setShowCancelModal(true)}
+            disabled={isCancelDisabled}
           >
-            Vehicles
-          </button>
-          <button 
-            name='hours'
-            value='hours'
-            className={unit === 'hours' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
-            onClick={(e) => {handleUnitChange(e)}}
-          >
-            Hours
+            {CONSTANTS.CANCEL}
           </button>
         </div>
-        <button 
-          className={isCancelDisabled ?  dashboardHeaderStyle.cancelBtnDisabled : dashboardHeaderStyle.cancelBtn} 
-          onClick={handleCancelSubmission}
-          disabled={isCancelDisabled}
-        >
-          Cancel
-        </button>
       </div>
-    </div>
+    </>
   )
 }
