@@ -8,24 +8,12 @@ interface ILogin {
     password: string
 }
 
-const validate = (values: any) => {
-    let errors = {};
-    if (values.username.length===0) {
-        errors.username = "Username is required";
-    }
-     if (values.password.length===0) {
-        errors.password = "Password is required";
-    }
-
-
-    return errors;
-}
-
 export default function Login() {
     const router = useRouter();
     const [inputs, setInputs] = useState<ILogin>({ username: "", password: "" });
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [errors, setError] = useState({});
+    const [errors, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
     const handleChange = (event: any) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -34,7 +22,10 @@ export default function Login() {
 
     const handleLogin = (e: any) => {
         e.preventDefault();
-        setError(validate(inputs));
+        if (inputs.username.length == 0 || inputs.password.length == 0) {
+            setError(true);
+        }
+
         const login_credentials = login_data.filter(item => item.username === inputs.username)[0];
         if (login_credentials && (inputs.username === login_credentials.username) && (inputs.password === login_credentials.password)) {
             setIsLoggedIn(true);
@@ -44,10 +35,12 @@ export default function Login() {
                 router.push('/DashboardManager')
             }
         }
-
         else {
-        }
+            if (inputs.username.length != 0 || inputs.password.length != 0) {
+                setErrorMessage(true);
+            }
 
+        }   
 
     }
 
@@ -76,9 +69,9 @@ export default function Login() {
                                 placeholder="Username"
                                 onChange={(e) => handleChange(e)}
                             />
-                            {errors && (
-                                <p className="text-sm text-red-600">{errors.username}</p>
-                            )}
+                            {errors && inputs.username.length <= 0 ?
+                                <p className="text-sm text-red-600">Username is required</p>
+                                : ''}
                             <p
                                 className={loginStyle.label}
                             >
@@ -100,14 +93,17 @@ export default function Login() {
                                 placeholder="Password"
                                 onChange={(e) => handleChange(e)}
                             />
-                            {errors && (
-                                <p className="text-sm text-red-600">{errors.password}</p>
-                            )}
+                            {errors && inputs.password.length <= 0 ?
+                                <p className="text-sm text-red-600">Password is required</p>
+                                : ''}
                             <p
                                 className={loginStyle.label}
                             >
                                 Forgot Password?
                             </p>
+                            {errorMessage ?
+                                <p className="text-sm text-red-600">Invalid Username or Password</p>
+                                : ''}
                         </div>
 
                         <div className={loginStyle.buttonWidth}>

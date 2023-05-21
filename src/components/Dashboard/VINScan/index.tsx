@@ -11,7 +11,7 @@ export default function VINScan() {
     const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
     const element = useSelector((state: any) => state.vinState.element);
     const vins = useSelector((state: any) => state.vinState.vins);
-
+    const [errors, setError] = useState(false);
     const [scanInput, setScanInput] = useState("");
 
     const handleVINScanChange = (e: any) => {
@@ -20,13 +20,16 @@ export default function VINScan() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
+        if (scanInput.length== 0) {
+            setError(true);
+        }
         dispatch(scanNextVINIdAction(scanInput));
         dispatch(changeVINStatus(scanInput, 'ongoing', 'TIME ELAPSED: 00H 05 MIN'));
     }
 
     useEffect(() => {
         setScanInput(scanNextVINId);
-        
+
         //Check if scanInput is valid and exists in redux
         const isScanNextVINIdValid = vins.findIndex((item: any) => item.vin_id === scanNextVINId);
 
@@ -59,8 +62,13 @@ export default function VINScan() {
                         className={vinScanStyle.input}
                         type="text"
                         placeholder="###########"
+                        name='vinid'
                         onChange={(e) => handleVINScanChange(e)}
                     />
+                    {errors && scanInput.length<=0?
+                        <p className="text-sm text-red-600 mr-4">Vin Id is required</p>:''
+                    }
+
                     <button
                         className={vinScanStyle.button}
                         type='submit'
@@ -68,7 +76,9 @@ export default function VINScan() {
                     >
                         Submit
                     </button>
+
                 </form>
+
             }
 
             {/* Error Message to show scanned vin id doesn't exist */}
@@ -79,7 +89,7 @@ export default function VINScan() {
                     </div>
                     <div>
                         <div className='text-sm font-semibold pb-2'>
-                            {`Warning - Inventory Code ${scanNextVINId}`}
+                            {`Warning - Invalid Inventory Code ${scanNextVINId}`}
                         </div>
                         <div>
                             {`This vehicle's inventory code is ${scanNextVINId}. Choose to continue installation or scan another VIN.`}

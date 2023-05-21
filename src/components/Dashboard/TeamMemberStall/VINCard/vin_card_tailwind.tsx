@@ -1,6 +1,7 @@
 export const vinStyle = {
   mainwrapper: 'grid sm:grid-cols-2 md:grid-cols-2 gap-8 mx-10 my-5 font-toyota',
   innerWrapper: 'grid sm:grid-cols-2 md:grid-cols-2 gap-5 p-5 bg-white',
+  innerWrapperError: 'flex p-5 bg-white items-center justify-center font-bold',
   displayFlex: 'flex',
   prevVehicle:'mr-5 font-medium md:mr-1 lg:mr-5',
   currentVehicle:'mr-5 font-medium md:mr-1 lg:mr-1',

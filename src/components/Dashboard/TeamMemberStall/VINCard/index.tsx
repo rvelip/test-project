@@ -34,7 +34,7 @@ export default function VINCard() {
 
         //Set Data of Left Card. Either "completed" or "ongoing"
         // If sc
-        if(scanNextVINId && (isScanNextVINIdValid > -1)) {
+        if (scanNextVINId && (isScanNextVINIdValid > -1)) {
             setFirstCardVehicle(vins.filter((item: any) => item.status === 'ongoing')[0])
         } else {
             setFirstCardVehicle(vins.filter((item: any) => item.status === 'completed')[vins.filter((item: any) => item.status === 'completed').length - 1])
@@ -97,55 +97,61 @@ export default function VINCard() {
                 </div>
             </div>
             {/* right car */}
-            <div className={vinStyle.innerWrapper}>
-                <div>
-                    <div className={vinStyle.displayFlex}>
-                        <div className={vinStyle.prevVehicle}>
-                            Next Vehicle
-                        </div>
-                        <div className={vinStyle.labelPending}>
-                            {nextVehicle?.status_label}
-                        </div>
-                    </div>
-                    <div className={vinStyle.marginTop}>
-                        <span className={vinStyle.semiBold}>{nextVehicle?.vin_id}</span><br />
-                        {/* <span className={vinStyle.fontSize}>2023 Toyota RAV4 Silver</span>  */}
-                        {nextVehicle &&
-                            (
-                                <>
-                                    <span className={vinStyle.fontSize}>{nextVehicle.vin_name}</span>
-                                    <div className={vinStyle.plannedTime}>
-                                        <div> Planned Start Time</div> <div>{nextVehicle.planned_start_time}</div>
-                                    </div>
-                                    <div className={vinStyle.plannedTime}>
-                                        <div>  Expected Install Time</div> <div>{nextVehicle.estimated_install_time}</div>
-                                    </div>
-                                </>
-                            )
+            {
+                nextVehicle ? (
+                    <div className={vinStyle.innerWrapper}>
+                        <div>
+                            <div className={vinStyle.displayFlex}>
+                                <div className={vinStyle.prevVehicle}>
+                                    Next Vehicle
+                                </div>
+                                <div className={vinStyle.labelPending}>
+                                    {nextVehicle?.status_label}
+                                </div>
+                            </div>
+                            <div className={vinStyle.marginTop}>
+                                <span className={vinStyle.semiBold}>{nextVehicle?.vin_id}</span><br />
+                                {/* <span className={vinStyle.fontSize}>2023 Toyota RAV4 Silver</span>  */}
+                                {nextVehicle &&
+                                    (
+                                        <>
+                                            <span className={vinStyle.fontSize}>{nextVehicle.vin_name}</span>
+                                            <div className={vinStyle.plannedTime}>
+                                                <div> Planned Start Time</div> <div>{nextVehicle.planned_start_time}</div>
+                                            </div>
+                                            <div className={vinStyle.plannedTime}>
+                                                <div>  Expected Install Time</div> <div>{nextVehicle.estimated_install_time}</div>
+                                            </div>
+                                        </>
+                                    )
 
-                        }
-                    </div>
+                                }
+                            </div>
 
-                </div>
-                <div>
-                    <div className={vinStyle.displayFlex}>
-                        <div className={vinStyle.marginFontSize}>
-                            Pick Up Location
                         </div>
-                        <div className={vinStyle.labelStaging}>
-                            {nextVehicle?.pick_up}
+                        <div>
+                            <div className={vinStyle.displayFlex}>
+                                <div className={vinStyle.marginFontSize}>
+                                    Pick Up Location
+                                </div>
+                                <div className={vinStyle.labelStaging}>
+                                    {nextVehicle?.pick_up}
+                                </div>
+                            </div>
+                            <div className={vinStyle.marginTop}>
+                                <Image
+                                    src='/images/vin.png'
+                                    width={500}
+                                    height={500}
+                                    alt="Picture of the author"
+                                />
+                            </div>
                         </div>
                     </div>
-                    <div className={vinStyle.marginTop}>
-                        <Image
-                            src='/images/vin.png'
-                            width={500}
-                            height={500}
-                            alt="Picture of the author"
-                        />
-                    </div>
-                </div>
-            </div>
+                ) :
+                    <div className={vinStyle.innerWrapperError}>Next vehicle is not available.</div>
+            }
+
 
         </div>
     )
