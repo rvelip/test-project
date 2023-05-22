@@ -26,6 +26,13 @@ export default function VINCard() {
     const [nextVehicle, setNextVehicle] = useState<IVinDetails>();
     const [firstCardVehicle, setFirstCardVehicle] = useState<IVinDetails>();
 
+    const color_map: any = {
+        completed_prev: vinStyle.completed_prev,
+        completed_on_time: vinStyle.completed_on_time,
+        completed_late: vinStyle.completed_late,
+        ongoing: vinStyle.ongoing
+    } 
+    
     useEffect(() => {
         dispatch(VinAction());
     }, [dispatch]);
@@ -33,15 +40,22 @@ export default function VINCard() {
     useEffect(() => {
         let isScanNextVINIdValid = vins.findIndex((item: any) => item.vin_id === scanNextVINId);
 
-        //Set Data of Left Card. Either "completed" or "ongoing"
-        // If sc
+        //Set Data of Left Card if status is "ongoing"
         if (scanNextVINId && (isScanNextVINIdValid > -1)) {
             setFirstCardVehicle(vins.filter((item: any) => item.status === 'ongoing')[0])
-        } else {
-            setFirstCardVehicle(vins.filter((item: any) => item.status === 'completed')[vins.filter((item: any) => item.status === 'completed').length - 1])
-
         }
-
+        //Set Data of Left Card if status is "completed_on_time" 
+        else if(vins.filter((item: any) => item.status === 'completed_on_time')[vins.filter((item: any) => item.status === 'completed_on_time').length - 1]) {
+            setFirstCardVehicle(vins.filter((item: any) => item.status === 'completed_on_time')[vins.filter((item: any) => item.status === 'completed_on_time').length - 1])
+        }
+        //Set Data of Left Card if status is "completed_prev". This is the state to be shown on first time login
+        else {
+            setFirstCardVehicle(vins.filter((item: any) => item.status === 'completed_prev')[vins.filter((item: any) => item.status === 'completed_prev').length - 1])
+        }
+        //Missing condition ---------------
+        //Add else if for "completed_late"
+        //----------------------------------
+        
         //Set Data of Right Car
         setNextVehicle(vins.filter((item: any) => item.status === 'pending')[0]);
     }, [scanNextVINId, vins])
@@ -55,7 +69,7 @@ export default function VINCard() {
                         <div className={(firstCardVehicle?.status === 'completed' ? vinStyle.prevVehicle : vinStyle.currentVehicle)}>
                             {firstCardVehicle?.status === 'completed' ? CONSTANTS.PREVIOUS_VEHICLE : CONSTANTS.CURRENT_VEHICLE}
                         </div>
-                        <div className={(firstCardVehicle?.status === 'completed' ? vinStyle.complete : vinStyle.ongoing)}>
+                        <div className={firstCardVehicle ? color_map[firstCardVehicle?.status] : null}>
                             {firstCardVehicle?.status_label}
                         </div>
                     </div>

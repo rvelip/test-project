@@ -1,22 +1,5 @@
-// import React from 'react'
-
-// export default function SingleSelect(props: any) {
-//     const { singleselect_data, width, bgColor, placeholderText } = props;
-//     return (
-//         <>
-//                 <div className={`${width}`}>
-//                     <select className={`w-full h-10 ${bgColor}`}>
-//                     <option value='' selected disabled hidden>{placeholderText}</option>
-//                         {singleselect_data && singleselect_data.map((data: any) =>
-//                             <option className='' key={data.id}>{data.label}</option>
-//                         )}
-//                     </select>
-//                 </div>
-//         </>
-//     )
-// }
-
 import React, { useEffect, useRef, useState } from "react";
+
 const Icon = () => {
   return (
     <svg height="20" width="20" viewBox="0 0 20 20">

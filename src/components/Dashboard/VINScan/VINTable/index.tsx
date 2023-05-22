@@ -15,16 +15,6 @@ export default function VINTable() {
     const [formData, setFormData] = useState([]);
     // const [payload, setPayload] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const singleSelect_data = [
-        { id: 1, label: "Missing Parts" },
-        { id: 2, label: "Part Damage/Quality Issue" },
-        { id: 3, label: "Vehicle Damage/Quality Issue" },
-        { id: 4, label: "System Issue" },
-        { id: 5, label: "Team Member Not Trained" },
-        { id: 6, label: "Re-Routed" },
-        { id: 7, label: "Missing Tool" },
-        { id: 8, label: "PPO Conflict" },
-    ];
 
     const options = [
         { value: "green", label: "Missing Parts" },
@@ -69,6 +59,20 @@ export default function VINTable() {
         //Close Modal After API Call is done
         setShowModal(false);
 
+        //Land on Dashboard Default View
+        dispatch(setElementAction('scan_input'));
+
+        // ******* start removed this code *********
+        // ****** POST call will return the status of the prev car as status: "copmleted"
+        //  Below is simply mocking for DEMO
+        // Mark the last vehicle as completed
+        dispatch(changeVINStatus(scanNextVINId, 'completed_on_time', 'COMPLETE - ON TIME'));
+        //********  end - remove this code********/
+
+
+        //empty the scanned number 
+        dispatch(scanNextVINIdAction(""));
+
         //Toast Success Message
         toast.success(CONSTANTS.VEHICLE_SUCCESS_MESSAGE, {
             position: 'top-right',
@@ -81,19 +85,6 @@ export default function VINTable() {
                 fontWeight: '600'
             }
         });
-        //Land on Dashboard Default View
-        dispatch(setElementAction('scan_input'));
-
-        // ******* start removed this code *********
-        // ****** POST call will return the status of the prev car as status: "copmleted"
-        //  Below is simply mocking for DEMO
-        // Mark the last vehicle as completed
-        dispatch(changeVINStatus(scanNextVINId, 'completed', 'COMPLETE'));
-        //********  end - remove this code********/
-
-
-        //empty the scanned number 
-        dispatch(scanNextVINIdAction(""));
 
     };
 
@@ -194,7 +185,6 @@ export default function VINTable() {
                                                         (formData && formData.length &&
                                                             (formData.filter((item: any) => item.code === data.code)[0]["installed"] === 'n')
                                                         )
-                                                            // ? <SingleSelect singleselect_data={singleSelect_data} width='w-64' bgColor='bg-grey3' placeholderText="Select options" />
                                                             ? <SingleSelect
                                                                 placeHolder="Select options"
                                                                 options={options}
