@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { loginStyle } from './login_tailwind'
 import { useRouter } from 'next/router';
 import { login_data } from '@/mock/login_data';
+import { CONSTANTS } from '@/constants/constants';
 
 interface ILogin {
     username: string,
@@ -51,7 +52,7 @@ export default function Login() {
             <div
                 className={loginStyle.innerWrapper}
             >
-                <h1 className={loginStyle.heading}>Welcome to Logistics Orchestration</h1>
+                <h1 className={loginStyle.heading}>{CONSTANTS.LOGIN_HEADING}</h1>
                 <div className={loginStyle.formMargin}>
                     <form id="form">
                         <div className={loginStyle.column}>
@@ -59,7 +60,7 @@ export default function Login() {
                                 htmlFor="username"
                                 className={loginStyle.label}
                             >
-                                Username:
+                                {CONSTANTS.USERNAME}:
                             </label>
                             <input
                                 id="username"
@@ -70,12 +71,12 @@ export default function Login() {
                                 onChange={(e) => handleChange(e)}
                             />
                             {errors && inputs.username.length <= 0 ?
-                                <p className="text-sm text-red-600">Username is required</p>
+                                <p className="text-sm text-red-600">{CONSTANTS.USERNAME_EMPTY_MESSGAE}</p>
                                 : ''}
                             <p
                                 className={loginStyle.label}
                             >
-                                Forgot Username?
+                                {CONSTANTS.FORGOT_USERNAME}?
                             </p>
                         </div>
                         <div className={loginStyle.column}>
@@ -83,7 +84,7 @@ export default function Login() {
                                 htmlFor="password"
                                 className={loginStyle.label}
                             >
-                                Password:
+                                {CONSTANTS.PASSWORD}:
                             </label>
                             <input
                                 id="password"
@@ -94,15 +95,15 @@ export default function Login() {
                                 onChange={(e) => handleChange(e)}
                             />
                             {errors && inputs.password.length <= 0 ?
-                                <p className="text-sm text-red-600">Password is required</p>
+                                <p className="text-sm text-red-600">{CONSTANTS.PASSWORD_EMPTY_MESSGAE}</p>
                                 : ''}
                             <p
                                 className={loginStyle.label}
                             >
-                                Forgot Password?
+                               {CONSTANTS.FORGOT_PASSWORD}?
                             </p>
                             {errorMessage ?
-                                <p className="text-sm text-red-600">Invalid Username or Password</p>
+                                <p className="text-sm text-red-600">{CONSTANTS.INVALID_USERNAME_PASSWORD_MESSAGE}</p>
                                 : ''}
                         </div>
 
@@ -112,7 +113,7 @@ export default function Login() {
                                 className={`${loginStyle.button} ${loginStyle.btnMargin}`}
                                 onClick={(e) => handleLogin(e)}
                             >
-                                Login
+                                {CONSTANTS.LOGIN}
                             </button>
                             <button
                                 type="submit"
@@ -122,7 +123,7 @@ export default function Login() {
                                     router.push('/Dashboard')
                                 }}
                             >
-                                Login with SSO
+                                {CONSTANTS.LOGIN_WITH_SSO}
                             </button>
                         </div>
                     </form>

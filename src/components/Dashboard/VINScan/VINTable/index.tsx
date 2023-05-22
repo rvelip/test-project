@@ -70,7 +70,7 @@ export default function VINTable() {
         setShowModal(false);
 
         //Toast Success Message
-        toast.success('Vehicle accessory installations was successfully completed', {
+        toast.success(CONSTANTS.VEHICLE_SUCCESS_MESSAGE, {
             position: 'top-right',
             duration: 4000,
             // icon:'',
@@ -130,11 +130,11 @@ export default function VINTable() {
                                 <thead
                                     className="bg-white text-sm">
                                     <tr>
-                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Shop</th>
+                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.SHOP}</th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4">
 
                                             <div className="group relative w-max">
-                                                <span className='font-normal'>Code</span>
+                                                <span className='font-normal'>{CONSTANTS.CODE}</span>
                                                 <button className="bg-blue1 text-white active:bg-blue1 font-bold  ml-3 px-2 py-px rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
                                                 >
                                                     i
@@ -143,9 +143,9 @@ export default function VINTable() {
                                             </div>
                                         </th>
 
-                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Accessory Description</th>
-                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Accessory Part Number(s)</th>
-                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Exp. Time</th>
+                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.ACCESSORY_DESCRIPTION}</th>
+                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.ACCESSORY_PART_NUMBER}</th>
+                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.EXP_TIME}</th>
                                         <th scope="col" className="px-3.5 py-4 text-black font-bold"></th>
                                         <th scope="col" className="px-3.5 py-4 text-black font-bold"></th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4">
@@ -174,7 +174,7 @@ export default function VINTable() {
                                                                 : vinStyle.buttonColorInstalled}`}
                                                         onClick={(e) => handleInstalledClick(e, "Installed")}
                                                     >
-                                                        <span>&#10003;&nbsp;&nbsp;</span>Installed
+                                                        <span>&#10003;&nbsp;&nbsp;</span>{CONSTANTS.INSTALLED}
                                                     </button>
                                                 </td>
                                                 <td className="whitespace-nowrap px-3.5 py-4 opacity-100">
@@ -186,7 +186,7 @@ export default function VINTable() {
                                                                 : vinStyle.buttonColorInstalled}`}
                                                         onClick={(e) => handleInstalledClick(e, "Not Installed")}
                                                     >
-                                                        <span>&#x2716;&nbsp;&nbsp;</span>Not Installed
+                                                        <span>&#x2716;&nbsp;&nbsp;</span>{CONSTANTS.NOT_INSTALLED}
                                                     </button>
                                                 </td>
                                                 <td className="whitespace-nowrap py-4">
@@ -214,7 +214,7 @@ export default function VINTable() {
                                     className={`${vinStyle.button} ${vinStyle.btnMargin} ${vinStyle.buttonColorBlue} `}
                                     onClick={() => setShowModal(true)}
                                 >
-                                    Submit
+                                    {CONSTANTS.SUBMIT}
                                 </button>
                             </div>
                         </div>

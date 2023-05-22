@@ -70,7 +70,7 @@ export default function DashboardHeader() {
               className={unit === 'vehicles' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
               onClick={(e) => handleUnitChange(e)}
             >
-              Vehicles
+              {CONSTANTS.VEHICLES}
             </button>
             <button
               name='hours'
@@ -78,7 +78,7 @@ export default function DashboardHeader() {
               className={unit === 'hours' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
               onClick={(e) => { handleUnitChange(e) }}
             >
-              Hours
+              {CONSTANTS.HOURS}
             </button>
           </div>
           <button

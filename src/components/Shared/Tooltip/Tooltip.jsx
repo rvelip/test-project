@@ -1,10 +1,10 @@
 import React from 'react'
-
+import { CONSTANTS } from '@/constants/constants';
 export default function Tooltip() {
     return (
         <div className="group relative w-max">
             <div>
-                <span className='font-normal'>Not Installed Reason</span>
+                <span className='font-normal'>{CONSTANTS.NOT_INSTALLED_REASON}</span>
                 <button className="bg-blue1 text-white active:bg-blue1 font-bold  ml-3 px-2 py-px rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
                 >
                     i

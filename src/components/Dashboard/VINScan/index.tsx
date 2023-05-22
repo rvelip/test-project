@@ -4,6 +4,7 @@ import VINTable from './VINTable'
 import { changeVINStatus, scanNextVINIdAction, setElementAction } from '@/store/actions/vinAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { VinTableAction } from '@/store/actions/vinTableAction';
+import { CONSTANTS } from '@/constants/constants';
 
 export default function VINScan() {
     const dispatch: any = useDispatch();
@@ -20,7 +21,10 @@ export default function VINScan() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        if (scanInput.length== 0) {
+        if (!scanNextVINId) {
+            setError(false);
+        }
+        if (scanInput.length == 0) {
             setError(true);
         }
         dispatch(scanNextVINIdAction(scanInput));
@@ -52,34 +56,40 @@ export default function VINScan() {
     return (
         <>
             <div className={vinScanStyle.currentVehicle}>
-                Current Vehicle Installation
+                {CONSTANTS.CURRENT_VEHICLE_INSTALLATION}
             </div>
 
             {(element === 'scan_input') &&
                 <form className={vinScanStyle.form}>
-                    <label className={vinScanStyle.label}>Scan Next VIN</label>
-                    <input
-                        className={vinScanStyle.input}
-                        type="text"
-                        placeholder="###########"
-                        name='vinid'
-                        onChange={(e) => handleVINScanChange(e)}
-                    />
-                    {errors && scanInput.length<=0?
-                        <p className="text-sm text-red-600 mr-4">Vin Id is required</p>:''
-                    }
+                    <div>
+                        <label className={vinScanStyle.label}>{CONSTANTS.SCAN_NEXT_VIN}</label>
+                        <input
+                            className={vinScanStyle.input}
+                            type="text"
+                            placeholder="Enter VIN Id"
+                            name='vinid'
+                            onChange={(e) => handleVINScanChange(e)}
+                        />
+                        {errors && scanInput.length <= 0 ?
+                            <p className="text-sm text-red-600 ml-36 mt-2"> {CONSTANTS.VIN_ID_EMPTY_MESSAGE}</p> : ''
+                        }
 
-                    <button
-                        className={vinScanStyle.button}
-                        type='submit'
-                        onClick={(e) => handleSubmit(e)}
-                    >
-                        Submit
-                    </button>
+                    </div>
+                    <div className={errors && scanInput.length <= 0 ? '-mt-7' : 'mt-0'}>
+                        <button
+                            className={vinScanStyle.button}
+                            type='submit'
+                            onClick={(e) => handleSubmit(e)}
+                        >
+                            {CONSTANTS.SUBMIT}
+                        </button>
+                    </div>
 
                 </form>
 
             }
+
+
 
             {/* Error Message to show scanned vin id doesn't exist */}
             {(element === 'error_pop_up') && (
@@ -89,10 +99,10 @@ export default function VINScan() {
                     </div>
                     <div>
                         <div className='text-sm font-semibold pb-2'>
-                            {`Warning - Invalid Inventory Code ${scanNextVINId}`}
+                            {CONSTANTS.VIN_ID_INVALID_MESSAGE1} {scanNextVINId}
                         </div>
                         <div>
-                            {`This vehicle's inventory code is ${scanNextVINId}. Choose to continue installation or scan another VIN.`}
+                            {CONSTANTS.VIN_ID_INVALID_MESSAGE2} {scanNextVINId}. {CONSTANTS.VIN_ID_INVALID_MESSAGE3}.
                         </div>
                     </div>
                     <div

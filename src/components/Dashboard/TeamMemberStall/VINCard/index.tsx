@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { vinStyle } from './vin_card_tailwind';
 import { useDispatch, useSelector } from 'react-redux';
 import { VinAction } from '@/store/actions/vinAction';
+import { CONSTANTS } from '@/constants/constants';
 interface IVinDetails {
     vin_id: string;
     vin_name: string;
@@ -52,7 +53,7 @@ export default function VINCard() {
                 <div>
                     <div className={vinStyle.displayFlex}>
                         <div className={(firstCardVehicle?.status === 'completed' ? vinStyle.prevVehicle : vinStyle.currentVehicle)}>
-                            {firstCardVehicle?.status === 'completed' ? 'Previous Vehicle' : 'Current Vehicle'}
+                            {firstCardVehicle?.status === 'completed' ? CONSTANTS.PREVIOUS_VEHICLE : CONSTANTS.CURRENT_VEHICLE}
                         </div>
                         <div className={(firstCardVehicle?.status === 'completed' ? vinStyle.complete : vinStyle.ongoing)}>
                             {firstCardVehicle?.status_label}
@@ -66,10 +67,10 @@ export default function VINCard() {
                             (
                                 <>
                                     <div className={vinStyle.plannedTime}>
-                                        <div> Expected Completion</div> <div>{firstCardVehicle?.expected_completion}</div>
+                                        <div> {CONSTANTS.EXPECTED_COMPLETION}</div> <div>{firstCardVehicle?.expected_completion}</div>
                                     </div>
                                     <div className={vinStyle.plannedTime}>
-                                        <div>  Expected Install Time</div> <div>{firstCardVehicle?.expected_install_time}</div>
+                                        <div>  {CONSTANTS.EXPECTED_INSTALL_TIME}</div> <div>{firstCardVehicle?.expected_install_time}</div>
                                     </div>
                                 </>
                             )}
@@ -80,7 +81,7 @@ export default function VINCard() {
                 <div>
                     <div className={vinStyle.displayFlex}>
                         <div className={vinStyle.marginFontSize}>
-                            Drop Off Location
+                        {CONSTANTS.DROP_OFF_LOCATION}
                         </div>
                         <div className={vinStyle.labelStaging}>
                             {firstCardVehicle?.drop_off}
@@ -103,7 +104,7 @@ export default function VINCard() {
                         <div>
                             <div className={vinStyle.displayFlex}>
                                 <div className={vinStyle.prevVehicle}>
-                                    Next Vehicle
+                                {CONSTANTS.NEXT_VEHICLE}
                                 </div>
                                 <div className={vinStyle.labelPending}>
                                     {nextVehicle?.status_label}
@@ -117,10 +118,10 @@ export default function VINCard() {
                                         <>
                                             <span className={vinStyle.fontSize}>{nextVehicle.vin_name}</span>
                                             <div className={vinStyle.plannedTime}>
-                                                <div> Planned Start Time</div> <div>{nextVehicle.planned_start_time}</div>
+                                                <div> {CONSTANTS.PLANNED_START_TIME}</div> <div>{nextVehicle.planned_start_time}</div>
                                             </div>
                                             <div className={vinStyle.plannedTime}>
-                                                <div>  Expected Install Time</div> <div>{nextVehicle.estimated_install_time}</div>
+                                                <div>  {CONSTANTS.EXPECTED_INSTALL_TIME}</div> <div>{nextVehicle.estimated_install_time}</div>
                                             </div>
                                         </>
                                     )
@@ -132,7 +133,7 @@ export default function VINCard() {
                         <div>
                             <div className={vinStyle.displayFlex}>
                                 <div className={vinStyle.marginFontSize}>
-                                    Pick Up Location
+                                {CONSTANTS.PICK_UP_LOCATION}
                                 </div>
                                 <div className={vinStyle.labelStaging}>
                                     {nextVehicle?.pick_up}
@@ -149,7 +150,7 @@ export default function VINCard() {
                         </div>
                     </div>
                 ) :
-                    <div className={vinStyle.innerWrapperError}>Next vehicle is not available.</div>
+                    <div className={vinStyle.innerWrapperError}>{CONSTANTS.NEXT_VEHICLE_IS_NOT_AVAILABLE}.</div>
             }
 
 
