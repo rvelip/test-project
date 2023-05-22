@@ -5,15 +5,15 @@ import { CONSTANTS } from '@/constants/constants';
 
 export default function TeamMemberStallInfo() {
   const options = [
-    { value: "pritam", label: "Pritam" },
-    { value: "ram", label: "Ram" },
-    { value: "ankit", label: "Ankit" },
-    { value: "pawan", label: "Pawan" },
-    { value: "wilshan", label: "Wilshan" },
-    { value: "ashim", label: "Ashim" },
-    { value: "sahil", label: "Sahil" },
-    { value: "hannah", label: "Hannah" },
-    { value: "cara", label: "Cara" }
+    { value: "589842", label: "589842" },
+    { value: "591122", label: "591122" },
+    { value: "589841", label: "589841" },
+    { value: "589843", label: "589843" },
+    { value: "589844", label: "589844" },
+    { value: "589845", label: "589845" },
+    { value: "589846", label: "589846" },
+    { value: "589847", label: "589847" },
+    { value: "589848", label: "589848" }
   ];
 
   return (

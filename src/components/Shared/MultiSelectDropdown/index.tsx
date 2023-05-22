@@ -142,7 +142,7 @@ const { placeHolder, options, isMulti, isSearchable, onChange } = props;
         <div className="multi-dropdown-menu">
           {isSearchable && (
             <div className="search-box">
-              <input onChange={onSearch} value={searchValue} ref={searchRef} />
+              <input className='w-full p-2' onChange={onSearch} value={searchValue} ref={searchRef} />
             </div>
           )}
           {getOptions().map((option: any) => (

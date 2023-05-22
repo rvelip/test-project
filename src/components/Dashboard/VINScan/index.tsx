@@ -66,7 +66,7 @@ export default function VINScan() {
                         <input
                             className={vinScanStyle.input}
                             type="text"
-                            placeholder="Enter VIN Id"
+                            placeholder={CONSTANTS.ENTER_VIN}
                             name='vinid'
                             onChange={(e) => handleVINScanChange(e)}
                         />

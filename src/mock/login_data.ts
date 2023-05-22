@@ -1,6 +1,6 @@
 export const login_data = [
     {
-        username: 'Ram',
+        username: 'Shop1Stall1',
         password: 'pwd',
         persona: 'team_member'
     },
