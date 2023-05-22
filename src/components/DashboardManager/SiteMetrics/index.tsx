@@ -5,10 +5,12 @@ import GraphSection from './GraphSection'
 
 export default function SiteMetrics() {
   return (
-    <div className='px-12 py-8'>
+    <>
+      <div className='px-12 py-8'>
         <MetricsSection />
         <GraphSection />
-        <ShopFloorPlan />
-    </div>
+      </div>
+      <ShopFloorPlan />
+    </>
   )
 }
