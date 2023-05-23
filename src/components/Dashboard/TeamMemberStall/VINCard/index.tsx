@@ -66,8 +66,8 @@ export default function VINCard() {
             <div className={vinStyle.innerWrapper} >
                 <div>
                     <div className={vinStyle.displayFlex}>
-                        <div className={(firstCardVehicle?.status === 'completed' ? vinStyle.prevVehicle : vinStyle.currentVehicle)}>
-                            {firstCardVehicle?.status === 'completed' ? CONSTANTS.PREVIOUS_VEHICLE : CONSTANTS.CURRENT_VEHICLE}
+                        <div className={(firstCardVehicle?.status === 'completed_prev' ? vinStyle.prevVehicle : vinStyle.currentVehicle)}>
+                            {firstCardVehicle?.status === 'completed_prev' ? CONSTANTS.PREVIOUS_VEHICLE : CONSTANTS.CURRENT_VEHICLE}
                         </div>
                         <div className={firstCardVehicle ? color_map[firstCardVehicle?.status] : null}>
                             {firstCardVehicle?.status_label}
@@ -77,7 +77,7 @@ export default function VINCard() {
                         <span className={vinStyle.semiBold}> {firstCardVehicle?.vin_id}</span><br />
 
                         <span className={vinStyle.fontSize}>{firstCardVehicle?.vin_name}</span>
-                        {firstCardVehicle?.status !== 'completed' &&
+                        {firstCardVehicle?.status !== 'completed_prev' &&
                             (
                                 <>
                                     <div className={vinStyle.plannedTime}>
