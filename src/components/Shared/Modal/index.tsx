@@ -13,7 +13,7 @@ export default function Modal(props: any) {
                 <div className="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                     <div className="flex justify-between p-6 font-normal text-2xl">
                         <div>{modal_header}</div>
-                        <div onClick={handleModalClose}>X</div>
+                        <div onClick={handleModalClose} className='cursor-default hover:font-medium'>X</div>
                     </div>
                     <div className="px-6 pb-6">
                         <p>
