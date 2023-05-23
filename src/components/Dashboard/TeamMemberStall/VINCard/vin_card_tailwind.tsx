@@ -6,7 +6,7 @@ export const vinStyle = {
   prevVehicle:'mr-5 font-medium md:mr-1 lg:mr-5',
   currentVehicle:'mr-5 font-medium md:mr-1 lg:mr-1',
   completed_prev: 'bg-grey font-semibold px-2 md:pt-3 lg:py-1 rounded-md border-2 border-black text-sm',
-  completed_on_time: "bg-green1 font-semibold px-2 md:pt-3 lg:py-1 rounded-md border-2 border-black text-sm",
+  completed_on_time: "bg-green1 font-semibold px-2 md:pt-3 lg:py-1 rounded-md text-sm text-white",
   completed_late: "bg-red1 font-semibold px-2 md:pt-3 lg:py-1 rounded-md border-2 border-black text-sm",
   ongoing: "bg-blue1 font-semibold px-2 md:pt-3 lg:py-1 rounded-md text-sm text-white",
   marginTop: 'mt-5',
