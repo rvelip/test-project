@@ -1,7 +1,7 @@
 [
     {
         "vin_id": "JTDACAAU8P3005488",
-        "vin_name": "2023 Lexus ES 350 Silver 1",
+        "vin_name": "2023 Lexus ES 350 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP B STAGING",
         "status": "completed_prev",
@@ -9,12 +9,14 @@
         "planned_start_time": "",
         "estimated_install_time":  "",
         "car_photo_url": "/images/vin.png",
-        "expected_completion": "7:50 AM",
-        "expected_install_time": "45 min"
+        "expected_completion": "",
+        "expected_install_time": "",
+        "actual_completion": "",
+        "actual_install_time": ""
     },
     {
         "vin_id": "JTDACAAU2P3005518",
-        "vin_name": "2023 Lexus ES 350 Silver 2",
+        "vin_name": "2023 Lexus ES 350 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP B STAGING",
         "status": "completed_prev",
@@ -22,12 +24,14 @@
         "planned_start_time": "",
         "estimated_install_time":  "",
         "car_photo_url": "/images/vin.png",
-        "expected_completion": "7:50 AM",
-        "expected_install_time": "45 min"
+        "expected_completion": "",
+        "expected_install_time": "",
+        "actual_completion": "",
+        "actual_install_time": ""
     },
     {
         "vin_id": "JTDACAAU2P3005521",
-        "vin_name": "2023 Toyota RAV4 Silver 3",
+        "vin_name": "2023 Toyota RAV4 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP B STAGING",
         "status": "pending",
@@ -36,11 +40,13 @@
         "estimated_install_time": "45 min",
         "car_photo_url": "/images/vin.png",
         "expected_completion": "7:50 AM",
-        "expected_install_time": "45 min"
+        "expected_install_time": "45 min",
+        "actual_completion": "7.45 AM",
+        "actual_install_time": "40 min (+5 min)"
     },
     {
         "vin_id": "JTDACAAU2P3005535",
-        "vin_name": "Toyota RAV5 Silver 4",
+        "vin_name": "Toyota RAV4 Silver",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP B STAGING",
         "status": "pending",
@@ -49,11 +55,13 @@
         "estimated_install_time": "90 min",
         "car_photo_url": "/images/vin.png",
         "expected_completion": "7:50 AM",
-        "expected_install_time": "45 min"
+        "expected_install_time": "45 min",
+        "actual_completion": "7.45 AM",
+        "actual_install_time": "40 min (+5 min)"
     },
     {
         "vin_id": "JTDACAAU4P3005598",
-        "vin_name": "2023 Toyota Camry White 5",
+        "vin_name": "2023 Toyota Camry White",
         "pick_up": "SHOP A STAGING",
         "drop_off": "SHOP B STAGING",
         "status": "pending",
@@ -62,6 +70,8 @@
         "estimated_install_time": "90 min",
         "car_photo_url": "/images/vin.png",
         "expected_completion": "7:50 AM",
-        "expected_install_time": "45 min"
+        "expected_install_time": "45 min",
+        "actual_completion": "7.45 AM",
+        "actual_install_time": "40 min (+5 min)"
     }
 ]

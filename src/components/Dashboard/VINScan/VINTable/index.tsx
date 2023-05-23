@@ -17,7 +17,7 @@ export default function VINTable() {
     const [showModal, setShowModal] = useState(false);
 
     const options = [
-        { value: "green", label: "Missing Parts" },
+        { value: "green", label: "No Part/Contents" },
         { value: "blue", label: "Part Damage/Quality Issue" },
         { value: "red", label: "Vehicle Damage/Quality Issue" },
         { value: "yellow", label: "System Issue" },

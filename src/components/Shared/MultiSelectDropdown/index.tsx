@@ -20,10 +20,10 @@ const CloseIcon = () => {
 const MultiSelectDropdown = (props: any) => {
 const { placeHolder, options, isMulti, isSearchable, onChange } = props;
   const [showMenu, setShowMenu] = useState(false);
-  const [selectedValue, setSelectedValue] = useState([]);
+  const [selectedValue, setSelectedValue] = useState<any>([]);
   const [searchValue, setSearchValue] = useState("");
-  const searchRef = useRef();
-  const inputRef = useRef();
+  const searchRef = useRef<any>();
+  const inputRef = useRef<any>();
   
   console.log("ref", inputRef);
 

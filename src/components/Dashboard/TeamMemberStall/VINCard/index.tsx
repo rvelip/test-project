@@ -16,6 +16,8 @@ interface IVinDetails {
     expected_completion: string;
     expected_install_time: string;
     car_photo_url: string;
+    actual_completion: string;
+    actual_install_time: string;
 }
 export default function VINCard() {
     const dispatch: any = useDispatch();
@@ -31,8 +33,8 @@ export default function VINCard() {
         completed_on_time: vinStyle.completed_on_time,
         completed_late: vinStyle.completed_late,
         ongoing: vinStyle.ongoing
-    } 
-    
+    }
+
     useEffect(() => {
         dispatch(VinAction());
     }, [dispatch]);
@@ -45,7 +47,7 @@ export default function VINCard() {
             setFirstCardVehicle(vins.filter((item: any) => item.status === 'ongoing')[0])
         }
         //Set Data of Left Card if status is "completed_on_time" 
-        else if(vins.filter((item: any) => item.status === 'completed_on_time')[vins.filter((item: any) => item.status === 'completed_on_time').length - 1]) {
+        else if (vins.filter((item: any) => item.status === 'completed_on_time')[vins.filter((item: any) => item.status === 'completed_on_time').length - 1]) {
             setFirstCardVehicle(vins.filter((item: any) => item.status === 'completed_on_time')[vins.filter((item: any) => item.status === 'completed_on_time').length - 1])
         }
         //Set Data of Left Card if status is "completed_prev". This is the state to be shown on first time login
@@ -55,7 +57,7 @@ export default function VINCard() {
         //Missing condition ---------------
         //Add else if for "completed_late"
         //----------------------------------
-        
+
         //Set Data of Right Car
         setNextVehicle(vins.filter((item: any) => item.status === 'pending')[0]);
     }, [scanNextVINId, vins])
@@ -77,25 +79,35 @@ export default function VINCard() {
                         <span className={vinStyle.semiBold}> {firstCardVehicle?.vin_id}</span><br />
 
                         <span className={vinStyle.fontSize}>{firstCardVehicle?.vin_name}</span>
-                        {firstCardVehicle?.status !== 'completed_prev' &&
+                        {firstCardVehicle?.status === 'completed_on_time' ?
                             (
                                 <>
                                     <div className={vinStyle.plannedTime}>
-                                        <div> {CONSTANTS.EXPECTED_COMPLETION}</div> <div>{firstCardVehicle?.expected_completion}</div>
+                                        <div>Actual Completion</div> <div>{firstCardVehicle?.actual_completion}</div>
                                     </div>
                                     <div className={vinStyle.plannedTime}>
-                                        <div>  {CONSTANTS.EXPECTED_INSTALL_TIME}</div> <div>{firstCardVehicle?.expected_install_time}</div>
+                                        <div>Actual Install Time</div> <div>{firstCardVehicle?.actual_install_time}</div>
                                     </div>
                                 </>
-                            )}
-
+                            ) :
+                            (firstCardVehicle?.status !== 'completed_prev') ? (
+                                <>
+                                    <div className={vinStyle.plannedTime}>
+                                        <div>{CONSTANTS.EXPECTED_COMPLETION}</div> <div>{firstCardVehicle?.expected_completion}</div>
+                                    </div>
+                                    <div className={vinStyle.plannedTime}>
+                                        <div>{CONSTANTS.EXPECTED_INSTALL_TIME}</div> <div>{firstCardVehicle?.expected_install_time}</div>
+                                    </div>
+                                </>
+                            ) : null
+                        }
                     </div>
 
                 </div>
                 <div>
                     <div className={vinStyle.displayFlex}>
                         <div className={vinStyle.marginFontSize}>
-                        {CONSTANTS.DROP_OFF_LOCATION}
+                            {CONSTANTS.DROP_OFF_LOCATION}
                         </div>
                         <div className={vinStyle.labelStaging}>
                             {firstCardVehicle?.drop_off}
@@ -118,7 +130,7 @@ export default function VINCard() {
                         <div>
                             <div className={vinStyle.displayFlex}>
                                 <div className={vinStyle.prevVehicle}>
-                                {CONSTANTS.NEXT_VEHICLE}
+                                    {CONSTANTS.NEXT_VEHICLE}
                                 </div>
                                 <div className={vinStyle.labelPending}>
                                     {nextVehicle?.status_label}
@@ -147,7 +159,7 @@ export default function VINCard() {
                         <div>
                             <div className={vinStyle.displayFlex}>
                                 <div className={vinStyle.marginFontSize}>
-                                {CONSTANTS.PICK_UP_LOCATION}
+                                    {CONSTANTS.PICK_UP_LOCATION}
                                 </div>
                                 <div className={vinStyle.labelStaging}>
                                     {nextVehicle?.pick_up}

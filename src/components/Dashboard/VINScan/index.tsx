@@ -51,6 +51,7 @@ export default function VINScan() {
             // //set scanNextVINId in redux to empty string since it doesn't exist
             // dispatch(scanNextVINIdAction(""));
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [scanNextVINId]);
 
     return (
