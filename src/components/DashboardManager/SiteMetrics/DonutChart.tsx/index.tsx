@@ -1,7 +1,27 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { PieChart, Pie, Legend } from "recharts";
+
+const data = [
+  { name: "36 Missing Part/Contents", value: 36, fill: "#0F2C6B" },
+  { name: "13 Part Damage/Quality Issue", value: 13, fill: "#1A4BB5" },
+  { name: "4 Vehicle Damage/Quality Issue", value: 4, fill: "#2469FF" },
+  { name: "3 Team Member Not Trained", value: 3, fill: "#6C9BFF" },
+  { name: "2 Re-routed", value: 2, fill: "#BBD1FF" },
+  { name: "1 Missing Tool", value: 1, fill: "#909295" }
+];
+
+const renderColorfulLegendText = (value: string) => {
+  return (
+    <span style={{ color: "#000000", fontWeight: 400, fontSize: '14px', padding: '5px' }}>
+      {value}
+    </span>
+  );
+};
+
 // import * as d3 from 'd3';
 
-function DonutChart(props: any) {
+function DonutChart() {
+  const [domLoaded, setDomLoaded] = useState(false);
   // const { data, width, height } = props;
   // const svgRef = useRef();
 
@@ -47,10 +67,36 @@ function DonutChart(props: any) {
   //     .style("font-size", "14px");
 
   // }, [data, height, width]);
-
+  useEffect(() => {
+    setDomLoaded(true)
+  }, [])
   return (
     // <svg ref={svgRef} width={width} height={height}></svg>
-    <h1>Donut Chart</h1>
+    <>
+      {domLoaded && (
+        <PieChart width={800} height={200}>
+          <Legend
+            height={36}
+            iconType="circle"
+            layout='radial'
+            verticalAlign="top"
+            iconSize={15}
+            formatter={renderColorfulLegendText}>
+          </Legend>
+          <Pie
+            data={data}
+            cx={365}
+            cy={90}
+            innerRadius={60}
+            outerRadius={95}
+            fill="#8884d8"
+            paddingAngle={0}
+            dataKey="value"
+          ></Pie>
+        </PieChart>
+      )
+      }
+    </>
   );
 }
 

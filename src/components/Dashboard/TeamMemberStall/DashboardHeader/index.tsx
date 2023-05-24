@@ -13,6 +13,7 @@ export default function DashboardHeader() {
   const [unit, setUnit] = useState('vehicles');
   const [isCancelDisabled, setIsCancelDisabled] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
+  // const [date, setDate] = useState(new Date().toString());
 
   const handleUnitChange = (e: any) => {
     setUnit(e.target.value);
@@ -30,6 +31,10 @@ export default function DashboardHeader() {
     setShowCancelModal(false);
   }
 
+  // const tick = () => {
+  //   setDate(new Date().toString());
+  // };
+
   useEffect(() => {
     // console.log(unit);
   }, [unit]);
@@ -40,7 +45,16 @@ export default function DashboardHeader() {
     } else {
       setIsCancelDisabled(true)
     }
+
   }, [element])
+
+  // useEffect(() => {
+  //   document.title = date;
+  //   const timerID = setInterval(() => tick(), 1000);
+  //   return () => {
+  //     clearInterval(timerID);
+  //   };
+  // }, []);
 
   return (
     <>
@@ -59,10 +73,10 @@ export default function DashboardHeader() {
       }
       <div className={dashboardHeaderStyle.dashboardControlsWrapper}>
         <div className={dashboardHeaderStyle.headerText}>
-          Shop A1 | Stall 4
+          Production Line 1 | Stall 4
         </div>
         <div className={dashboardHeaderStyle.rightSectionWrapper}>
-          <div className={dashboardHeaderStyle.dateTimeText}>Thu 05/04/2023 7:05 AM</div>
+          <div className={dashboardHeaderStyle.dateTimeText}>Thu 05/04/2023 11:00 AM</div>
           <div className={dashboardHeaderStyle.toggleBtn}>
             <button
               name='vehicles'

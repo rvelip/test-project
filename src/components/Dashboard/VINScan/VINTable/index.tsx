@@ -77,7 +77,7 @@ export default function VINTable() {
         toast.success(CONSTANTS.VEHICLE_SUCCESS_MESSAGE, {
             position: 'top-right',
             duration: 4000,
-            // icon:'',
+            icon:'😃',
             style: {
                 borderRadius: '4px',
                 backgroundColor: '#22A63E',
