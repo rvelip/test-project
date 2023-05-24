@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeVINStatus, scanNextVINIdAction, setElementAction } from '@/store/actions/vinAction';
 import Modal from '@/components/Shared/Modal';
 import { CONSTANTS } from '@/constants/constants';
+import moment from 'moment'
 
 export default function DashboardHeader() {
   const dispatch: any = useDispatch();
@@ -13,7 +14,7 @@ export default function DashboardHeader() {
   const [unit, setUnit] = useState('vehicles');
   const [isCancelDisabled, setIsCancelDisabled] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
-  // const [date, setDate] = useState(new Date().toString());
+  const [date, setDate] = useState('');
 
   const handleUnitChange = (e: any) => {
     setUnit(e.target.value);
@@ -31,9 +32,9 @@ export default function DashboardHeader() {
     setShowCancelModal(false);
   }
 
-  // const tick = () => {
-  //   setDate(new Date().toString());
-  // };
+  const tick = () => {
+    setDate(moment().format('ddd DD/MM/YYYY LT'));
+  };
 
   useEffect(() => {
     // console.log(unit);
@@ -48,13 +49,12 @@ export default function DashboardHeader() {
 
   }, [element])
 
-  // useEffect(() => {
-  //   document.title = date;
-  //   const timerID = setInterval(() => tick(), 1000);
-  //   return () => {
-  //     clearInterval(timerID);
-  //   };
-  // }, []);
+  useEffect(() => {
+    const timerID = setInterval(() => tick(), 1000);
+    return () => {
+      clearInterval(timerID);
+    };
+  }, []);
 
   return (
     <>
@@ -76,7 +76,7 @@ export default function DashboardHeader() {
           Production Line 1 | Stall 4
         </div>
         <div className={dashboardHeaderStyle.rightSectionWrapper}>
-          <div className={dashboardHeaderStyle.dateTimeText}>Thu 05/04/2023 11:00 AM</div>
+          <div className={dashboardHeaderStyle.dateTimeText}>{date}</div>
           <div className={dashboardHeaderStyle.toggleBtn}>
             <button
               name='vehicles'
