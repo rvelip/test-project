@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import DonutChart from '../DonutChart.tsx'
+import DonutChart from '../DonutChart';
+import LineChartGraph from '../LineChart';
 
 export default function GraphSection() {
   const [data, setData] = useState([
@@ -26,6 +27,7 @@ export default function GraphSection() {
       <div className='col-span-7 p-4 bg-white'>
         <div className='font-bold text-base'>Progress Against Plan</div>
         <div className='text-xs text-grey3'>95 hours affected</div>
+        <LineChartGraph/>
       </div>
     </div>
   )
