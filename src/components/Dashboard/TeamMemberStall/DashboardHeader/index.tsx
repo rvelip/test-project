@@ -6,7 +6,8 @@ import Modal from '@/components/Shared/Modal';
 import { CONSTANTS } from '@/constants/constants';
 import moment from 'moment'
 
-export default function DashboardHeader() {
+export default function DashboardHeader(props: any) {
+  const { isCancel, showFilter } = props;
   const dispatch: any = useDispatch();
   const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
   const element = useSelector((state: any) => state.vinState.element);
@@ -77,6 +78,42 @@ export default function DashboardHeader() {
         </div>
         <div className={dashboardHeaderStyle.rightSectionWrapper}>
           <div className={dashboardHeaderStyle.dateTimeText}>{date}</div>
+          {showFilter && (
+            <div className={dashboardHeaderStyle.toggleBtn}>
+              <button
+                name='today'
+                value='today'
+                className={unit === 'today' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
+                onClick={(e) => handleUnitChange(e)}
+              >
+                Today
+              </button>
+              <button
+                name='yesterday'
+                value='yesterday'
+                className={unit === 'yesterday' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
+                onClick={(e) => handleUnitChange(e)}
+              >
+                Yesterday
+              </button>
+              <button
+                name='week'
+                value='week'
+                className={unit === 'week' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
+                onClick={(e) => handleUnitChange(e)}
+              >
+                Week
+              </button>
+              <button
+                name='month'
+                value='month'
+                className={unit === 'month' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
+                onClick={(e) => { handleUnitChange(e) }}
+              >
+                Month
+              </button>
+            </div>
+          )}
           <div className={dashboardHeaderStyle.toggleBtn}>
             <button
               name='vehicles'
@@ -95,13 +132,15 @@ export default function DashboardHeader() {
               {CONSTANTS.HOURS}
             </button>
           </div>
-          <button
-            className={isCancelDisabled ? dashboardHeaderStyle.cancelBtnDisabled : dashboardHeaderStyle.cancelBtn}
-            onClick={() => setShowCancelModal(true)}
-            disabled={isCancelDisabled}
-          >
-            {CONSTANTS.CANCEL}
-          </button>
+          {isCancel && (
+            <button
+              className={isCancelDisabled ? dashboardHeaderStyle.cancelBtnDisabled : dashboardHeaderStyle.cancelBtn}
+              onClick={() => setShowCancelModal(true)}
+              disabled={isCancelDisabled}
+            >
+              {CONSTANTS.CANCEL}
+            </button>
+          )}
         </div>
       </div>
     </>

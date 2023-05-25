@@ -14,7 +14,7 @@ export default function DashboardManagerWrapper() {
   return (
     <>
         <DashboardNavigation navData={navData}/>
-        <DashboardHeader />
+        <DashboardHeader showFilter/>
         <SiteMetrics />
     </>
   )
