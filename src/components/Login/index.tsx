@@ -31,9 +31,9 @@ export default function Login() {
         if (login_credentials && (inputs.username === login_credentials.username) && (inputs.password === login_credentials.password)) {
             setIsLoggedIn(true);
             if (login_credentials.persona === "team_member") {
-                router.push('/Dashboard')
+                router.push('/TeamMember')
             } else if (login_credentials.persona === "manager") {
-                router.push('/DashboardManager')
+                router.push('/Manager')
             }
         }
         else {
