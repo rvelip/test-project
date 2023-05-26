@@ -25,16 +25,26 @@ export default function Layout({ children }: any) {
     }
   }
 
+  const renderEle = () => {
+    if (router.pathname.startsWith('TeamMember')) {
+      return 'showCancel';
+    } else if(router.pathname.startsWith('Manager')) {
+      return 'showFilter';
+    }
+  }
+
   return (
     <>
+      {/* fixed topbar */}
       <TopBar />
-      {/* navigation & header */}
+      {/* fixed navigation & header */}
       {router.pathname !== '/' && (
         <>
           <DashboardNavigation navData={loadNavData()} />
-          <DashboardHeader showFilter />
+          <DashboardHeader renderEle={renderEle()} />
         </>
       )}
+      {/*  */}
       {children}
     </>
   )

@@ -8,6 +8,7 @@ export default function DashboardNavigation(props: any) {
 
   const router = useRouter();
 
+  //change the "isActive" flag to true if navigation bar is switched
   const handleNavChange = (navId: string) => {
     navItems.forEach((item: any) => {
       if(item.path === navId) {
@@ -19,6 +20,7 @@ export default function DashboardNavigation(props: any) {
     setNavItems([...navItems]);
   };
 
+  //Push new route based navigation change
   useEffect(() => {
     const index = navItems.findIndex((item: any) => item.isActive);
     if(router.pathname !== navItems[index].path) {
@@ -26,7 +28,8 @@ export default function DashboardNavigation(props: any) {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navItems]);
-
+  
+  // Listen to router change on the browser  
   useEffect(() => {
     console.log('router is changing', typeof(router.pathname), router.pathname );
     handleNavChange(router.pathname);

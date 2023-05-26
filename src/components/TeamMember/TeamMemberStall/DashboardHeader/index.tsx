@@ -7,23 +7,28 @@ import { CONSTANTS } from '@/constants/constants';
 import moment from 'moment'
 
 export default function DashboardHeader(props: any) {
-  const { isCancel, showFilter } = props;
+  const { renderEle } = props;
   const dispatch: any = useDispatch();
   const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
   const element = useSelector((state: any) => state.vinState.element);
 
   const [unit, setUnit] = useState('vehicles');
+  const [dateFilter, setDateFilter] = useState('today');
   const [isCancelDisabled, setIsCancelDisabled] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [date, setDate] = useState('');
 
-  const handleUnitChange = (e: any) => {
-    setUnit(e.target.value);
-  }
+  const filterEle = [
+    { name: "today", value: "today", label: "Today" },
+    { name: "yesterday", value: "yesterday", label: "Yesterday" },
+    { name: "week", value: "week", label: "Week" },
+    { name: "month", value: "month", label: "Month" }
+  ];
 
-  const handleModalClose = () => {
-    setShowCancelModal(false);
-  }
+  const unitEle = [
+    { name: 'vehicles', value: 'vehicles', label: 'Vehicles' },
+    { name: 'hours', value: 'hours', label: 'Hours' },
+  ];
 
   const handleConfirmCancellation = () => {
     dispatch(scanNextVINIdAction(""));
@@ -42,6 +47,10 @@ export default function DashboardHeader(props: any) {
   }, [unit]);
 
   useEffect(() => {
+    // console.log(unit);
+  }, [dateFilter]);
+
+  useEffect(() => {
     if (element === 'vin_table') {
       setIsCancelDisabled(false);
     } else {
@@ -50,6 +59,7 @@ export default function DashboardHeader(props: any) {
 
   }, [element])
 
+  //Timer tick 
   useEffect(() => {
     const timerID = setInterval(() => tick(), 1000);
     return () => {
@@ -62,7 +72,7 @@ export default function DashboardHeader(props: any) {
       {/* MODAL FOR CONFIRMATION */}
       {showCancelModal &&
         <Modal
-          handleModalClose={handleModalClose}
+          handleModalClose={() => setShowCancelModal(false)}
           handleConfirm={handleConfirmCancellation}
           modal_header={CONSTANTS.CANCEL_MODAL_HEADER}
           modal_content={CONSTANTS.CONFIRM_MODAL_CONTENT}
@@ -73,66 +83,48 @@ export default function DashboardHeader(props: any) {
         />
       }
       <div className={dashboardHeaderStyle.dashboardControlsWrapper}>
+        {/* Production Line & Stall Number */}
         <div className={dashboardHeaderStyle.headerText}>
           Production Line 1 | Stall 4
         </div>
+        {/* Date Filters */}
         <div className={dashboardHeaderStyle.rightSectionWrapper}>
           <div className={dashboardHeaderStyle.dateTimeText}>{date}</div>
-          {showFilter && (
+          {renderEle === 'showFilter' && (
             <div className={dashboardHeaderStyle.toggleBtn}>
-              <button
-                name='today'
-                value='today'
-                className={unit === 'today' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
-                onClick={(e) => handleUnitChange(e)}
-              >
-                Today
-              </button>
-              <button
-                name='yesterday'
-                value='yesterday'
-                className={unit === 'yesterday' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
-                onClick={(e) => handleUnitChange(e)}
-              >
-                Yesterday
-              </button>
-              <button
-                name='week'
-                value='week'
-                className={unit === 'week' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
-                onClick={(e) => handleUnitChange(e)}
-              >
-                Week
-              </button>
-              <button
-                name='month'
-                value='month'
-                className={unit === 'month' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
-                onClick={(e) => { handleUnitChange(e) }}
-              >
-                Month
-              </button>
+              {filterEle.map((item: any) => {
+                return (
+                  <button
+                    key={item.name}
+                    name={item.name}
+                    value={item.value}
+                    className={(dateFilter === item.name) ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
+                    onClick={(e: any) => setDateFilter(e.target?.value)}
+                  >
+                    {item.label}
+                  </button>
+                )
+              })}
             </div>
           )}
+          {/* Toggle Unit */}
           <div className={dashboardHeaderStyle.toggleBtn}>
-            <button
-              name='vehicles'
-              value='vehicles'
-              className={unit === 'vehicles' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
-              onClick={(e) => handleUnitChange(e)}
-            >
-              {CONSTANTS.VEHICLES}
-            </button>
-            <button
-              name='hours'
-              value='hours'
-              className={unit === 'hours' ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
-              onClick={(e) => { handleUnitChange(e) }}
-            >
-              {CONSTANTS.HOURS}
-            </button>
+            {unitEle.map((item: any) => {
+              return (
+                <button
+                  key={item.name}
+                  name={item.name}
+                  value={item.value}
+                  className={unit === item.name ? dashboardHeaderStyle.btnActive : dashboardHeaderStyle.btnInActive}
+                  onClick={(e: any) => setUnit(e.target?.value)}
+                >
+                  {item.label}
+                </button>
+              )
+            })}
           </div>
-          {isCancel && (
+          {/* Cancel Button  */}
+          {renderEle === 'showCancel' && (
             <button
               className={isCancelDisabled ? dashboardHeaderStyle.cancelBtnDisabled : dashboardHeaderStyle.cancelBtn}
               onClick={() => setShowCancelModal(true)}
