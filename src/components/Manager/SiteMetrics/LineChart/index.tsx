@@ -12,7 +12,7 @@ import {
 const data = [
   {
     name: "7:00 AM",
-    number1: 400, 
+    number1: 400,
     Complete: 0,
     Planned: 0
   },
@@ -49,17 +49,17 @@ export default function LineChartGraph() {
       height={250}
       data={data}
       margin={{
-        top: 5,
+        top: 10,
         right: 30,
         left: 20,
         bottom: 5
       }}
     >
       <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
-      <XAxis dataKey="name" tick={{stroke:'#000000', strokeWidth: 0.7}} />
-      <YAxis dataKey='number1'tick={{stroke:'#000000', strokeWidth: 0.7}}/>
+      <XAxis dataKey="name" tick={{ stroke: '#000000', strokeWidth: 0.7 }} padding={{ right: 4 }} />
+      <YAxis dataKey='number1' tick={{ stroke: '#000000', strokeWidth: 0.7 }} />
       <Tooltip cursor={{ stroke: '#000000', strokeWidth: 1 }} />
-      <Legend iconType='square' align='left'/>
+      <Legend iconType='square' align='left' />
       <Line
         type="monotone"
         dataKey="Planned"
@@ -67,7 +67,7 @@ export default function LineChartGraph() {
         activeDot={{ r: 8 }}
         dot={false}
       />
-      <Line type="monotone" dataKey="Complete" stroke="#2469FF"  dot={false}/>
+      <Line type="monotone" dataKey="Complete" stroke="#2469FF" dot={false} />
     </LineChart>
   );
 }
