@@ -26,9 +26,9 @@ export default function Layout({ children }: any) {
   }
 
   const renderEle = () => {
-    if (router.pathname.startsWith('TeamMember')) {
+    if (router.pathname.startsWith('/TeamMember')) {
       return 'showCancel';
-    } else if(router.pathname.startsWith('Manager')) {
+    } else if(router.pathname.startsWith('/Manager')) {
       return 'showFilter';
     }
   }
