@@ -12,9 +12,10 @@ export default function VINTable() {
     const dispatch: any = useDispatch();
     const vin_table_data = useSelector((state: any) => state.vinTableState.vin_table_data);
     const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
-    const [formData, setFormData] = useState([]);
+    const [formData, setFormData] = useState<any>([]);
     // const [payload, setPayload] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [isSubmitBtnDisabled, setSubmitBtnDisabled] = useState(false);
 
     const options = [
         { value: "green", label: "No Part/Contents" },
@@ -28,14 +29,30 @@ export default function VINTable() {
     ];
 
     const handleInstalledClick = (e: any, btnKey: string) => {
-        console.log(e.target.name);
         if (formData && formData.length && formData.filter((item: any) => item.code === e.target.name)[0]) {
             const index = formData.findIndex((item: any) => item.code === e.target.name);
             let arr = [...formData];
+
+            //check which btn is clicked. If "Installed" is clicked then change the installed status to either pending(p), installed(i) or not installed(n) 
             if (btnKey === "Installed") {
-                arr[index] = Object.assign({}, arr[index], { installed: "i" });
-            } else {
-                arr[index] = Object.assign({}, arr[index], { installed: "n" });
+                //toggle grey to green and vice versa
+                if(arr[index].installed === "p") { 
+                    arr[index] = Object.assign({}, arr[index], { installed: "i" });
+                } else if(arr[index].installed === "n") {
+                    arr[index] = Object.assign({}, arr[index], { installed: "i" });
+                } else { //toggle green to grey and vice versa
+                    arr[index] = Object.assign({}, arr[index], { installed: "p" });
+                }
+            } else { //check which btn is clicked. If "Not Installed" is clicked then make the button red
+                //toggle red to grey and vice versa 
+                if(arr[index].installed === 'p') {
+                    arr[index] = Object.assign({}, arr[index], { installed: "n" });                    
+                } else if(arr[index].installed === 'i') {
+                    arr[index] = Object.assign({}, arr[index], { installed: "n" }); 
+                } 
+                else {
+                    arr[index] = Object.assign({}, arr[index], { installed: "p" });
+                }
             }
             setFormData([...arr]);
         }
@@ -94,9 +111,20 @@ export default function VINTable() {
 
     //load the redux state into an easily mutable state for processing
     useEffect(() => {
+        console.log("triggering ----->")
         setFormData(vin_table_data);
     }, [vin_table_data])
 
+    //listen to changes in form data and disable the submit btn if nothing is selected
+    useEffect(() => {
+        let index = formData.findIndex((item: any) => (item.installed === 'i' || item.installed === 'n'));
+        if(index > -1) {
+            setSubmitBtnDisabled(true);
+        } else {
+            setSubmitBtnDisabled(false);
+        }
+    }, [formData]);
+    
     return (
         <>
             {/* MODAL FOR CONFIRMATION */}
@@ -123,7 +151,6 @@ export default function VINTable() {
                                     <tr>
                                         <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.SHOP}</th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4">
-
                                             <div className="group relative w-max">
                                                 <span className='font-normal'>{CONSTANTS.CODE}</span>
                                                 <button className="bg-blue1 text-white active:bg-blue1 font-bold  ml-3 px-2 py-px rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
@@ -133,7 +160,6 @@ export default function VINTable() {
                                                 <span className="absolute -bottom-72 left-1 w-max rounded text-black bg-white py-4 pl-4 pr-14 invisible shadow transition-opacity group-hover:visible font-normal"> Click the links below to access<br /> each accessory&apos;s Standard Work Sheet. </span>
                                             </div>
                                         </th>
-
                                         <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.ACCESSORY_DESCRIPTION}</th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.ACCESSORY_PART_NUMBER}</th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.EXP_TIME}</th>
@@ -201,7 +227,8 @@ export default function VINTable() {
                             <div className={vinStyle.buttonWidth}>
                                 <button
                                     type="button"
-                                    className={`${vinStyle.button} ${vinStyle.btnMargin} ${vinStyle.buttonColorBlue} `}
+                                    disabled={isSubmitBtnDisabled}
+                                    className={`${vinStyle.button} ${vinStyle.btnMargin} ${isSubmitBtnDisabled ? vinStyle.buttonColorBlue : vinStyle.buttonColorDisabled} `}
                                     onClick={() => setShowModal(true)}
                                 >
                                     {CONSTANTS.SUBMIT}
