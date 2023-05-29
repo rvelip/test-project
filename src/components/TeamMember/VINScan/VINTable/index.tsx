@@ -18,14 +18,14 @@ export default function VINTable() {
     const [isSubmitBtnDisabled, setSubmitBtnDisabled] = useState(false);
 
     const options = [
-        { value: "green", label: "No Part/Contents" },
-        { value: "blue", label: "Part Damage/Quality Issue" },
-        { value: "red", label: "Vehicle Damage/Quality Issue" },
-        { value: "yellow", label: "System Issue" },
-        { value: "orange", label: "Team Member Not Trained" },
-        { value: "pink", label: "Re-Routed" },
-        { value: "purple", label: "Missing Tool" },
-        { value: "grey", label: "PPO Conflict" }
+        { value: "No Part/Contents", label: "No Part/Contents" },
+        { value: "Part Damage/Quality Issue", label: "Part Damage/Quality Issue" },
+        { value: "Vehicle Damage/Quality Issue", label: "Vehicle Damage/Quality Issue" },
+        { value: "System Issue", label: "System Issue" },
+        { value: "Team Member Not Trained", label: "Team Member Not Trained" },
+        { value: "Re-Routed", label: "Re-Routed" },
+        { value: "Missing Tool", label: "Missing Tool" },
+        { value: "PPO Conflict", label: "PPO Conflict" }
     ];
 
     const handleInstalledClick = (e: any, btnKey: string) => {
@@ -37,11 +37,11 @@ export default function VINTable() {
             if (btnKey === "Installed") {
                 //toggle grey to green and vice versa
                 if(arr[index].installed === "p") { 
-                    arr[index] = Object.assign({}, arr[index], { installed: "i" });
+                    arr[index] = Object.assign({}, arr[index], { installed: "i", reason: "" });
                 } else if(arr[index].installed === "n") {
-                    arr[index] = Object.assign({}, arr[index], { installed: "i" });
+                    arr[index] = Object.assign({}, arr[index], { installed: "i", reason: "" });
                 } else { //toggle green to grey and vice versa
-                    arr[index] = Object.assign({}, arr[index], { installed: "p" });
+                    arr[index] = Object.assign({}, arr[index], { installed: "p", reason: "" });
                 }
             } else { //check which btn is clicked. If "Not Installed" is clicked then make the button red
                 //toggle red to grey and vice versa 
@@ -51,11 +51,20 @@ export default function VINTable() {
                     arr[index] = Object.assign({}, arr[index], { installed: "n" }); 
                 } 
                 else {
-                    arr[index] = Object.assign({}, arr[index], { installed: "p" });
+                    arr[index] = Object.assign({}, arr[index], { installed: "p", reason: "" });
                 }
             }
             setFormData([...arr]);
         }
+    }
+
+    const handleReasonChange = (name: string, selectedValue: string) => {
+        const index = formData.findIndex((item: any) => item.code === name);
+        let arr = [...formData];
+        if(index > -1) {
+            arr[index].reason = selectedValue;
+        }
+        setFormData([...arr]);
     }
 
     const handleFormSubmit = () => {
@@ -117,8 +126,12 @@ export default function VINTable() {
 
     //listen to changes in form data and disable the submit btn if nothing is selected
     useEffect(() => {
-        let index = formData.findIndex((item: any) => (item.installed === 'i' || item.installed === 'n'));
-        if(index > -1) {
+        // let index = formData.findIndex((item: any) => (item.installed === 'i' || item.installed === 'n'));
+        let isPendingIndex = formData.findIndex((item: any) => (item.installed === 'p'));
+        let filterArrWithNoReason = formData.filter((item: any) => (item.installed === 'n' && !item.reason));
+        console.log(formData)
+        console.log('filterArrWithNoReason',filterArrWithNoReason)
+        if((isPendingIndex > -1) || filterArrWithNoReason.length) {
             setSubmitBtnDisabled(true);
         } else {
             setSubmitBtnDisabled(false);
@@ -182,26 +195,31 @@ export default function VINTable() {
                                                 <td className="whitespace-nowrap px-3.5 py-4">{data.accessory_description}</td>
                                                 <td className="whitespace-nowrap px-3.5 py-4">{data.accessory_part_number}</td>
                                                 <td className="whitespace-nowrap px-3.5 py-4">{data.exp_time}</td>
-                                                <td className="whitespace-nowrap px-3.5 py-4 opacity-100">
+                                                <td 
+                                                    className="whitespace-nowrap px-3.5 py-4 opacity-100"
+                                                    onClick={(e) => handleInstalledClick(e, "Installed")}
+                                                >
                                                     <button
                                                         name={data.code}
                                                         className={`${vinStyle.button} 
                                                         ${(formData && formData.length && (formData.filter((item: any) => item.code === data.code)[0]["installed"] === 'i'))
                                                                 ? vinStyle.buttonColorAccessoryInstalled
                                                                 : vinStyle.buttonColorInstalled}`}
-                                                        onClick={(e) => handleInstalledClick(e, "Installed")}
                                                     >
                                                         <span>&#10003;&nbsp;&nbsp;</span>{CONSTANTS.INSTALLED}
                                                     </button>
                                                 </td>
-                                                <td className="whitespace-nowrap px-3.5 py-4 opacity-100">
+                                                <td 
+                                                    className="whitespace-nowrap px-3.5 py-4 opacity-100"
+                                                    onClick={(e) => handleInstalledClick(e, "Not Installed")}
+                                                >
                                                     <button
                                                         name={data.code}
                                                         className={`${vinStyle.button} 
                                                     ${(formData && formData.length && (formData.filter((item: any) => item.code === data.code)[0]["installed"] === 'n'))
                                                                 ? vinStyle.buttonColorNotInstalled
                                                                 : vinStyle.buttonColorInstalled}`}
-                                                        onClick={(e) => handleInstalledClick(e, "Not Installed")}
+                                                        
                                                     >
                                                         <span>&#x2716;&nbsp;&nbsp;</span>{CONSTANTS.NOT_INSTALLED}
                                                     </button>
@@ -212,9 +230,11 @@ export default function VINTable() {
                                                             (formData.filter((item: any) => item.code === data.code)[0]["installed"] === 'n')
                                                         )
                                                             ? <SingleSelect
+                                                                name={data.code}
                                                                 placeHolder="Select options"
                                                                 options={options}
-                                                                onChange={(value: any) => console.log(value)}
+                                                                onChange={(value: any) => console.log("value",value)}
+                                                                handleFieldChange={handleReasonChange}
                                                             />
                                                             : null
                                                     }
@@ -228,7 +248,7 @@ export default function VINTable() {
                                 <button
                                     type="button"
                                     disabled={isSubmitBtnDisabled}
-                                    className={`${vinStyle.button} ${vinStyle.btnMargin} ${isSubmitBtnDisabled ? vinStyle.buttonColorBlue : vinStyle.buttonColorDisabled} `}
+                                    className={`${vinStyle.button} ${vinStyle.btnMargin} ${isSubmitBtnDisabled ?  vinStyle.buttonColorDisabled : vinStyle.buttonColorBlue} `}
                                     onClick={() => setShowModal(true)}
                                 >
                                     {CONSTANTS.SUBMIT}

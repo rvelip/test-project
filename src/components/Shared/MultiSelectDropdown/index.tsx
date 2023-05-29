@@ -18,7 +18,7 @@ const CloseIcon = () => {
 };
 
 const MultiSelectDropdown = (props: any) => {
-const { placeHolder, options, isMulti, isSearchable, onChange } = props;
+const { placeHolder, options, isMulti, isSearchable, onChange, isDisabled } = props;
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<any>([]);
   const [searchValue, setSearchValue] = useState("");
@@ -48,7 +48,7 @@ const { placeHolder, options, isMulti, isSearchable, onChange } = props;
   });
 
   const handleInputClick = (e: any) => {
-    setShowMenu(!showMenu);
+    !isDisabled && setShowMenu(!showMenu);
   };
 
   const getDisplay = () => {

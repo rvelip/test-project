@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import MultiSelect from '@/components/Shared/MultiSelect/MultiSelect';
 import MultiSelectDropdown from '@/components/Shared/MultiSelectDropdown';
 import { CONSTANTS } from '@/constants/constants';
 
 export default function TeamMemberStallInfo() {
+  const element = useSelector((state: any) => state.vinState.element);
+
   const options = [
     { value: "589842", label: "589842" },
     { value: "591122", label: "591122" },
@@ -20,14 +23,14 @@ export default function TeamMemberStallInfo() {
     <div className='grid grid-cols-3 gap-8 my-6 mx-10 font-toyota'>
       <div className='col-span-1 w-full h-16'>
         <div className='text-grey4 mb-1'>{CONSTANTS.TEAM_MEMBER_AT_STALL}</div>
-      
-        <MultiSelectDropdown 
-          isSearchable
-          isMulti
-          placeHolder="Select..."
-          options={options}
-          onChange={(value: any) => console.log(value)}
-        />
+          <MultiSelectDropdown
+            isDisabled={element === 'vin_table'}
+            isSearchable
+            isMulti
+            placeHolder="Select..."
+            options={options}
+            onChange={(value: any) => console.log(value)}
+          />
       </div>
       <div className='col-span-2 grid grid-cols-9'>
         <div className='col-span-4 grid grid-rows-2 gap-0 bg-white w-full p-4'>

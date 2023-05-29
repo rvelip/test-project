@@ -9,17 +9,18 @@ const Icon = () => {
 };
 
 const SingleSelect = ({
+  name,
   placeHolder,
-  options
+  options,
+  handleFieldChange
 }: any) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [selectedValue, setSelectedValue] = useState('');
-  const inputRef = useRef();
-
+  const [selectedValue, setSelectedValue] = useState<any>();
+  const inputRef = useRef<any>();
 
   useEffect(() => {
     const handler = (e:any) => {
-      if (inputRef.current && !inputRef.current.contains(e.target)) {
+      if (inputRef.current && !inputRef.current?.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -50,9 +51,13 @@ const SingleSelect = ({
   };
 
   const isSelected = (option: any) => {
-    return selectedValue.value === option.value;
+    return selectedValue?.value === option.value;
   };
 
+  useEffect(() => {
+    handleFieldChange(name, selectedValue);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedValue]);
 
   return (
     <div className="dropdown-container">
