@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import MultiSelect from '@/components/Shared/MultiSelect/MultiSelect';
 import MultiSelectDropdown from '@/components/Shared/MultiSelectDropdown';
 import { CONSTANTS } from '@/constants/constants';
 
