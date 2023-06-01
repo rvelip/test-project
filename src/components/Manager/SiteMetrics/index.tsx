@@ -7,7 +7,7 @@ export default function SiteMetrics() {
   return (
     <>
       <div className='px-12 py-8'>
-        <MetricsSection />
+        <MetricsSection /> 
         <GraphSection />
       </div>
       <ShopFloorPlan />

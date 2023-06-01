@@ -3,6 +3,7 @@ import React from 'react'
 
 export default function Staffing() {
   return (
-    <StaffingWrapper />
+    // <StaffingWrapper />
+    <div>Staffing</div>
   )
 }

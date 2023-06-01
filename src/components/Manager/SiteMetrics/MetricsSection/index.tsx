@@ -1,29 +1,27 @@
+import Metrics from '@/components/Shared/Metrics';
 import React from 'react'
 
 export default function MetricsSection() {
+
+  const metricsData = [
+    { id: 1, value: "46%", label: "Progress" },
+    { id: 2, value: "550", label: "Total Planned" },
+    { id: 3, value: "250", label: "Total Complete" },
+    { id: 4, value: "92%", label: "Plan Adherence" },
+    { id: 5, value: "No OT", label: "Expected Overtime" }
+  ];
+
   return (
     <div className='w-full grid grid-cols-12'>
       <div className='col-span-8 bg-white mr-8 px-4 py-8'>
         <div className='font-semibold text-base'>Metrics</div>
         <div className='text-xs text-grey4 mt-3'>Throughput</div>
-        <div className='grid grid-cols-5 mt-2'>
-          {["Progress","Total Planned","Total Complete", "Plan Adherence","Expected Overtime"].map((data, index) => {
-            return (
-              <div 
-                key={data}
-                className={index%2 === 0 ? 'col-span-1 bg-grey3 mr-2  px-2.5 py-2' : 'col-span-1 bg-white mr-2  px-2.5 py-2'}
-              >
-                <div className='text-grey4'>{data}</div>
-                <div className='font-bold text-2xl'>46%</div>
-              </div>
-            )
-          })}
-        </div>
+        <Metrics metricsData={metricsData}/>
       </div>
       <div className='col-span-4 bg-white px-4 py-4'>
         <div className='font-semibold text-base'>Completion Performance</div>
         <div>330.0 Hours Complete</div>
-        <br/>
+        <br />
         <div className='w-full grid grid-cols-2'>
           <div>
             <div className='bg-green1 px-2.5 py-2 text-white mb-4'>220.0</div>
