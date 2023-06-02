@@ -129,7 +129,7 @@ export default function VINCard() {
                     <div className={vinStyle.innerWrapper}>
                         <div>
                             <div className={vinStyle.displayFlex}>
-                                <div className={vinStyle.prevVehicle}>
+                                <div className={vinStyle.nextVehicle}>
                                     {CONSTANTS.NEXT_VEHICLE}
                                 </div>
                                 <div className={vinStyle.labelPending}>

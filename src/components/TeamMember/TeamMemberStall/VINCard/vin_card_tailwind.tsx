@@ -4,6 +4,7 @@ export const vinStyle = {
   innerWrapperError: 'flex p-5 bg-white items-center justify-center font-bold',
   displayFlex: 'flex',
   prevVehicle:'mr-5 font-medium md:mr-1 lg:mr-5',
+  nextVehicle:'mr-5 font-medium md:mr-1 lg:mr-16',
   currentVehicle:'mr-5 font-medium md:mr-1 lg:mr-1',
   completed_prev: 'bg-grey font-semibold px-2 md:pt-3 lg:py-1 rounded-md border-2 border-black text-sm',
   completed_on_time: "bg-green1 font-semibold px-2 md:pt-3 lg:py-1 rounded-md text-sm text-white",
