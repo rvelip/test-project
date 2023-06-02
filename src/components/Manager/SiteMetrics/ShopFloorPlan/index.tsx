@@ -4,6 +4,27 @@ import staging_icon from '../../../../../public/images/icons/staging_icon.svg';
 import Image from 'next/image';
 
 export default function ShopFloorPlan() {
+  const shop_floor_data = {
+    left_section: [
+      { shopName: "D", shopType: "Hoist" },
+      { shopName: "A1", shopType: "Wheel" },
+      { shopName: "A2", shopType: "Align" },
+      { shopName: "E", shopType: "Roof" },
+      { shopName: "B", shopType: "Bay" },
+      { shopName: "C", shopType: "Bay" },
+      { shopName: "F1", shopType: "Bay" },
+      { shopName: "F2", shopType: "Hoist" }
+    ],
+    right_section: [
+      { shopName: "J1", shopType: "Conveyor" },
+      { shopName: "J", shopType: "Conveyor" },
+      { shopName: "H", shopType: "Conveyor" },
+      { shopName: "U", shopType: "Conveyor" },
+      { shopName: "X", shopType: "Conveyor" },
+      { shopName: "X", shopType: "Conveyor" },
+    ]
+  };
+
   return (
     <div className='w-full'>
       <div className='bg-black p-4 text-white text-xs'>
@@ -12,79 +33,39 @@ export default function ShopFloorPlan() {
       </div>
       <div className='px-4 py-8 text-center'>
         <div className='grid grid-cols-12 gap-4'>
-          <div className='col-span-8 flex justify-between overflow-x-scroll border border-grey px-3.5 py-4'>
-            <div className='grid grid-flow-row p-8 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>30/100</div>
-              <div className='font-semibold text-2xl'>D</div>
-              <div className='text-sm'>Hoist</div>
-            </div>
-            <div className='grid grid-flow-row p-8 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>30/100</div>
-              <div className='font-semibold text-2xl'>A1</div>
-              <div className='text-sm'>Wheel</div>
-            </div>
-            <div className='grid grid-flow-row p-8 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>30/100</div>
-              <div className='font-semibold text-2xl'>A2</div>
-              <div className='text-sm'>Align</div>
-            </div>
-            <div className='grid grid-flow-row p-8 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>30/100</div>
-              <div className='font-semibold text-2xl'>E</div>
-              <div className='text-sm'>Roof</div>
-            </div>
-            <div className='grid grid-flow-row p-8 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>50/100</div>
-              <div className='font-semibold text-2xl'>B</div>
-              <div className='text-sm'>Bay</div>
-            </div>
-            <div className='grid grid-flow-row p-8 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>50/100</div>
-              <div className='font-semibold text-2xl'>C</div>
-              <div className='text-sm'>Bay</div>
-            </div>
-            <div className='grid grid-flow-row p-8 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>50/100</div>
-              <div className='font-semibold text-2xl'>F1</div>
-              <div className='text-sm'>Bay</div>
-            </div>
-            <div className='grid grid-flow-row p-8 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>50/100</div>
-              <div className='font-semibold text-2xl'>F2</div>
-              <div className='text-sm'>Bay</div>
-            </div>
+          {/* Left Section */}
+          <div className='col-span-8 flex justify-between overflow-x-auto overflow-y-hidden border border-grey px-3.5 py-4'>
+            {shop_floor_data.left_section.map((data: { shopName: string; shopType: string }) => {
+              return (
+                <div key={data.shopName} className='grid grid-flow-row p-8 border border-grey rounded bg-grey6 group relative'>
+                  <div className='text-xs'>30/100</div>
+                  <div className='font-semibold text-2xl'>{data.shopName}</div>
+                  <div className='text-sm'>{data.shopType}</div>
+                  {/* <span className="absolute -bottom-2 left-1 w-max rounded text-white bg-black p-2 invisible shadow transition-opacity group-hover:visible font-normal">Blah Blah Blah</span> */}
+                  <div className="absolute rotate-180 z-1000 -bottom-10 left-4 w-max flex flex-col items-center invisible mb-6 group-hover:visible">
+                    <span className="relative z-1000 rotate-180 rounded p-2 text-xs leading-none text-left text-white whitespace-no-wrap bg-black shadow-lg">
+                      {`PPO Shop Wheel (${data.shopName})`} <br /><br />
+                      Progress <br />
+                      Planned <br />
+                      Complete <br />
+                    </span>
+                    <div className="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
+          {/* Right Section */}
           <div className='col-span-4 gap-4 flex justify-between overflow-x-scroll border border-grey px-3.5 py-4'>
-            <div className='grid grid-flow-row px-4 py-2 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>30/100</div>
-              <div className='font-semibold text-2xl'>J1</div>
-              <div className='text-sm'>Conveyor</div>
-            </div>
-            <div className='grid grid-flow-row px-4 py-2 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>30/100</div>
-              <div className='font-semibold text-2xl'>J</div>
-              <div className='text-sm'>Conveyor</div>
-            </div>
-            <div className='grid grid-flow-row px-4 py-2 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>30/100</div>
-              <div className='font-semibold text-2xl'>H</div>
-              <div className='text-sm'>Bay</div>
-            </div>
-            <div className='grid grid-flow-row px-4 py-2 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>30/100</div>
-              <div className='font-semibold text-2xl'>U</div>
-              <div className='text-sm'>FQA & Throw Ins</div>
-            </div>
-            <div className='grid grid-flow-row px-4 py-2 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>30/100</div>
-              <div className='font-semibold text-2xl'>X</div>
-              <div className='text-sm'>FQA & Throw Ins</div>
-            </div>
-            <div className='grid grid-flow-row px-4 py-2 border border-grey rounded bg-grey6'>
-              <div className='text-xs'>30/100</div>
-              <div className='font-semibold text-2xl'>X</div>
-              <div className='text-sm'>FQA & Throw Ins</div>
-            </div>
+            {shop_floor_data.right_section.map((data: { shopName: string; shopType: string }) => {
+              return (
+                <div key={data.shopName} className='grid grid-flow-row px-4 py-2 border border-grey rounded bg-grey6'>
+                  <div className='text-xs'>30/100</div>
+                  <div className='font-semibold text-2xl'>{data.shopName}</div>
+                  <div className='text-sm'>{data.shopType}</div>
+                </div>
+              )
+            })}
           </div>
         </div>
         <div className='grid grid-cols-12 gap-8 h-16'>
@@ -115,8 +96,8 @@ export default function ShopFloorPlan() {
           </div>
           <div className='col-span-4 flex flex-col justify-center items-center border border-grey rounded p-2 bg-grey6'>
             <Image
-                src={staging_icon}
-                alt="staging icon"
+              src={staging_icon}
+              alt="staging icon"
             />
             Conveyor & FQA Staging
           </div>

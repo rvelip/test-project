@@ -44,7 +44,6 @@ export default function VINScan() {
             //fetch table data
             dispatch(VinTableAction());
         } else if (scanNextVINId) {
-            console.log("display error card")
             //show Error Message
             dispatch(setElementAction('error_pop_up'));
 
@@ -87,10 +86,7 @@ export default function VINScan() {
                     </div>
 
                 </form>
-
             }
-
-
 
             {/* Error Message to show scanned vin id doesn't exist */}
             {(element === 'error_pop_up') && (

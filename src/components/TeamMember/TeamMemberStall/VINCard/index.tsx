@@ -136,9 +136,8 @@ export default function VINCard() {
                                     {nextVehicle?.status_label}
                                 </div>
                             </div>
-                            <div className={vinStyle.marginTop}>
+                            {/* <div className={vinStyle.marginTop}>
                                 <span className={vinStyle.semiBold}>{nextVehicle?.vin_id}</span><br />
-                                {/* <span className={vinStyle.fontSize}>2023 Toyota RAV4 Silver</span>  */}
                                 {nextVehicle &&
                                     (
                                         <>
@@ -151,12 +150,10 @@ export default function VINCard() {
                                             </div>
                                         </>
                                     )
-
                                 }
-                            </div>
-
+                            </div> */}
                         </div>
-                        <div>
+                        {/* <div>
                             <div className={vinStyle.displayFlex}>
                                 <div className={vinStyle.marginFontSize}>
                                     {CONSTANTS.PICK_UP_LOCATION}
@@ -173,13 +170,11 @@ export default function VINCard() {
                                     alt="Picture of the author"
                                 />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 ) :
                     <div className={vinStyle.innerWrapperError}>{CONSTANTS.NEXT_VEHICLE_IS_NOT_AVAILABLE}.</div>
             }
-
-
         </div>
     )
 }

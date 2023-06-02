@@ -43,5 +43,32 @@
         "exp_time": "5min",
         "installed": "p",
         "reason": ""
+    },
+    {
+        "shop": "G",
+        "code": "8M",
+        "accessory_description": "TRD PRO ALIGNMENT 5",
+        "accessory_part_number": "#####-#####-##",
+        "exp_time": "15min",
+        "installed": "p",
+        "reason": ""
+    },
+    {
+        "shop": "G",
+        "code": "9M",
+        "accessory_description": "TRD PRO ALIGNMENT 1",
+        "accessory_part_number": "#####-#####-##",
+        "exp_time": "15min",
+        "installed": "p",
+        "reason": ""
+    },
+    {
+        "shop": "H",
+        "code": "10M",
+        "accessory_description": "TRD PRO ALIGNMENT 2",
+        "accessory_part_number": "#####-#####-##",
+        "exp_time": "15min",
+        "installed": "p",
+        "reason": ""
     }
 ]
