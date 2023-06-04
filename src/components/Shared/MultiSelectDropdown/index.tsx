@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-// import "./Dropdown.css";
+import { useSelector, useDispatch } from "react-redux";
+import { FetchUsersAction, removeUserAction, removeItemId, searchTextAction, selectedUserAction } from "@/store/actions/usersAction";
 
 const Icon = () => {
   return (
@@ -18,20 +19,22 @@ const CloseIcon = () => {
 };
 
 const MultiSelectDropdown = (props: any) => {
-const { placeHolder, options, isMulti, isSearchable, onChange, isDisabled } = props;
+  const { placeHolder, isMulti, isSearchable, isDisabled, setShowModal } = props;
   const [showMenu, setShowMenu] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<any>([]);
-  const [searchValue, setSearchValue] = useState("");
   const searchRef = useRef<any>();
   const inputRef = useRef<any>();
-  
-  console.log("ref", inputRef);
+
+  const dispatch: any = useDispatch();
+  const users = useSelector((state: any) => state.usersState.users);
+  const searchValue = useSelector((state: any) => state.usersState.searchText);
+  const selectedValue = useSelector((state: any) => state.usersState.selectedUsers);
 
   useEffect(() => {
-    setSearchValue("");
+    dispatch(searchTextAction(""));
     if (showMenu && searchRef.current) {
       searchRef.current?.focus();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showMenu]);
 
   useEffect(() => {
@@ -44,7 +47,7 @@ const { placeHolder, options, isMulti, isSearchable, onChange, isDisabled } = pr
     window.addEventListener("click", handler);
     return () => {
       window.removeEventListener("click", handler);
-    };  
+    };
   });
 
   const handleInputClick = (e: any) => {
@@ -58,74 +61,73 @@ const { placeHolder, options, isMulti, isSearchable, onChange, isDisabled } = pr
     if (isMulti) {
       return (
         <div className="multi-dropdown-tags">
-          {selectedValue.map((option: any) => (
-            <div key={option?.value} className="multi-dropdown-tag-item">
-              {option?.label}
-              <span
-                onClick={(e) => onTagRemove(e, option)}
-                className="multi-dropdown-tag-close"
-              >
-                <CloseIcon />
-              </span>
-            </div>
-          ))}
+          {selectedValue && selectedValue.map((option: any) => {
+            return (
+              <div key={option?.workdayId} className="multi-dropdown-tag-item">
+                {option?.workdayId}
+                <span
+                  onClick={(e) => onTagRemove(e, option)}
+                  className="multi-dropdown-tag-close"
+                >
+                  <CloseIcon />
+                </span>
+              </div>
+            )
+          })}
         </div>
       );
     }
-    return (selectedValue && selectedValue.label);
-  };
-
-  const removeOption = (option: any) => {
-    return selectedValue?.filter((o: any) => o?.value !== option.value);
+    return (selectedValue && selectedValue.workdayId);
   };
 
   const onTagRemove = (e: any, option: any) => {
     e.stopPropagation();
-    const newValue = removeOption(option);
-    setSelectedValue(newValue);
-    onChange(newValue);
+
+    //open the confirm modal
+    setShowModal(true);
+
+    //save the id to be remove in redux 
+    dispatch(removeItemId(option?.workdayId));
   };
 
   const onItemClick = (option: any) => {
-    let newValue;
-    if (isMulti) {
-      if (selectedValue && selectedValue.findIndex((o: any) => o.value === option.value) >= 0) {
-        newValue = removeOption(option);
-      } else {
-        newValue = [...selectedValue, option];
-      }
+    if (selectedValue && selectedValue.findIndex((o: any) => o.workdayId === option.workdayId) >= 0) {
+      dispatch(removeUserAction(option.workdayId))
     } else {
-      newValue = option;
+      dispatch(selectedUserAction(option));
     }
-    setSelectedValue(newValue);
-    onChange(newValue);
-  };
+  }
 
   const isSelected = (option: any) => {
     if (isMulti) {
-      return (selectedValue && selectedValue?.filter((o: any) => o?.value === option.value).length > 0);
+      return (selectedValue && selectedValue?.filter((o: any) => o?.workdayId === option.workdayId).length > 0);
     }
 
     if (!selectedValue) {
       return false;
     }
 
-    return (selectedValue && (selectedValue?.value === option.value));
+    return (selectedValue && (selectedValue?.workdayId === option.workdayId));
   };
 
   const onSearch = (e: any) => {
-    setSearchValue(e.target.value);
+    dispatch(searchTextAction(e.target.value));
   };
+
+  //fetch users once searchValue is available
+  useEffect(() => {
+    if (searchValue) {
+      dispatch(FetchUsersAction(searchValue));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue])
 
   const getOptions = () => {
     if (!searchValue) {
-      return options;
+      return [];
     }
 
-    return options.filter(
-      (option:any) =>
-        option.label.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0
-    );
+    return users;
   };
 
   return (
@@ -142,16 +144,16 @@ const { placeHolder, options, isMulti, isSearchable, onChange, isDisabled } = pr
         <div className="multi-dropdown-menu">
           {isSearchable && (
             <div className="search-box">
-              <input className='w-full p-2' onChange={onSearch} value={searchValue} ref={searchRef} />
+              <input className='w-full p-2' placeholder="Search WorkdayID ..." onChange={onSearch} value={searchValue} ref={searchRef} />
             </div>
           )}
           {getOptions().map((option: any) => (
             <div
               onClick={() => onItemClick(option)}
-              key={option.value}
+              key={option.workdayId}
               className={`multi-dropdown-item ${isSelected(option) && "selected"}`}
             >
-              {option.label}
+              {option.workdayId}
             </div>
           ))}
         </div>

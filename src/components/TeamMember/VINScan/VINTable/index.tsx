@@ -176,8 +176,8 @@ export default function VINTable() {
                                         <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.ACCESSORY_DESCRIPTION}</th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.ACCESSORY_PART_NUMBER}</th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.EXP_TIME}</th>
-                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Install Status</th>
-                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Not Install Status</th>
+                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Status</th>
+                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">Status</th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4">
                                             <Tooltip />
                                         </th>

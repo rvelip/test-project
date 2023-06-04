@@ -2,7 +2,6 @@
 import axios from 'axios';
 
 export const VinAction = () => {
-
     return async (dispatch: any) => {
         await axios.get('./mock_data/vin_data.json')
             .then((allVin) => {

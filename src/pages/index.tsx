@@ -7,10 +7,9 @@ import { useEffect } from "react";
 import axios from 'axios';
 import { fetchPosts } from '../store/actions/postAction';
 import Login from '@/components/Login';
-import DashboardWrapper from '@/components/Dashboard';
+// import DashboardWrapper from '@/components/Dashboard';
 import { VinAction } from '@/store/actions/vinAction';
 import { VinTableAction } from '@/store/actions/vinTableAction';
-
 // import TopBar from '@/components/Layout/TopBar/TopBar';
 
 

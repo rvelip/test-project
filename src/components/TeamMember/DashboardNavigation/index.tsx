@@ -31,7 +31,6 @@ export default function DashboardNavigation(props: any) {
   
   // Listen to router change on the browser  
   useEffect(() => {
-    console.log('router is changing', typeof(router.pathname), router.pathname );
     handleNavChange(router.pathname);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
