@@ -83,11 +83,13 @@ const MultiSelectDropdown = (props: any) => {
   const onTagRemove = (e: any, option: any) => {
     e.stopPropagation();
 
-    //open the confirm modal
-    setShowModal(true);
+    if(!isDisabled) {
+      //open the confirm modal
+      setShowModal(true);
 
-    //save the id to be remove in redux 
-    dispatch(removeItemId(option?.workdayId));
+      //save the id to be remove in redux 
+      dispatch(removeItemId(option?.workdayId));
+    } 
   };
 
   const onItemClick = (option: any) => {
