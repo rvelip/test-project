@@ -11,6 +11,7 @@ export default function DashboardHeader(props: any) {
   const dispatch: any = useDispatch();
   const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
   const element = useSelector((state: any) => state.vinState.element);
+  const profileData = useSelector((state: any) => state.profileState);
 
   const [unit, setUnit] = useState('vehicles');
   const [dateFilter, setDateFilter] = useState('today');
@@ -85,7 +86,7 @@ export default function DashboardHeader(props: any) {
       <div className={dashboardHeaderStyle.dashboardControlsWrapper}>
         {/* Production Line & Stall Number */}
         <div className={dashboardHeaderStyle.headerText}>
-          Production Line 1 | Stall 4
+          {`${profileData?.line} | ${profileData.stall}`}
         </div>
         {/* Date Filters */}
         <div className={dashboardHeaderStyle.rightSectionWrapper}>

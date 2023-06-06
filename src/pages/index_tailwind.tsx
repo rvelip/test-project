@@ -1,3 +1,3 @@
-export const homeStyle={
-  layoutBackground:'bg-layout-bg-color'
-  }
+export const homeStyle = {
+  layoutBackground: 'bg-layout-bg-color'
+}

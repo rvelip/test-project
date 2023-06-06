@@ -43,13 +43,6 @@ export const scanNextVINIdSuccess = (vinId: any) => {
     }
 }
 
-export const scanNextVINIdSuccessFailed = (error: any) => {
-    return {
-        type: 'scan_Next_VIN_Id_Failed',
-        error
-    }
-}
-
 export const changeVINStatus = (vinId: string, status:string, statusLabel:string) => {
     return (dispatch: any) => {
         dispatch(changeVINStatusSuccess(vinId, status, statusLabel))
@@ -65,13 +58,6 @@ export const changeVINStatusSuccess = (vinId: string, status:string, statusLabel
     }
 }
 
-export const changeVINStatusFailed = (error: any) => {
-    return {
-        type: 'change_VIN_Status_Failed',
-        error
-    }
-}
-
 export const setElementAction = (element: string) => {
     console.log("element inside action", element);
     return (dispatch: any) => {
@@ -84,12 +70,5 @@ export const setElementSuccess = (element: string) => {
     return {
         type: 'Set_Element_Success',
         element: element,
-    }
-}
-
-export const setElementFailed = (error: any) => {
-    return {
-        type: 'Set_Element_Failed',
-        error
     }
 }

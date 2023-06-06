@@ -36,10 +36,6 @@ export default function VINCard() {
     }
 
     useEffect(() => {
-        dispatch(VinAction());
-    }, [dispatch]);
-
-    useEffect(() => {
         let isScanNextVINIdValid = vins.findIndex((item: any) => item.vin_id === scanNextVINId);
 
         //Set Data of Left Card if status is "ongoing"

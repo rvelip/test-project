@@ -3,7 +3,9 @@ import { loginStyle } from './login_tailwind'
 import { useRouter } from 'next/router';
 import { login_data } from '@/mock/login_data';
 import { CONSTANTS } from '@/constants/constants';
-
+import { fetchProfileDetailsAction } from '@/store/actions/profileAction';
+import { useDispatch } from 'react-redux';
+import { setIsAuthenticated } from '@/store/actions/authenticationAction';
 interface ILogin {
     username: string,
     password: string
@@ -11,8 +13,9 @@ interface ILogin {
 
 export default function Login() {
     const router = useRouter();
+    const dispatch: any = useDispatch();
+
     const [inputs, setInputs] = useState<ILogin>({ username: "", password: "" });
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [errors, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
     const handleChange = (event: any) => {
@@ -29,7 +32,11 @@ export default function Login() {
 
         const login_credentials = login_data.filter(item => item.username === inputs.username)[0];
         if (login_credentials && (inputs.username === login_credentials.username) && (inputs.password === login_credentials.password)) {
-            setIsLoggedIn(true);
+            //set log in to true
+            dispatch(setIsAuthenticated(true));
+            //load profile data
+            dispatch(fetchProfileDetailsAction(login_credentials.persona));
+            //direct to team member route or manager route
             if (login_credentials.persona === "team_member") {
                 router.push('/TeamMember')
             } else if (login_credentials.persona === "manager") {
@@ -40,9 +47,7 @@ export default function Login() {
             if (inputs.username.length != 0 || inputs.password.length != 0) {
                 setErrorMessage(true);
             }
-
-        }   
-
+        }
     }
 
     return (
@@ -100,7 +105,7 @@ export default function Login() {
                             <p
                                 className={loginStyle.label}
                             >
-                               {CONSTANTS.FORGOT_PASSWORD}?
+                                {CONSTANTS.FORGOT_PASSWORD}?
                             </p>
                             {errorMessage ?
                                 <p className="text-sm text-red-600">{CONSTANTS.INVALID_USERNAME_PASSWORD_MESSAGE}</p>

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { dashboardNavStyle } from './dashboard_navigation_tailwind';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from "react-redux";
 
 export default function DashboardNavigation(props: any) {
-  const { navData } = props;
+  const navData = useSelector((state: any) => state.config.routes);
+
   const [navItems, setNavItems] = useState(navData);
 
   const router = useRouter();
@@ -11,7 +13,7 @@ export default function DashboardNavigation(props: any) {
   //change the "isActive" flag to true if navigation bar is switched
   const handleNavChange = (navId: string) => {
     navItems.forEach((item: any) => {
-      if(item.path === navId) {
+      if (item.path === navId) {
         item.isActive = true;
       } else {
         item.isActive = false;
@@ -23,16 +25,16 @@ export default function DashboardNavigation(props: any) {
   //Push new route based navigation change
   useEffect(() => {
     const index = navItems.findIndex((item: any) => item.isActive);
-    if(router.pathname !== navItems[index].path) {
+    if (router.pathname !== navItems[index].path) {
       router.push(navItems[index].path);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navItems]);
-  
+
   // Listen to router change on the browser  
   useEffect(() => {
     handleNavChange(router.pathname);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
 
@@ -41,8 +43,8 @@ export default function DashboardNavigation(props: any) {
     <div className={dashboardNavStyle.navWrapper}>
       {navItems.map((navItem: any) => {
         return (
-          <div 
-            key={navItem.id} 
+          <div
+            key={navItem.id}
             className={navItem.isActive ? dashboardNavStyle.isActive : dashboardNavStyle.isInActive}
             onClick={() => handleNavChange(navItem.path)}
           >

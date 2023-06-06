@@ -4,12 +4,12 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-             {/* add external css file using script link code and meta tag and title font-sans */}
-        </Head>
+        {/* add external css file using script link code and meta tag and title font-sans */}
+      </Head>
       <body className={homeStyle.layoutBackground}>
         <Main />
         <NextScript />
-      {/* add external script file using script code */}
+        {/* add external script file using script code */}
       </body>
     </Html>
   )
