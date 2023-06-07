@@ -1,12 +1,27 @@
-export const setRoute = (routes: any) => {
+// export const setRoute = (persona: string) => {
+//     return (dispatch: any) => {
+//         dispatch(setRouteSuccess(persona))
+//     }
+// }
+
+// export const setRouteSuccess = (persona: string) => {
+//     return {
+//         type: 'setRoutes',
+//         persona: persona
+//     }
+// }
+
+export const updateTabAction = (path: string, persona: string) => {
     return (dispatch: any) => {
-        dispatch(setRouteSuccess(routes))
+        dispatch(updateTabSuccess(path, persona))
     }
 }
 
-export const setRouteSuccess = (routes: any) => {
+export const updateTabSuccess = (path: string, persona: string) => {
     return {
-        type: 'setRoutes',
-        routes: routes
+        type: 'update_tab_success',
+        path: path,
+        persona: persona
     }
 }
+
