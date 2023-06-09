@@ -6,6 +6,7 @@ export const fetchProfileDetailsAction = (persona: string) => {//use this to mak
         persona: 'team_member',
         location: 'long_beach',
         line: 'Production Line 1',
+        shop: 'A1',
         stall: 'Stall 1'
     }
     const manager = { //remove this
@@ -13,6 +14,7 @@ export const fetchProfileDetailsAction = (persona: string) => {//use this to mak
         persona: 'manager',
         location: 'long_beach',
         line: 'Production Line 1',
+        shop: 'A1',
         stall: 'Stall 1'
     }
     return async (dispatch: any) => {

@@ -2,26 +2,29 @@ import React from 'react';
 import { CONSTANTS } from '@/constants/constants';
 import staging_icon from '../../../../../public/images/icons/staging_icon.svg';
 import Image from 'next/image';
+import greenTick from '../../../../../public/images/icons/greenTick.svg';
+import redTick from '../../../../../public/images/icons/redTick.svg';
 
 export default function ShopFloorPlan() {
   const shop_floor_data = {
     left_section: [
-      { shopName: "D", shopType: "Hoist" },
       { shopName: "A1", shopType: "Wheel" },
       { shopName: "A2", shopType: "Align" },
-      { shopName: "E", shopType: "Roof" },
       { shopName: "B", shopType: "Bay" },
       { shopName: "C", shopType: "Bay" },
+      { shopName: "D", shopType: "Hoist" },
+      { shopName: "E", shopType: "Roof" },
       { shopName: "F1", shopType: "Bay" },
-      { shopName: "F2", shopType: "Hoist" }
+      { shopName: "F2", shopType: "Hoist" },
+      { shopName: "F3", shopType: "Hoist" }
     ],
     right_section: [
+      { shopName: "H", shopType: "Conveyor" },
       { shopName: "J1", shopType: "Conveyor" },
       { shopName: "J", shopType: "Conveyor" },
-      { shopName: "H", shopType: "Conveyor" },
-      { shopName: "U", shopType: "Conveyor" },
-      { shopName: "X", shopType: "Conveyor" },
-      { shopName: "X", shopType: "Conveyor" },
+      { shopName: "U", shopType: "FQA & Throw Ins" },
+      { shopName: "X", shopType: "FQA & Throw Ins" },
+      { shopName: "Z", shopType: "Conveyor" },
     ]
   };
 
@@ -34,14 +37,21 @@ export default function ShopFloorPlan() {
       <div className='px-4 py-8 text-center'>
         <div className='grid grid-cols-12 gap-4'>
           {/* Left Section */}
-          <div className='col-span-8 flex justify-between overflow-x-auto overflow-y-hidden border border-grey px-3.5 py-4'>
+          <div className='col-span-8 flex justify-between overflow-x-scroll border border-grey px-3.5 py-4'>
             {shop_floor_data.left_section.map((data: { shopName: string; shopType: string }) => {
               return (
-                <div key={data.shopName} className='grid grid-flow-row p-8 border border-grey rounded bg-grey6 group relative'>
-                  <div className='text-xs'>30/100</div>
+                <div key={data.shopName} className={`grid grid-flow-row px-4 py-2 rounded group relative ${(data.shopName === 'A1') ? 'border border-red1 bg-red3' : 'border border-grey bg-grey6'}`}>
+                  <div className='flex items-center justify-between text-xs'>
+                    <div className='px-2'>30/100</div> 
+                    {/* Temporary code to show red tick */}
+                    {data.shopName === 'A1' ? (
+                      <Image src={redTick} alt="" />
+                    ) : (
+                      <Image src={greenTick} alt="" />
+                    )}
+                  </div>
                   <div className='font-semibold text-2xl'>{data.shopName}</div>
                   <div className='text-sm'>{data.shopType}</div>
-                  {/* <span className="absolute -bottom-2 left-1 w-max rounded text-white bg-black p-2 invisible shadow transition-opacity group-hover:visible font-normal">Blah Blah Blah</span> */}
                   <div className="absolute rotate-180 z-1000 -bottom-10 left-4 w-max flex flex-col items-center invisible mb-6 group-hover:visible">
                     <span className="relative z-1000 rotate-180 rounded p-2 text-xs leading-none text-left text-white whitespace-no-wrap bg-black shadow-lg">
                       {`PPO Shop Wheel (${data.shopName})`} <br /><br />
@@ -60,7 +70,10 @@ export default function ShopFloorPlan() {
             {shop_floor_data.right_section.map((data: { shopName: string; shopType: string }) => {
               return (
                 <div key={data.shopName} className='grid grid-flow-row px-4 py-2 border border-grey rounded bg-grey6'>
-                  <div className='text-xs'>30/100</div>
+                  <div className='flex items-center justify-between text-xs'>
+                    <div className='px-2'>30/100</div> 
+                    <Image src={greenTick} alt="" />
+                  </div>
                   <div className='font-semibold text-2xl'>{data.shopName}</div>
                   <div className='text-sm'>{data.shopType}</div>
                 </div>

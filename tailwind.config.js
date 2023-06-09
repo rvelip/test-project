@@ -42,7 +42,8 @@ module.exports = {
         blue1: '#2469FF',
         red1:  '#C40818',
         red2: '#D7091A',
-        green1:'#22A63E'
+        red3: '#FEEBED',
+        green1:'#22A63E',
       },
       spacing: {
         '72': '72px',

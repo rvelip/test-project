@@ -10,6 +10,7 @@ import { CONSTANTS } from '@/constants/constants';
 
 export default function VINTable() {
     const dispatch: any = useDispatch();
+    const shop = useSelector((state: any) => state.profileState.shop);
     const vin_table_data = useSelector((state: any) => state.vinTableState.vin_table_data);
     const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
     const [formData, setFormData] = useState<any>([]);
@@ -120,22 +121,23 @@ export default function VINTable() {
 
     //load the redux state into an easily mutable state for processing
     useEffect(() => {
-        console.log("triggering ----->")
         setFormData(vin_table_data);
     }, [vin_table_data])
 
     //listen to changes in form data and disable the submit btn if nothing is selected
     useEffect(() => {
         // let index = formData.findIndex((item: any) => (item.installed === 'i' || item.installed === 'n'));
-        let isPendingIndex = formData.findIndex((item: any) => (item.installed === 'p'));
+        let filteredFormDataByShopLB = formData.filter((item: any) => item.shop === shop);
+        let isPendingIndex = filteredFormDataByShopLB.findIndex((item: any) => (item.installed === 'p'));
+        console.log("filteredFormDataByShopLB", filteredFormDataByShopLB)
         let filterArrWithNoReason = formData.filter((item: any) => (item.installed === 'n' && !item.reason));
-        console.log(formData)
         console.log('filterArrWithNoReason',filterArrWithNoReason)
         if((isPendingIndex > -1) || filterArrWithNoReason.length) {
             setSubmitBtnDisabled(true);
         } else {
             setSubmitBtnDisabled(false);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formData]);
     
     return (

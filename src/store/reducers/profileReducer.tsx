@@ -11,6 +11,7 @@ const ProfileReducer = (state = initialState, action: any) => {
                 persona: action.profileData.persona,
                 location: action.profileData.location,
                 line: action.profileData.line,
+                shop: action.profileData.shop,
                 stall: action.profileData.stall
             }
         case 'Fetch_Users_Failed':
