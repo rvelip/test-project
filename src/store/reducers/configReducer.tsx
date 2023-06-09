@@ -1,7 +1,7 @@
 const initialState = {
     teamMemberRoutes: [
         { id: 1, label: 'Stall Dashboard', isActive: true, path: '/TeamMember' },
-        { id: 2, label: 'Dummy Dashboard', isActive: false, path: '/TeamMember/Dummy' },
+        // { id: 2, label: 'Dummy Dashboard', isActive: false, path: '/TeamMember/Dummy' },
     ],
     managerRoutes: [
         { id: 1, label: 'Site Metric', isActive: true, path: '/Manager' },
