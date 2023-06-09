@@ -1,7 +1,7 @@
 import React from 'react'
 import apps_logo from '../../../../public/images/icons/apps_logo.svg';
 import Image from 'next/image';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '@/store/actions/authenticationAction';
 import { resetAction } from '@/store/actions/rootAction';
 import toast from 'react-hot-toast';
@@ -9,7 +9,7 @@ import { CONSTANTS } from '@/constants/constants';
 
 export default function TopBar() {
   const dispatch: any = useDispatch();
-
+  const isAuthenticated = useSelector((state: any) => state.authenticationState.isAuthenticated);
   const logout = () => {
     dispatch(logoutAction())
     dispatch(resetAction())
@@ -18,12 +18,12 @@ export default function TopBar() {
       duration: 4000,
       // icon:'',
       style: {
-          borderRadius: '4px',
-          backgroundColor: 'white',
-          color: 'black',
-          fontWeight: '600'
+        borderRadius: '4px',
+        backgroundColor: 'white',
+        color: 'black',
+        fontWeight: '600'
       }
-  });
+    });
   }
 
   return (
@@ -33,9 +33,15 @@ export default function TopBar() {
         | TLS
       </div>
       <div className='flex justify-between items-center'>
-        <div className='mr-4' onClick={logout}>
-          <strong className='font-toyota cursor-pointer'>Logout</strong>
-        </div>
+        {isAuthenticated === true ? (
+          <>
+            <div className='mr-4' onClick={logout}>
+              <strong className='font-toyota cursor-pointer'>Logout</strong>
+            </div>
+          </>
+        ) : (
+          ''
+        )}
         <div>
           <Image src={apps_logo} alt="" />
         </div>
@@ -43,3 +49,5 @@ export default function TopBar() {
     </div>
   )
 }
+
+
