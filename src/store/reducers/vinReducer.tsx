@@ -15,7 +15,6 @@ const VinReducer = (state = initialState, action: any) => {
         case 'Fetch_VIN_Failed':
             return {
                 ...state,
-                vins: [],
             }
         case 'scan_Next_VIN_Id_Success':
             return {

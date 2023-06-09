@@ -12,33 +12,73 @@ import {
 const data = [
   {
     name: "7:00 AM",
-    number1: 400,
-    Complete: 0,
-    Planned: 0
+    Complete: 1,
+    Planned: 5
   },
   {
     name: "8:00 AM",
-    number1: 320,
-    Complete: 10,
-    Planned: 20,
+    Complete: 4,
+    Planned: 7,
   },
   {
     name: "9:00 AM",
-    number1: 240,
-    Complete: 20,
-    Planned: 40,
+    Complete: 8,
+    Planned: 10,
   },
   {
     name: "10:00 AM",
-    number1: 160,
-    Complete: 30,
-    Planned: 60,
+    Complete: 12,
+    Planned: 15,
   },
   {
     name: "11:00 AM",
-    number1: 80,
+    Complete: 18,
+    Planned: 20
+  },
+  {
+    name: "12:00 PM",
+    Complete: 22,
+    Planned: 25,
+  },
+  {
+    name: "1:00 PM",
+    Complete: 28,
+    Planned: 30
+  },
+  {
+    name: "2:00 PM",
+    Complete: 34,
+    Planned: 40
+  },
+  {
+    name: "3:00 PM",
     Complete: 40,
+    Planned: 50
+  },
+  {
+    name: "4:00 PM",
+    Complete: 56,
+    Planned: 60
+  },
+  {
+    name: "5:00 PM",
+    Complete: 68,
+    Planned: 70
+  },
+  {
+    name: "6:00 PM",
+    Complete: 72,
     Planned: 80
+  },
+  {
+    name: "7:00 PM",
+    Complete: 88,
+    Planned: 90
+  },
+  {
+    name: "8:00 PM",
+    Complete: 95,
+    Planned: 100
   }
 ];
 
@@ -57,7 +97,7 @@ export default function LineChartGraph() {
     >
       <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
       <XAxis dataKey="name" tick={{ stroke: '#000000', strokeWidth: 0.7 }} padding={{ right: 4 }} />
-      <YAxis dataKey='number1' tick={{ stroke: '#000000', strokeWidth: 0.7 }} />
+      <YAxis dataKey='Complete' tick={{ stroke: '#000000', strokeWidth: 0.7 }} />
       <Tooltip cursor={{ stroke: '#000000', strokeWidth: 1 }} />
       <Legend iconType='square' align='left' />
       <Line

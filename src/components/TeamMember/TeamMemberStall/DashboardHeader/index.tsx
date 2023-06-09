@@ -22,8 +22,8 @@ export default function DashboardHeader(props: any) {
   const filterEle = [
     { name: "today", value: "today", label: "Today" },
     { name: "yesterday", value: "yesterday", label: "Yesterday" },
-    { name: "week", value: "week", label: "Week" },
-    { name: "month", value: "month", label: "Month" }
+    // { name: "week", value: "week", label: "Week" },
+    // { name: "month", value: "month", label: "Month" }
   ];
 
   const unitEle = [

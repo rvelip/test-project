@@ -10,3 +10,14 @@ export const setIsAuthenticatedSuccess = (isAuthenticated: boolean) => {
         isAuthenticated: isAuthenticated
     }
 }
+
+export const logoutAction = () => {
+    return (dispatch: any) => {
+        dispatch(logoutSuccess())
+    }
+}
+export const logoutSuccess = () => {
+    return {
+        type: 'logoutSuccess',
+    }
+}

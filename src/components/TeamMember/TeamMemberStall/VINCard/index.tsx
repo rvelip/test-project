@@ -37,7 +37,6 @@ export default function VINCard() {
 
     useEffect(() => {
         let isScanNextVINIdValid = vins.findIndex((item: any) => item.vin_id === scanNextVINId);
-
         //Set Data of Left Card if status is "ongoing"
         if (scanNextVINId && (isScanNextVINIdValid > -1)) {
             setFirstCardVehicle(vins.filter((item: any) => item.status === 'ongoing')[0])
@@ -57,7 +56,6 @@ export default function VINCard() {
         //Set Data of Right Car
         setNextVehicle(vins.filter((item: any) => item.status === 'pending')[0]);
     }, [scanNextVINId, vins])
-
     return (
         <div className={vinStyle.mainwrapper}>
             {/* left car */}
@@ -118,7 +116,7 @@ export default function VINCard() {
                         />
                     </div>
                 </div>
-            </div>
+            </div>           
             {/* right car */}
             {
                 nextVehicle ? (

@@ -7,8 +7,8 @@ export default function MetricsSection() {
     { id: 1, value: "46%", label: "Progress" },
     { id: 2, value: "550", label: "Total Planned" },
     { id: 3, value: "250", label: "Total Complete" },
-    { id: 4, value: "92%", label: "Plan Adherence" },
-    { id: 5, value: "No OT", label: "Expected Overtime" }
+    // { id: 4, value: "92%", label: "Plan Adherence" },
+    // { id: 5, value: "No OT", label: "Expected Overtime" }
   ];
 
   return (

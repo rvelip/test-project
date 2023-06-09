@@ -24,10 +24,10 @@
         "planned_start_time": "",
         "estimated_install_time":  "",
         "car_photo_url": "/images/vin.png",
-        "expected_completion": "",
-        "expected_install_time": "",
-        "actual_completion": "",
-        "actual_install_time": ""
+        "expected_completion": "7:50 AM",
+        "expected_install_time": "45 min",
+        "actual_completion": "7.45 AM",
+        "actual_install_time": "40 min (+5 min)"
     },
     {
         "vin_id": "JTDACAAU2P3005521",

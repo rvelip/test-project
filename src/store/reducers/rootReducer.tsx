@@ -7,8 +7,19 @@ import UsersReducer from "./usersReducer";
 import ProfileReducer from "./profileReducer";
 import ConfigReducer from "./configReducer";
 import AuthenticationReducer from "./authenticationReducer";
+import storage from 'redux-persist/lib/storage' 
 
-const rootReducer =  combineReducers({
+const rootReducer = (state: any, action: any) => {
+  if (action.type === 'RESET') {
+      // for all keys defined in your persistConfig(s)
+      storage.removeItem('persist:root')
+
+      return appReducer(undefined, action);
+  }
+  return appReducer(state, action);
+};
+
+const appReducer =  combineReducers({
   authenticationState: AuthenticationReducer,
   sampleData: sampleReducer,
   postState: postReducer,
@@ -16,7 +27,7 @@ const rootReducer =  combineReducers({
   vinTableState: VinTableReducer,
   usersState: UsersReducer,
   profileState: ProfileReducer,
-  config: ConfigReducer,
+  config: ConfigReducer
 });
 
 export default rootReducer

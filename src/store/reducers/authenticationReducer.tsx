@@ -1,3 +1,4 @@
+
 const initialState = {
     isAuthenticated: false,
 };
@@ -8,8 +9,12 @@ const AuthenticationReducer = (state = initialState, action: any) => {
             return {
                 isAuthenticated: action.isAuthenticated
             }
+        case 'logoutSuccess':
+            return {
+                isAuthenticated: false,
+                
+            }
         default:
-            console.log('defalutsetIsAuthenticated')
             return state
     }
 };

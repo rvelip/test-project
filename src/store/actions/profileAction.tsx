@@ -5,14 +5,14 @@ export const fetchProfileDetailsAction = (persona: string) => {//use this to mak
         username: 'Ram',
         persona: 'team_member',
         location: 'long_beach',
-        line: 'Production line 1',
+        line: 'Production Line 1',
         stall: 'Stall 1'
     }
     const manager = { //remove this
         username: 'Pritam',
         persona: 'manager',
         location: 'long_beach',
-        line: 'Production line 1',
+        line: 'Production Line 1',
         stall: 'Stall 1'
     }
     return async (dispatch: any) => {

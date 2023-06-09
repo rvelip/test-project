@@ -12,7 +12,7 @@ export default function Tooltip() {
             </div>
             <div className="z-1000 absolute -bottom-86 -left-200 w-max rounded bg-white py-4 pl-4 pr-10 invisible shadow transition-opacity group-hover:visible overflow-y-scroll h-[22.5rem]">
                 <span className=' text-black font-semibold'>Not Installed Reason Descriptions </span> <br /> <br />
-                <span className=' text-black font-semibold'>Missing Part/Contents</span> <br /><br />
+                <span className=' text-black font-semibold'>No Part/Contents</span> <br /><br />
                 <span className='font-normal'>Part(s) or part(s) kit contents are missing.</span>
                 <br /> <br />
                 <span className=' text-black font-semibold'>Part Damage/Quality Issue</span> <br /><br />
