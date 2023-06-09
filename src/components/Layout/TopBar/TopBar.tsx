@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { logoutAction } from '@/store/actions/authenticationAction';
 import { resetAction } from '@/store/actions/rootAction';
+import toast from 'react-hot-toast';
+import { CONSTANTS } from '@/constants/constants';
 
 export default function TopBar() {
   const dispatch: any = useDispatch();
@@ -11,6 +13,17 @@ export default function TopBar() {
   const logout = () => {
     dispatch(logoutAction())
     dispatch(resetAction())
+    toast.success(CONSTANTS.LOGOUT_MESSAGE, {
+      position: 'top-right',
+      duration: 4000,
+      // icon:'',
+      style: {
+          borderRadius: '4px',
+          backgroundColor: 'white',
+          color: 'black',
+          fontWeight: '600'
+      }
+  });
   }
 
   return (

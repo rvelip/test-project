@@ -1,5 +1,6 @@
 export const CONSTANTS = {
     LOGIN_HEADING: 'Welcome to Logistics Orchestration',
+    LOGOUT_MESSAGE: 'You have successfully logged out!',
     USERNAME: 'Username',
     PASSWORD: 'Password',
     USERNAME_EMPTY_MESSGAE: 'Username is required',
