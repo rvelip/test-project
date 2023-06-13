@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeVINStatus, scanNextVINIdAction, setElementAction } from '@/store/actions/vinAction';
 import Modal from '@/components/Shared/Modal';
 import { CONSTANTS } from '@/constants/constants';
-import moment from 'moment'
+import moment from 'moment-timezone';
 
 export default function DashboardHeader(props: any) {
   const { renderEle } = props;
@@ -40,7 +40,15 @@ export default function DashboardHeader(props: any) {
   }
 
   const tick = () => {
-    setDate(moment().format('ddd DD/MM/YYYY LT'));
+    if(profileData?.location === 'long_beach') {
+      // LB - (PST)
+      const timeLB = moment.tz('America/Los_Angeles').format('ddd MM/DD/YYYY LT');
+      setDate(timeLB);
+    } else if(profileData?.location === 'princeton') {
+      // Princeton - New_York (EST)
+      const timePrinceton = moment.tz('America/New_York').format('ddd MM/DD/YYYY LT');
+      setDate(timePrinceton);
+    }
   };
 
   useEffect(() => {

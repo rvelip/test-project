@@ -41,7 +41,7 @@ export const CONSTANTS = {
     STALL_PROGRESS_CURRENT_SHIFT:'Stall Progress - Current Shift ',
     SHOP_PROGRESS_CURRENT_SHIFT:'Shop Progress - Current Shift',
     PLANNED:'Planned',
-    VEHICLE_SUCCESS_MESSAGE:'Vehicle accessory installations was successfully completed',
+    VEHICLE_SUCCESS_MESSAGE:'Vehicle accessory installation was successfully completed',
     VIN_ID_INVALID_MESSAGE1:'Warning - Inventory Code DO - UNIT DOWN FOR VIN',
     VIN_ID_INVALID_MESSAGE2:"This vehicle's inventory code is D0 - Unit Down for VIN",
     VIN_ID_INVALID_MESSAGE3:'Choose to continue installation or scan another VIN',

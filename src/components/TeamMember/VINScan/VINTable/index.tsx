@@ -26,7 +26,8 @@ export default function VINTable() {
         { value: "Team Member Not Trained", label: "Team Member Not Trained" },
         { value: "Re-Routed", label: "Re-Routed" },
         { value: "Missing Tool", label: "Missing Tool" },
-        { value: "PPO Conflict", label: "PPO Conflict" }
+        { value: "PPO Conflict", label: "PPO Conflict" },
+        { value: "End of shift/End of day", label: "End of shift/End of day" }
     ];
 
     const handleInstalledClick = (e: any, btnKey: string) => {
@@ -37,20 +38,20 @@ export default function VINTable() {
             //check which btn is clicked. If "Installed" is clicked then change the installed status to either pending(p), installed(i) or not installed(n) 
             if (btnKey === "Installed") {
                 //toggle grey to green and vice versa
-                if(arr[index].installed === "p") { 
+                if (arr[index].installed === "p") {
                     arr[index] = Object.assign({}, arr[index], { installed: "i", reason: "" });
-                } else if(arr[index].installed === "n") {
+                } else if (arr[index].installed === "n") {
                     arr[index] = Object.assign({}, arr[index], { installed: "i", reason: "" });
                 } else { //toggle green to grey and vice versa
                     arr[index] = Object.assign({}, arr[index], { installed: "p", reason: "" });
                 }
             } else { //check which btn is clicked. If "Not Installed" is clicked then make the button red
                 //toggle red to grey and vice versa 
-                if(arr[index].installed === 'p') {
-                    arr[index] = Object.assign({}, arr[index], { installed: "n" });                    
-                } else if(arr[index].installed === 'i') {
-                    arr[index] = Object.assign({}, arr[index], { installed: "n" }); 
-                } 
+                if (arr[index].installed === 'p') {
+                    arr[index] = Object.assign({}, arr[index], { installed: "n" });
+                } else if (arr[index].installed === 'i') {
+                    arr[index] = Object.assign({}, arr[index], { installed: "n" });
+                }
                 else {
                     arr[index] = Object.assign({}, arr[index], { installed: "p", reason: "" });
                 }
@@ -62,7 +63,7 @@ export default function VINTable() {
     const handleReasonChange = (name: string, selectedValue: string) => {
         const index = formData.findIndex((item: any) => item.code === name);
         let arr = [...formData];
-        if(index > -1) {
+        if (index > -1) {
             arr[index].reason = selectedValue;
         }
         setFormData([...arr]);
@@ -104,7 +105,7 @@ export default function VINTable() {
         toast.success(CONSTANTS.VEHICLE_SUCCESS_MESSAGE, {
             position: 'top-right',
             duration: 4000,
-            icon:'😃',
+            icon: '😃',
             style: {
                 borderRadius: '4px',
                 backgroundColor: '#22A63E',
@@ -131,19 +132,19 @@ export default function VINTable() {
         let isPendingIndex = filteredFormDataByShopLB.findIndex((item: any) => (item.installed === 'p'));
         console.log("filteredFormDataByShopLB", filteredFormDataByShopLB)
         let filterArrWithNoReason = formData.filter((item: any) => (item.installed === 'n' && !item.reason));
-        console.log('filterArrWithNoReason',filterArrWithNoReason)
-        if((isPendingIndex > -1) || filterArrWithNoReason.length) {
+        console.log('filterArrWithNoReason', filterArrWithNoReason)
+        if ((isPendingIndex > -1) || filterArrWithNoReason.length) {
             setSubmitBtnDisabled(true);
         } else {
             setSubmitBtnDisabled(false);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formData]);
-    
+
     return (
         <>
             {/* MODAL FOR CONFIRMATION */}
-            {showModal &&
+            {showModal && (
                 <Modal
                     handleModalClose={handleModalClose}
                     handleConfirm={handleFormSubmit}
@@ -153,8 +154,37 @@ export default function VINTable() {
                     confirmBtnName="Confirm"
                     isCancel
                     cancelBtnName="Cancel"
-                />
-            }
+                >
+                    <>
+                        {(formData.findIndex((item: any) => item.installed === 'i') > -1) && (
+                            <div className='mb-4'>
+                                <div className='text-xl mb-2'>Installed</div>
+                                {formData.filter((data: any) => data.installed === 'i').map((item: any) => {
+                                    return (
+                                        <div key={item.code} className='text-sm border-b border-grey2 mb-2'>
+                                            <div><span className='font-semibold'>Accessory Code:</span> {item.code}</div>
+                                            <div><span className='font-semibold'>Accessory Desc:</span> {item.accessory_description}</div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        )}
+                        {(formData.findIndex((item: any) => item.installed === 'n') > -1) && (
+                            <div className='mb-4'>
+                                <div className='text-xl mb-2'>Not Installed</div>
+                                {formData.filter((data: any) => data.installed === 'n').map((item: any) => {
+                                    return (
+                                        <div key={item.code} className='text-sm border-b border-grey2 mb-2'>
+                                            <div><span className='font-semibold'>Accessory Code:</span> {item.code}</div>
+                                            <div><span className='font-semibold'>Accessory Desc:</span> {item.accessory_description}</div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        )}
+                    </>
+                </Modal>
+            )}
             {/* Render Accessories Table */}
             <div className="flex flex-col">
                 <div className="overflow-x-auto">
@@ -197,7 +227,7 @@ export default function VINTable() {
                                                 <td className="whitespace-nowrap px-3.5 py-4">{data.accessory_description}</td>
                                                 <td className="whitespace-nowrap px-3.5 py-4">{data.accessory_part_number}</td>
                                                 <td className="whitespace-nowrap px-3.5 py-4">{data.exp_time}</td>
-                                                <td 
+                                                <td
                                                     className="whitespace-nowrap px-3.5 py-4 opacity-100"
                                                     onClick={(e) => handleInstalledClick(e, "Installed")}
                                                 >
@@ -211,7 +241,7 @@ export default function VINTable() {
                                                         <span>&#10003;&nbsp;&nbsp;</span>{CONSTANTS.INSTALLED}
                                                     </button>
                                                 </td>
-                                                <td 
+                                                <td
                                                     className="whitespace-nowrap px-3.5 py-4 opacity-100"
                                                     onClick={(e) => handleInstalledClick(e, "Not Installed")}
                                                 >
@@ -221,7 +251,7 @@ export default function VINTable() {
                                                     ${(formData && formData.length && (formData.filter((item: any) => item.code === data.code)[0]["installed"] === 'n'))
                                                                 ? vinStyle.buttonColorNotInstalled
                                                                 : vinStyle.buttonColorInstalled}`}
-                                                        
+
                                                     >
                                                         <span>&#x2716;&nbsp;&nbsp;</span>{CONSTANTS.NOT_INSTALLED}
                                                     </button>
@@ -235,7 +265,7 @@ export default function VINTable() {
                                                                 name={data.code}
                                                                 placeHolder="Select options"
                                                                 options={options}
-                                                                onChange={(value: any) => console.log("value",value)}
+                                                                onChange={(value: any) => console.log("value", value)}
                                                                 handleFieldChange={handleReasonChange}
                                                             />
                                                             : null
@@ -250,7 +280,7 @@ export default function VINTable() {
                                 <button
                                     type="button"
                                     disabled={isSubmitBtnDisabled}
-                                    className={`${vinStyle.button} ${vinStyle.btnMargin} ${isSubmitBtnDisabled ?  vinStyle.buttonColorDisabled : vinStyle.buttonColorBlue} `}
+                                    className={`${vinStyle.button} ${vinStyle.btnMargin} ${isSubmitBtnDisabled ? vinStyle.buttonColorDisabled : vinStyle.buttonColorBlue} `}
                                     onClick={() => setShowModal(true)}
                                 >
                                     {CONSTANTS.SUBMIT}

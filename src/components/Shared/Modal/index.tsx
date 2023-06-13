@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Modal(props: any) {
-    const { handleModalClose, handleConfirm, modal_header, modal_content, isConfirm, confirmBtnName, isCancel, cancelBtnName } = props;
+    const { children, handleModalClose, handleConfirm, modal_header, modal_content, isConfirm, confirmBtnName, isCancel, cancelBtnName } = props;
 
     return (
         <div id="modal" className="fixed z-1000 overflow-y-auto top-0 w-full left-0">
@@ -14,6 +14,9 @@ export default function Modal(props: any) {
                     <div className="flex justify-between p-6 font-normal text-2xl">
                         <div>{modal_header}</div>
                         <div onClick={handleModalClose} className='cursor-default hover:font-medium'>X</div>
+                    </div>
+                    <div className='px-6 pb-6'>
+                        {children}
                     </div>
                     <div className="px-6 pb-6">
                         <p>

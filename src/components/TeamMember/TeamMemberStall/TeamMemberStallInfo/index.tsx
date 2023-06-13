@@ -26,8 +26,8 @@ export default function TeamMemberStallInfo() {
         <Modal 
           handleModalClose={() => {setShowModal(false); dispatch(removeItemId(""));}}
           handleConfirm={handleRemoveConfirmation}
-          modal_header="Are you sure you want to remove this user?"
-          modal_content="Please confirm that you would like to remove this user from the stall. Any other users will remain logged in."
+          modal_header={`Are you sure you want to remove team member(${removeId})?`}
+          modal_content="Please confirm that you would like to remove team member from the stall. Any other team member will remain logged in."
           isConfirm
           confirmBtnName="Remove"
           isCancel
@@ -43,7 +43,7 @@ export default function TeamMemberStallInfo() {
             setShowModal={setShowModal}
             isSearchable
             isMulti
-            placeHolder="Select..."
+            placeHolder="Select Team Member..."
           />
         </div>
         <div className='col-span-2 grid grid-cols-9'>

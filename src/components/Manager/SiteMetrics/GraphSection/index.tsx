@@ -27,7 +27,7 @@ export default function GraphSection() {
         <DonutChart />
       </div>
       <div className='col-span-7 p-4 bg-white'>
-        <div className='font-bold text-base mb-2'>Progress Against Plan</div>
+        <div className='font-bold text-base mb-2'>Progress Against Plan (Vehicles)</div>
         <LineChartGraph />
       </div>
     </div>

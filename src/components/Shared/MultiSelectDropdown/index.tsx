@@ -65,12 +65,14 @@ const MultiSelectDropdown = (props: any) => {
             return (
               <div key={option?.workdayId} className="multi-dropdown-tag-item">
                 {option?.workdayId}
-                <span
-                  onClick={(e) => onTagRemove(e, option)}
-                  className="multi-dropdown-tag-close"
-                >
-                  <CloseIcon />
-                </span>
+                {!isDisabled && (
+                  <span
+                    onClick={(e) => onTagRemove(e, option)}
+                    className="multi-dropdown-tag-close"
+                  >
+                    <CloseIcon />
+                  </span>
+                )}
               </div>
             )
           })}
@@ -83,13 +85,13 @@ const MultiSelectDropdown = (props: any) => {
   const onTagRemove = (e: any, option: any) => {
     e.stopPropagation();
 
-    if(!isDisabled) {
+    if (!isDisabled) {
       //open the confirm modal
       setShowModal(true);
 
       //save the id to be remove in redux 
       dispatch(removeItemId(option?.workdayId));
-    } 
+    }
   };
 
   const onItemClick = (option: any) => {
@@ -136,11 +138,13 @@ const MultiSelectDropdown = (props: any) => {
     <div className="multi-dropdown-container">
       <div ref={inputRef} onClick={handleInputClick} className="multi-dropdown-input">
         <div className="multi-dropdown-selected-value">{getDisplay()}</div>
-        <div className="multi-dropdown-tools">
-          <div className="multi-dropdown-tool">
-            <Icon />
+        {!isDisabled && (
+          <div className="multi-dropdown-tools">
+            <div className="multi-dropdown-tool">
+              <Icon />
+            </div>
           </div>
-        </div>
+        )}
       </div>
       {showMenu && (
         <div className="multi-dropdown-menu">

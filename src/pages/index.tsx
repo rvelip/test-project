@@ -1,29 +1,15 @@
 import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
+
 import { useDispatch, useSelector } from "react-redux";
-import { getSampleData, Increment, Decrement } from "../store/actions/sampleAction";
-import { useEffect } from "react";
 import axios from 'axios';
-import { fetchPosts } from '../store/actions/postAction';
 import Login from '@/components/Login';
-import { VinTableAction } from '@/store/actions/vinTableAction';
+import { resetAction } from '@/store/actions/rootAction';
 
 
 export default function Home({ posts }: any) {
   const dispatch: any = useDispatch();
-  const sampleListData = useSelector((state: any) => state.sampleData);
-  const postListData = useSelector((state: any) => state.postState);
-  const { sample } = sampleListData
-  // console.log('postListData', postListData)
-  // console.log('sampleListData', sampleListData)
-
-  useEffect(() => {
-    // dispatch(getSampleData());
-    // dispatch(fetchPosts());
-    // dispatch(VinAction());
-    // dispatch(VinTableAction());
-  }, [dispatch]);
 
   return (
     <Login />

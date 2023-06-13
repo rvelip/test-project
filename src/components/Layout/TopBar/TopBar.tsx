@@ -33,14 +33,10 @@ export default function TopBar() {
         | TLS
       </div>
       <div className='flex justify-between items-center'>
-        {isAuthenticated === true ? (
-          <>
+        {isAuthenticated && (
             <div className='mr-4' onClick={logout}>
               <strong className='font-toyota cursor-pointer'>Logout</strong>
             </div>
-          </>
-        ) : (
-          ''
         )}
         <div>
           <Image src={apps_logo} alt="" />
@@ -49,5 +45,3 @@ export default function TopBar() {
     </div>
   )
 }
-
-

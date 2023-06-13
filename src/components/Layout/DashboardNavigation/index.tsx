@@ -3,7 +3,6 @@ import { dashboardNavStyle } from './dashboard_navigation_tailwind';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import { updateTabAction } from '@/store/actions/configAction';
-// import { VinAction } from '@/store/actions/vinAction';
 
 export default function DashboardNavigation(props: any) {
   const profileData = useSelector((state: any) => state.profileState);
@@ -16,22 +15,20 @@ export default function DashboardNavigation(props: any) {
   //change the "isActive" flag to true if navigation bar is switched
   const handleNavChange = (navId: string) => {
     dispatch(updateTabAction(navId, profileData?.persona));
-   
   };
 
   //Push new route based navigation change
   useEffect(() => {
     const index = routes.findIndex((item: any) => item.isActive);
-    if (router.pathname !== routes[index].path) {
+    console.log("routes[index].path", routes[index])
+    if ((index > -1) && (router.pathname !== routes[index].path)) {
      router.push(routes[index].path);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routes]);
 
   // Listen to router change on the browser  
   useEffect(() => {
-  handleNavChange(router.pathname);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      handleNavChange(router.pathname);
   }, [router]);
 
   return (

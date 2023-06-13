@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import { vinStyle } from './vin_card_tailwind';
 import { useDispatch, useSelector } from 'react-redux';
-import { VinAction } from '@/store/actions/vinAction';
 import { CONSTANTS } from '@/constants/constants';
 interface IVinDetails {
     vin_id: string;
@@ -35,7 +34,18 @@ export default function VINCard() {
         ongoing: vinStyle.ongoing
     }
 
+    const vinStatus = () => {
+        if(firstCardVehicle?.status === 'completed_prev') {
+            return CONSTANTS.PREVIOUS_VEHICLE;
+        } else if (firstCardVehicle?.status === 'completed_on_time') {
+            return CONSTANTS.PREVIOUS_VEHICLE;
+        } else if (firstCardVehicle?.status === 'ongoing') {
+            return CONSTANTS.CURRENT_VEHICLE;
+        }
+    }
+
     useEffect(() => {
+        console.log('firstCardVehicle',firstCardVehicle);
         let isScanNextVINIdValid = vins.findIndex((item: any) => item.vin_id === scanNextVINId);
         //Set Data of Left Card if status is "ongoing"
         if (scanNextVINId && (isScanNextVINIdValid > -1)) {
@@ -55,7 +65,8 @@ export default function VINCard() {
 
         //Set Data of Right Car
         setNextVehicle(vins.filter((item: any) => item.status === 'pending')[0]);
-    }, [scanNextVINId, vins])
+    }, [scanNextVINId, vins]);
+
     return (
         <div className={vinStyle.mainwrapper}>
             {/* left car */}
@@ -63,7 +74,7 @@ export default function VINCard() {
                 <div>
                     <div className={vinStyle.displayFlex}>
                         <div className={(firstCardVehicle?.status === 'completed_prev' ? vinStyle.prevVehicle : vinStyle.currentVehicle)}>
-                            {firstCardVehicle?.status === 'completed_prev' ? CONSTANTS.PREVIOUS_VEHICLE : CONSTANTS.CURRENT_VEHICLE}
+                            {vinStatus()}
                         </div>
                         <div className={firstCardVehicle ? color_map[firstCardVehicle?.status] : null}>
                             {firstCardVehicle?.status_label}

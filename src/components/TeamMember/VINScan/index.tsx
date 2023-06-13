@@ -12,6 +12,8 @@ export default function VINScan() {
     const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
     const element = useSelector((state: any) => state.vinState.element);
     const vins = useSelector((state: any) => state.vinState.vins);
+    const selectedUsers = useSelector((state: any) => state.usersState.selectedUsers);
+
     const [errors, setError] = useState(false);
     const [scanInput, setScanInput] = useState("");
 
@@ -59,7 +61,7 @@ export default function VINScan() {
                 {CONSTANTS.CURRENT_VEHICLE_INSTALLATION}
             </div>
 
-            {(element === 'scan_input') &&
+            {(element === 'scan_input') && (
                 <form className={vinScanStyle.form}>
                     <div>
                         <label className={vinScanStyle.label}>{CONSTANTS.SCAN_NEXT_VIN}</label>
@@ -77,16 +79,17 @@ export default function VINScan() {
                     </div>
                     <div className={errors && scanInput.length <= 0 ? '-mt-7' : 'mt-0'}>
                         <button
-                            className={vinScanStyle.button}
+                            className={(selectedUsers.length === 0) ? vinScanStyle.buttonDisabled : vinScanStyle.button}
                             type='submit'
                             onClick={(e) => handleSubmit(e)}
+                            disabled={selectedUsers.length === 0}
                         >
                             {CONSTANTS.SUBMIT}
                         </button>
                     </div>
 
                 </form>
-            }
+            )}
 
             {/* Error Message to show scanned vin id doesn't exist */}
             {(element === 'error_pop_up') && (
