@@ -177,6 +177,7 @@ export default function VINTable() {
                                         <div key={item.code} className='text-sm border-b border-grey2 mb-2'>
                                             <div><span className='font-semibold'>Accessory Code:</span> {item.code}</div>
                                             <div><span className='font-semibold'>Accessory Desc:</span> {item.accessory_description}</div>
+                                            <div><span className='font-semibold'>Reason:</span> {item.reason}</div>                           
                                         </div>
                                     )
                                 })}

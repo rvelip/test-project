@@ -5,9 +5,10 @@ const data = [
   { name: "36 No Part/Contents", value: 36, fill: "#0F2C6B" },
   { name: "13 Part Damage/Quality Issue", value: 13, fill: "#1A4BB5" },
   { name: "4 Vehicle Damage/Quality Issue", value: 4, fill: "#2469FF" },
-  { name: "3 Team Member Not Trained", value: 3, fill: "#6C9BFF" },
+  { name: "2 Team Member Not Trained", value: 2, fill: "#6C9BFF" },
   { name: "2 Re-routed", value: 2, fill: "#BBD1FF" },
-  { name: "1 Missing Tool", value: 1, fill: "#909295" }
+  { name: "1 Missing Tool", value: 1, fill: "#909295" },
+  { name: "1 End of shift/End of day", value: 1, fill: "#909295" }
 ];
 
 const renderColorfulLegendText = (value: string) => {

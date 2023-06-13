@@ -5,7 +5,7 @@ import greenTick from '../../../../public/images/icons/greenTick.svg';
 export default function Metrics(props: any) {
     const { metricsData } = props;
     return (
-        <div className='grid grid-cols-5 mt-2'>
+        <div className='grid grid-cols-3 mt-2'>
             {metricsData && metricsData.map((data: any, index: any) => {
                 return (
                     <div

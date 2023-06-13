@@ -35,6 +35,9 @@ export default function Tooltip() {
                 <br /> <br />
                 <span className=' text-black font-semibold'>PPO Conflict</span> <br /><br />
                 <span className='font-normal'>Vehicle is routed from a different line but a<br /> PPO cannot be completed at this time.</span>
+                <br /> <br />
+                <span className=' text-black font-semibold'>End of shift/End of day</span> <br /><br />
+                <span className='font-normal'>Team member has installs remaining at the end<br /> of their shift/day.</span>
             </div>
         </div>
     )

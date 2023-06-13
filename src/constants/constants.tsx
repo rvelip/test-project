@@ -47,7 +47,7 @@ export const CONSTANTS = {
     VIN_ID_INVALID_MESSAGE3:'Choose to continue installation or scan another VIN',
     YES_CANCEL_CURRENT_VIN: "Yes cancel current VIN",
     NO_BACK_TO_CUURENT_VIN: "No back to current VIN",
-    CANCEL_MODAL_HEADER: "Are you sure you want to cancel ?",
+    CANCEL_MODAL_HEADER: "Are you sure you want to cancel?",
     CONFIRM_MODAL_CONTENT: "Please confirm you want to cancel the current VIN without submitting progress",
     TABLE_SUBMIT_MODAL_HEADER: "Do you want to submit vehicle accessory installations?",
     TABLE_SUBMIT_MODAL_CONTENT: `You have initialized submission of accessory installations for the vehicle at this stall.

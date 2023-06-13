@@ -5,7 +5,7 @@ export const loginStyle = {
     formMargin:'mt-6',
     column:'flex flex-col mb-6',
     label: 'mb-1 text-xs tracking-wide text-form-label-color',
-    input:'text-sm text-placeholder-color pl-4 pr-4 rounded border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400',
+    input:'text-sm text-black pl-4 pr-4 rounded border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400',
     button: 'flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 px-4',
     btnMargin:'mr-5',
     buttonWidth:'flex w-full'

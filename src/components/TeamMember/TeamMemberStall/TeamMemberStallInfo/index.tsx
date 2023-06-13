@@ -26,8 +26,8 @@ export default function TeamMemberStallInfo() {
         <Modal 
           handleModalClose={() => {setShowModal(false); dispatch(removeItemId(""));}}
           handleConfirm={handleRemoveConfirmation}
-          modal_header={`Are you sure you want to remove team member(${removeId})?`}
-          modal_content="Please confirm that you would like to remove team member from the stall. Any other team member will remain logged in."
+          modal_header={`Are you sure you want to remove this team member (${removeId})?`}
+          modal_content="Please confirm that you would like to remove this team member from the stall. Any other team members will remain logged in."
           isConfirm
           confirmBtnName="Remove"
           isCancel
