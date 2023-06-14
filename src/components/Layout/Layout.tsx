@@ -32,7 +32,7 @@ export default function Layout({ children }: any) {
       setRenderEle('showFilter')
     }
 
-    isAuthenticated && toast.success(`${CONSTANTS.WELCOME} ${profileData && profileData.username && profileData?.username.slice(0,2).toUpperCase()}`, {
+    isAuthenticated && toast.success(`${CONSTANTS.WELCOME} ${profileData && profileData.username && profileData?.username.slice(0, 2).toUpperCase()}`, {
       position: 'top-right',
       duration: 5000,
       // icon: '',
@@ -48,16 +48,16 @@ export default function Layout({ children }: any) {
   }, [profileData]);
 
   useEffect(() => {
-    if (profileData?.persona === 'team_member') {      
+    if (profileData?.persona === 'team_member') {
       setSectionHeader(`Production Line ${profileData?.line} | ${profileData.stall}`);
     } else if (profileData?.persona === 'manager') {
-      if(profileData?.location === 'long_beach') {
+      if (profileData?.location === 'long_beach') {
         setSectionHeader(`${managerRoutes.filter((item: any) => item.isActive)[0]?.label} (Long Beach)`);
-      } else if(profileData?.location === 'princeton'){
+      } else if (profileData?.location === 'princeton') {
         setSectionHeader(`${managerRoutes.filter((item: any) => item.isActive)[0]?.label} (Princeton)`);
       }
     }
-  }, [teamMemberRoutes, managerRoutes]);
+  }, [profileData, teamMemberRoutes, managerRoutes]);
 
   useEffect(() => {
     !isAuthenticated && router.push('/');

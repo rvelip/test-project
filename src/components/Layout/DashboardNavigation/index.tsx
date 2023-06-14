@@ -4,12 +4,14 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import { updateTabAction } from '@/store/actions/configAction';
 
-export default function DashboardNavigation(props: any) {
+export default function DashboardNavigation() {
   const profileData = useSelector((state: any) => state.profileState);
   const teamMemberRoutes = useSelector((state: any) => state.config.teamMemberRoutes);
   const managerRoutes = useSelector((state: any) => state.config.managerRoutes);
-  const routes = profileData?.persona === 'team_member' ? teamMemberRoutes : managerRoutes;
+
+  const [routes, setRoutes] = useState<any>([])
   const router = useRouter();
+  
   const dispatch: any = useDispatch();
 
   //change the "isActive" flag to true if navigation bar is switched
@@ -17,10 +19,18 @@ export default function DashboardNavigation(props: any) {
     dispatch(updateTabAction(navId, profileData?.persona));
   };
 
+  useEffect(() => {
+    if(profileData?.persona === 'team_member') {
+      setRoutes(teamMemberRoutes);
+    } else if (profileData?.persona === 'manager') {
+      setRoutes(managerRoutes);
+    }
+  }, [managerRoutes, profileData?.persona, teamMemberRoutes])
+
   //Push new route based navigation change
   useEffect(() => {
+    console.log("inside routes I am changing")
     const index = routes.findIndex((item: any) => item.isActive);
-    console.log("routes[index].path", routes[index])
     if ((index > -1) && (router.pathname !== routes[index].path)) {
      router.push(routes[index].path);
     }

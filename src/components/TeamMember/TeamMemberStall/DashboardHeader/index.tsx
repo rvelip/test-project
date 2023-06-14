@@ -43,11 +43,13 @@ export default function DashboardHeader(props: any) {
     if(profileData?.location === 'long_beach') {
       // LB - (PST)
       const timeLB = moment.tz('America/Los_Angeles').format('ddd MM/DD/YYYY LT');
-      setDate(timeLB);
+      // setDate(timeLB);
+      return timeLB;
     } else if(profileData?.location === 'princeton') {
       // Princeton - New_York (CST)
       const timePrinceton = moment.tz('America/Indiana').format('ddd MM/DD/YYYY LT');
-      setDate(timePrinceton);
+      // setDate(timePrinceton);
+      return timePrinceton;
     }
   };
 
@@ -98,7 +100,9 @@ export default function DashboardHeader(props: any) {
         </div>
         {/* Date Filters */}
         <div className={dashboardHeaderStyle.rightSectionWrapper}>
-          <div className={dashboardHeaderStyle.dateTimeText}>{date}</div>
+          {/* Digital clock based on login location - LB(PST), Princeton(CST) */}
+          <div className={dashboardHeaderStyle.dateTimeText}>{tick()}</div>
+          {/* Render Filter based on Persona */}
           {renderEle === 'showFilter' && (
             <div className={dashboardHeaderStyle.toggleBtn}>
               {filterEle.map((item: any) => {

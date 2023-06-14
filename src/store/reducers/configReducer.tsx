@@ -9,25 +9,24 @@ const initialState = {
         { id: 3, label: 'Vehicle Progress Tracking Board', isActive: false, path: '/Manager/VPTB' },
         { id: 4, label: 'Staffing', isActive: false, path: '/Manager/Staffing' }
     ],
-    // routes:[]
 };
 
 const ConfigReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        // case 'setRoutes':
-        //     const initialRoute = action.persona === 'team_member' ? state.teamMemberRoutes : state.managerRoutes;
-
-        //     return {
-        //         ...state,
-        //         routes: initialRoute
-        //     }
         case 'update_tab_success':
-            const personaBasedRoute = action.persona === 'team_member' ? state.teamMemberRoutes : state.managerRoutes;
-            const updatedRoutes = personaBasedRoute.map((item: any) => {
+            const personaBasedRoute: any = () => {
+                if(action.persona === 'team_member') {
+                    return state.teamMemberRoutes;
+                } else if (action.persona === 'manager') {
+                    return state.managerRoutes;
+                } else {
+                    return [];
+                }
+            }
+            const updatedRoutes = (personaBasedRoute().length > 0) && personaBasedRoute().map((item: any) => {
                 if (item.path === action.path) {
                     return { ...item, isActive: true }
-                }
-                else {
+                } else {
                     return { ...item, isActive: false }
                 }
             })
@@ -35,7 +34,7 @@ const ConfigReducer = (state = initialState, action: any) => {
                 return {
                     ...state,
                     teamMemberRoutes: updatedRoutes,
-                   managerRoutes: []
+                    managerRoutes: []
                 }
             } else if (action.persona === 'manager') {
                 return {
