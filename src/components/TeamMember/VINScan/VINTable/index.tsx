@@ -10,9 +10,11 @@ import { CONSTANTS } from '@/constants/constants';
 
 export default function VINTable() {
     const dispatch: any = useDispatch();
+
     const shop = useSelector((state: any) => state.profileState.shop);
     const vin_table_data = useSelector((state: any) => state.vinTableState.vin_table_data);
     const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
+
     const [formData, setFormData] = useState<any>([]);
     // const [payload, setPayload] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -125,14 +127,15 @@ export default function VINTable() {
         setFormData(vin_table_data);
     }, [vin_table_data])
 
-    //listen to changes in form data and disable the submit btn if nothing is selected
+    //listen to changes in form data and disable the submit btn if selection from current line is pending
     useEffect(() => {
         // let index = formData.findIndex((item: any) => (item.installed === 'i' || item.installed === 'n'));
         let filteredFormDataByShopLB = formData.filter((item: any) => item.shop === shop);
+
         let isPendingIndex = filteredFormDataByShopLB.findIndex((item: any) => (item.installed === 'p'));
-        console.log("filteredFormDataByShopLB", filteredFormDataByShopLB)
+        
         let filterArrWithNoReason = formData.filter((item: any) => (item.installed === 'n' && !item.reason));
-        console.log('filterArrWithNoReason', filterArrWithNoReason)
+        
         if ((isPendingIndex > -1) || filterArrWithNoReason.length) {
             setSubmitBtnDisabled(true);
         } else {
@@ -162,8 +165,8 @@ export default function VINTable() {
                                 {formData.filter((data: any) => data.installed === 'i').map((item: any) => {
                                     return (
                                         <div key={item.code} className='text-sm border-b border-grey2 mb-2'>
-                                            <div><span className='font-semibold'>Accessory Code:</span> {item.code}</div>
-                                            <div><span className='font-semibold'>Accessory Desc:</span> {item.accessory_description}</div>
+                                            <div><span className='font-semibold'>Line </span>{item.shop}  <span className='font-semibold'>Code </span>{item.code}</div>
+                                            <div><span className='font-semibold'>Description:</span> {item.accessory_description}</div>
                                         </div>
                                     )
                                 })}
@@ -175,9 +178,9 @@ export default function VINTable() {
                                 {formData.filter((data: any) => data.installed === 'n').map((item: any) => {
                                     return (
                                         <div key={item.code} className='text-sm border-b border-grey2 mb-2'>
-                                            <div><span className='font-semibold'>Accessory Code:</span> {item.code}</div>
-                                            <div><span className='font-semibold'>Accessory Desc:</span> {item.accessory_description}</div>
-                                            <div><span className='font-semibold'>Reason:</span> {item.reason}</div>                           
+                                            <div><span className='font-semibold'>Line </span>{item.shop}  <span className='font-semibold'>Code </span>{item.code}</div>
+                                            <div><span className='font-semibold'>Description:</span> {item.accessory_description}</div>
+                                            <div><span className='font-semibold'>Reason:</span> {item.reason}</div>   
                                         </div>
                                     )
                                 })}
@@ -195,7 +198,7 @@ export default function VINTable() {
                                 <thead
                                     className="bg-white text-sm">
                                     <tr>
-                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.SHOP}</th>
+                                        <th scope="col" className="px-3.5 py-4 text-grey4 font-normal">{CONSTANTS.LINE}</th>
                                         <th scope="col" className="px-3.5 py-4 text-grey4">
                                             <div className="group relative w-max">
                                                 <span className='font-normal'>{CONSTANTS.CODE}</span>

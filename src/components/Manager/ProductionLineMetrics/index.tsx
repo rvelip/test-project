@@ -3,7 +3,7 @@ import Table from '@/components/Shared/Table'
 import SingleSelect from '@/components/Shared/SingleSelect/SingleSelect';
 import React from 'react'
 
-export default function ShopMetricsWrapper() {
+export default function ProductionLineMetricsWrapper() {
 
   const metricsData = [
     { id: 1, value: "40%", label: "Today's Progress" },

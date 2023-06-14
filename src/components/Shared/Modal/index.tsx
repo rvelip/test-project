@@ -15,14 +15,20 @@ export default function Modal(props: any) {
                         <div>{modal_header}</div>
                         <div onClick={handleModalClose} className='cursor-default hover:font-medium'>X</div>
                     </div>
-                    <div className='px-6 pb-6'>
-                        {children}
-                    </div>
-                    <div className="px-6 pb-6">
-                        <p>
-                            {modal_content}
-                        </p>
-                    </div>
+                    {/* Render children */}
+                    {children && (
+                        <div className='px-6 pb-4'>
+                            {children}
+                        </div>
+                    )}
+                    {/* Content */}
+                    {modal_content && (
+                        <div className="px-6 pb-6">
+                            <p>
+                                {modal_content}
+                            </p>
+                        </div>
+                    )}
                     <div className="border-t-2 p-6 text-right">
                         {isCancel && (
                             <button

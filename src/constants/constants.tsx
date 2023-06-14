@@ -1,4 +1,5 @@
 export const CONSTANTS = {
+    WELCOME: 'Welcome ',
     LOGIN_HEADING: 'Welcome to Logistics Orchestration',
     LOGOUT_MESSAGE: 'You have successfully logged out!',
     USERNAME: 'Username',
@@ -20,6 +21,7 @@ export const CONSTANTS = {
     NEXT_VEHICLE:'Next Vehicle',
     PLANNED_START_TIME:'Planned Start Time',
     NEXT_VEHICLE_IS_NOT_AVAILABLE:'Please contact your supervisor to get information about next VIN',
+    LINE: 'Line',
     SHOP:'Shop',
     CODE:'Code',
     ACCESSORY_DESCRIPTION:'Accessory Description',

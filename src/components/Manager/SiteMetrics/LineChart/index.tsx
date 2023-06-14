@@ -22,7 +22,7 @@ const data = [
   },
   {
     name: "8:00 AM",
-    Complete: 51,
+    Complete: 75,
     Planned: 100
   },
   {
@@ -32,7 +32,7 @@ const data = [
   },
   {
     name: "9:00 AM",
-    Complete: 105,
+    Complete: 135,
     Planned: 200,
   },
   {
@@ -42,7 +42,7 @@ const data = [
   },
   {
     name: "10:00 AM",
-    Complete: 176,
+    Complete: 200,
     Planned: 300,
   },
   {
@@ -52,28 +52,28 @@ const data = [
   },
   {
     name: "11:00 AM",
-    Complete: 210,
+    Complete: 310,
     Planned: 400
   },
   {
     name: "11:30 AM",
-    Complete: 270,
+    Complete: 370,
     Planned: 450 
   },
   {
     name: "12:00 PM",
-    Complete: 330,
+    Complete: 470,
     Planned: 500,
   },
   {
-    name: "12:30 AM",
-    Complete: 470,
+    name: "12:30 PM",
+    Complete: 510,
     Planned: 550
   },
   {
     name: "1:00 PM",
-    Complete: 360,
-    Planned: 525
+    Complete: 540,
+    Planned: 600
   },
   {
     name: "1:30 PM",
@@ -88,12 +88,12 @@ const data = [
   {
     name: "2:30 PM",
     Complete: 700,
-    Planned: 720
+    Planned: 750
   },
   {
     name: "3:00 PM",
-    Complete: 700,
-    Planned: 740
+    Complete: 750,
+    Planned: 800
   },
 ];
 

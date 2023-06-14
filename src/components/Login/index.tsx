@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { loginStyle } from './login_tailwind'
 import { useRouter } from 'next/router';
 import { login_data } from '@/mock/login_data';

@@ -4,8 +4,8 @@ const initialState = {
         // { id: 2, label: 'Dummy Dashboard', isActive: false, path: '/TeamMember/Dummy' },
     ],
     managerRoutes: [
-        { id: 1, label: 'Site Metric', isActive: true, path: '/Manager' },
-        { id: 2, label: 'Shop Metric', isActive: false, path: '/Manager/ShopMetrics' },
+        { id: 1, label: 'Site Metrics', isActive: true, path: '/Manager' },
+        { id: 2, label: 'Production Line Metrics', isActive: false, path: '/Manager/ProductionLineMetrics' },
         { id: 3, label: 'Vehicle Progress Tracking Board', isActive: false, path: '/Manager/VPTB' },
         { id: 4, label: 'Staffing', isActive: false, path: '/Manager/Staffing' }
     ],

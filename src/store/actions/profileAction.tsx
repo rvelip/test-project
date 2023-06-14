@@ -5,7 +5,7 @@ export const fetchProfileDetailsAction = (persona: string) => {//use this to mak
         username: 'Ram',
         persona: 'team_member',
         location: 'long_beach',
-        line: 'Production Line A1',
+        line: 'A1',
         shop: 'A1',
         stall: 'Stall 1'
     }
@@ -13,7 +13,7 @@ export const fetchProfileDetailsAction = (persona: string) => {//use this to mak
         username: 'Pritam',
         persona: 'manager',
         location: 'long_beach',
-        line: 'Production Line A1',
+        line: 'A1',
         shop: 'A1',
         stall: 'Stall 1'
     }

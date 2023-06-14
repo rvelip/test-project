@@ -7,7 +7,7 @@ import { CONSTANTS } from '@/constants/constants';
 import moment from 'moment-timezone';
 
 export default function DashboardHeader(props: any) {
-  const { renderEle } = props;
+  const { sectionHeader, renderEle } = props;
   const dispatch: any = useDispatch();
   const scanNextVINId = useSelector((state: any) => state.vinState.scanNextVINId);
   const element = useSelector((state: any) => state.vinState.element);
@@ -45,8 +45,8 @@ export default function DashboardHeader(props: any) {
       const timeLB = moment.tz('America/Los_Angeles').format('ddd MM/DD/YYYY LT');
       setDate(timeLB);
     } else if(profileData?.location === 'princeton') {
-      // Princeton - New_York (EST)
-      const timePrinceton = moment.tz('America/New_York').format('ddd MM/DD/YYYY LT');
+      // Princeton - New_York (CST)
+      const timePrinceton = moment.tz('America/Indiana').format('ddd MM/DD/YYYY LT');
       setDate(timePrinceton);
     }
   };
@@ -94,7 +94,7 @@ export default function DashboardHeader(props: any) {
       <div className={dashboardHeaderStyle.dashboardControlsWrapper}>
         {/* Production Line & Stall Number */}
         <div className={dashboardHeaderStyle.headerText}>
-          {`${profileData?.line} | ${profileData.stall}`}
+          {sectionHeader}
         </div>
         {/* Date Filters */}
         <div className={dashboardHeaderStyle.rightSectionWrapper}>
