@@ -6,10 +6,11 @@ import { logoutAction } from '@/store/actions/authenticationAction';
 import { resetAction } from '@/store/actions/rootAction';
 import toast from 'react-hot-toast';
 import { CONSTANTS } from '@/constants/constants';
+import { useIsAuthenticated } from "@azure/msal-react";
 
 export default function TopBar() {
   const dispatch: any = useDispatch();
-  const isAuthenticated = useSelector((state: any) => state.authenticationState.isAuthenticated);
+  const isAuthenticated = useIsAuthenticated();
   const profileData = useSelector((state: any) => state.profileState);
 
   const logout = () => {

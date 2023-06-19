@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Legend } from "recharts";
 
-const data = [
-  { name: "36 No Part/Contents", value: 36, fill: "#0F2C6B" },
-  { name: "13 Part Damage/Quality Issue", value: 13, fill: "#1A4BB5" },
-  { name: "4 Vehicle Damage/Quality Issue", value: 4, fill: "#2469FF" },
-  { name: "2 Team Member Not Trained", value: 2, fill: "#6C9BFF" },
-  { name: "2 Re-routed", value: 2, fill: "#BBD1FF" },
-  { name: "1 Missing Tool", value: 1, fill: "#909295" },
-  { name: "1 End of shift/End of day", value: 1, fill: "#909295" }
-];
-
 const renderColorfulLegendText = (value: string) => {
   return (
     <span style={{ color: "#000000", fontWeight: 400, fontSize: '14px', padding: '5px' }}>
@@ -21,9 +11,10 @@ const renderColorfulLegendText = (value: string) => {
 
 // import * as d3 from 'd3';
 
-function DonutChart() {
+function DonutChart(props:any) {
+  const { data } = props
   const [domLoaded, setDomLoaded] = useState(false);
-  
+
   useEffect(() => {
     setDomLoaded(true)
   }, [])

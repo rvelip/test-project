@@ -6,13 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import Login from '@/components/Login';
 import { resetAction } from '@/store/actions/rootAction';
+import About from './about';
+import TopBar from '@/components/Layout/TopBar/TopBar';
+
 
 
 export default function Home({ posts }: any) {
   const dispatch: any = useDispatch();
 
   return (
-    <Login />
+    <></>
   )
 }
 

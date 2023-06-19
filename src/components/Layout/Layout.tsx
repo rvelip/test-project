@@ -8,12 +8,13 @@ import { VinAction } from '@/store/actions/vinAction';
 import Login from '../Login';
 import { CONSTANTS } from '@/constants/constants';
 import toast from 'react-hot-toast';
+import { useIsAuthenticated } from "@azure/msal-react";
+import { fetchProfileDetailsAction } from '@/store/actions/profileAction';
 
 export default function Layout({ children }: any) {
   const router = useRouter();
   const dispatch: any = useDispatch();
-
-  const isAuthenticated = useSelector((state: any) => state.authenticationState.isAuthenticated);
+  const isAuthenticated = useIsAuthenticated();
   const profileData = useSelector((state: any) => state.profileState);
   const teamMemberRoutes = useSelector((state: any) => state.config.teamMemberRoutes);
   const managerRoutes = useSelector((state: any) => state.config.managerRoutes);
@@ -60,7 +61,14 @@ export default function Layout({ children }: any) {
   }, [profileData, teamMemberRoutes, managerRoutes]);
 
   useEffect(() => {
-    !isAuthenticated && router.push('/');
+    //set log in to true
+    if (isAuthenticated) {
+      //load profile data
+      dispatch(fetchProfileDetailsAction('manager'));
+    } else {
+      router.push('/');
+    }
+
   }, [isAuthenticated])
 
   // useEffect(() => {
@@ -85,19 +93,18 @@ export default function Layout({ children }: any) {
       {/* fixed topbar */}
       <TopBar />
       {/* fixed navigation & header */}
-      {isAuthenticated ? (
+      {isAuthenticated && (
         <>
-          {router.pathname !== '/' && (routes.length !== 0) && (
-            <>
-              <DashboardNavigation />
-              <DashboardHeader sectionHeader={sectionHeader} renderEle={renderEle} />
-            </>
-          )}
+          {/* {router.pathname !== '/' && (routes.length !== 0) && ( */}
+          <>
+            <DashboardNavigation />
+            <DashboardHeader sectionHeader={sectionHeader} renderEle={renderEle} />
+          </>
+          {/* )} */}
           {children}
         </>
-      ) : (
-        <Login />
       )}
+
     </>
   )
 }
