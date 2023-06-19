@@ -11,11 +11,11 @@ export default function StaffingWrapper() {
   ];
 
   const staffingData = [
-    { 'Shop': "Wheel (A1)", 'Stall': "Stall 1", 'Planned Vehicles': "25", 'Planned Hours': "5.2", "Team Member Count":"01"},
-    { 'Shop': "Wheel (A1)", 'Stall': "Stall 2", 'Planned Vehicles': "25", 'Planned Hours': "5.0", "Team Member Count":"01"},
-    { 'Shop': "Wheel (A1)", 'Stall': "Stall 3", 'Planned Vehicles': "25", 'Planned Hours': "5.5", "Team Member Count":"01"},
-    { 'Shop': "Wheel (A1)", 'Stall': "Stall 4", 'Planned Vehicles': "25", 'Planned Hours': "5.5", "Team Member Count":"01"},
-    { 'Shop': "Align (A2)", 'Stall': "Stall 1", 'Planned Vehicles': "50", 'Planned Hours': "7.5", "Team Member Count":"01"}
+    { 'Shop': "Wheel (A1)", 'Stall': "Stall 1", 'Planned Vehicles': "25", 'Planned Hours': "5.2", "Team Member Count": "01" },
+    { 'Shop': "Wheel (A1)", 'Stall': "Stall 2", 'Planned Vehicles': "25", 'Planned Hours': "5.0", "Team Member Count": "01" },
+    { 'Shop': "Wheel (A1)", 'Stall': "Stall 3", 'Planned Vehicles': "25", 'Planned Hours': "5.5", "Team Member Count": "01" },
+    { 'Shop': "Wheel (A1)", 'Stall': "Stall 4", 'Planned Vehicles': "25", 'Planned Hours': "5.5", "Team Member Count": "01" },
+    { 'Shop': "Align (A2)", 'Stall': "Stall 1", 'Planned Vehicles': "50", 'Planned Hours': "7.5", "Team Member Count": "01" }
   ];
 
   const handleShopChange = (name: string, selectedValue: string) => {
@@ -33,12 +33,11 @@ export default function StaffingWrapper() {
         </div>
       </div>
       <div className='mb-20'>
-          <div className='text-white bg-black p-4 text-xs font-bold font-toyota'>
+        <div className='text-white bg-black p-4 text-xs font-bold font-toyota'>
           Today’s Staffing Breakdown
-          </div>
-            <Table tableData={staffingData} isStaffingData={true}/>
+        </div>
+        <Table tableData={staffingData} isStaffingData={true} />
       </div>
     </>
   )
 }
-

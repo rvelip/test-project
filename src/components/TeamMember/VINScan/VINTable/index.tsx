@@ -21,6 +21,7 @@ export default function VINTable() {
     const [isSubmitBtnDisabled, setSubmitBtnDisabled] = useState(false);
 
     const options = [
+        { value: "End of shift/End of day", label: "End of shift/End of day" },
         { value: "No Part/Contents", label: "No Part/Contents" },
         { value: "Part Damage/Quality Issue", label: "Part Damage/Quality Issue" },
         { value: "Vehicle Damage/Quality Issue", label: "Vehicle Damage/Quality Issue" },
@@ -29,7 +30,6 @@ export default function VINTable() {
         { value: "Re-Routed", label: "Re-Routed" },
         { value: "Missing Tool", label: "Missing Tool" },
         { value: "PPO Conflict", label: "PPO Conflict" },
-        { value: "End of shift/End of day", label: "End of shift/End of day" }
     ];
 
     const handleInstalledClick = (e: any, btnKey: string) => {

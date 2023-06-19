@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CONSTANTS } from '@/constants/constants';
 import staging_icon from '../../../../../public/images/icons/staging_icon.svg';
 import Image from 'next/image';
 import greenTick from '../../../../../public/images/icons/greenTick.svg';
 import redTick from '../../../../../public/images/icons/redTick.svg';
+import settingsIcon from '../../../../../public/images/icons/settingsIcon.svg';
+import Modal from '@/components/Shared/Modal';
+import ConfigScreen from '../ConfigScreen';
 
 export default function ShopFloorPlan() {
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
+
   const shop_floor_data = {
     left_section: [
       { shopName: "A1", shopType: "Wheel" },
@@ -16,23 +21,42 @@ export default function ShopFloorPlan() {
       { shopName: "E", shopType: "Roof" },
       { shopName: "F1", shopType: "Bay" },
       { shopName: "F2", shopType: "Hoist" },
-      { shopName: "F3", shopType: "Hoist" }
     ],
     right_section: [
-      { shopName: "H", shopType: "Conveyor" },
+      { shopName: "H", shopType: "Bay" },
       { shopName: "J1", shopType: "Conveyor" },
       { shopName: "J", shopType: "Conveyor" },
       { shopName: "U", shopType: "FQA & Throw Ins" },
       { shopName: "X", shopType: "FQA & Throw Ins" },
-      { shopName: "Z", shopType: "Conveyor" },
     ]
   };
 
   return (
     <div className='w-full'>
-      <div className='bg-black p-4 text-white text-xs'>
-        <div className='font-bold'>{CONSTANTS.MANAGER_SITE_METRIC_SHOP_FLOOR_HEADER}</div>
-        <div>{CONSTANTS.MANAGER_SITE_METRIC_SHOP_FLOOR_SUB_HEADER}</div>
+      {/* Show modal to confirm remove Workday Id */}
+      {showSettingsModal && (
+        <Modal
+          absolute
+          size='large' 
+          handleModalClose={() => {setShowSettingsModal(false)}}
+          // handleConfirm={}
+          modal_header='Site Configuration'
+          isConfirm
+          confirmBtnName="Submit"
+          isCancel
+          cancelBtnName="Cancel"
+        >
+          <ConfigScreen />
+        </Modal>
+      )}
+      <div className='bg-black p-4 text-white text-xs flex justify-between items-center'>
+        <div>
+          <div className='font-bold'>{CONSTANTS.MANAGER_SITE_METRIC_SHOP_FLOOR_HEADER}</div>
+          <div>{CONSTANTS.MANAGER_SITE_METRIC_SHOP_FLOOR_SUB_HEADER}</div>
+        </div>
+        <div className='mr-2' onClick={() => {setShowSettingsModal(true)}}>
+          <Image width={26} src={settingsIcon} alt='settings icon' />
+        </div>
       </div>
       <div className='px-4 py-8 text-center'>
         <div className='grid grid-cols-12 gap-4'>
