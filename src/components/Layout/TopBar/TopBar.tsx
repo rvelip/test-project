@@ -7,14 +7,39 @@ import { resetAction } from '@/store/actions/rootAction';
 import toast from 'react-hot-toast';
 import { CONSTANTS } from '@/constants/constants';
 import { useIsAuthenticated } from "@azure/msal-react";
+import { useMsal } from '@azure/msal-react';
 
 export default function TopBar() {
   const dispatch: any = useDispatch();
   const isAuthenticated = useIsAuthenticated();
   const profileData = useSelector((state: any) => state.profileState);
+  const { instance } = useMsal();
 
-  const logout = () => {
-    dispatch(logoutAction())
+  const fetchData = async () => {
+    await instance.logout();
+  };
+  // const logout = () => {
+  //   dispatch(logoutAction())
+  //   dispatch(resetAction())
+  //   toast.success(CONSTANTS.LOGOUT_MESSAGE, {
+  //     position: 'top-right',
+  //     duration: 4000,
+  //     // icon:'',
+  //     style: {
+  //       borderRadius: '4px',
+  //       backgroundColor: 'white',
+  //       color: 'black',
+  //       fontWeight: '600'
+  //     }
+  //   });
+  // }
+  // const fetchData = async () => {
+  //   console.log('loglout')
+  //   await instance.logoutPopup();
+  // }
+   const logout = () => {
+    fetchData();
+    // dispatch(logoutAction())
     dispatch(resetAction())
     toast.success(CONSTANTS.LOGOUT_MESSAGE, {
       position: 'top-right',
@@ -28,6 +53,7 @@ export default function TopBar() {
       }
     });
   }
+
 
   return (
     <div className='w-full bg-black text-white h-10 flex justify-between items-center p-4 sticky top-0 z-1000'>

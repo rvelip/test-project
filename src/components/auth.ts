@@ -11,7 +11,7 @@ export const msalConfig = {
     clientId: '295c8ba7-ddd9-45ed-b1d7-e13d36c06813', // This is the ONLY mandatory field that you need to supply.
     authority: 'https://login.microsoftonline.com/80155006-ca41-41fa-8409-68f4df2a5ddf', // Defaults to "https://login.microsoftonline.com/common"
     redirectUri: '/TeamMember', // Points to window.location.origin. You must register this URI on Azure Portal/App Registration.
-    // postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
+    postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
     // navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
   },
   cache: {

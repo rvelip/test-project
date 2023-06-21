@@ -15,23 +15,16 @@ export const AuthProvider = ({ children }) => {
 
   const { accounts, instance } = useMsal();
 
-  function RequestAccessToken() {
+  async function RequestAccessToken() {
     const request = {
       scopes: ['User.Read'],
       account: accounts[0],
     };
-
-    // Silently acquires an access token which is then attached to a request for Microsoft Graph data
-    instance.acquireTokenSilent(request).then((response) => {
-        //@ts-ignore
-        
-        setUserRole(response.idTokenClaims.roles);
-        setAccessToken(response.accessToken);
-      })
+    await instance.acquireTokenPopup(request).then((response) => {
+      setAccessToken(response.accessToken);
+    })
       .catch((_e) => {
-        instance.acquireTokenPopup(request).then((response) => {
-           setAccessToken(response.accessToken);
-       });
+        console.log(_e)
       });
   }
 

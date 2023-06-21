@@ -42,7 +42,6 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* </AuthenticatedTemplate> */}
         {/* <UnauthenticatedTemplate>
           <SSORedirect />
-          <p>No users are signed in!</p>
         </UnauthenticatedTemplate> */}
       </MsalProvider>
     </>
